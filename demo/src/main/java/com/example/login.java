@@ -2,6 +2,7 @@ package com.example;
 
 import java.awt.BorderLayout;
 import java.awt.FlowLayout;
+import java.awt.GridLayout;
 import java.awt.LayoutManager;
 
 import javax.swing.ImageIcon;
@@ -14,30 +15,39 @@ public class login {
         createWindow();
     }
     private static void createWindow() {    
-        JFrame frame = new JFrame("更改Swing視窗的預設圖示");           
-        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        ImageIcon arrowIcon = null;
+        JFrame windowFrame = new JFrame("更改Swing視窗的預設圖示");   
+        windowFrame.setLayout(new GridLayout(1,2));
+        windowFrame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        ImageIcon arrowIcon = new ImageIcon("dogdog.png");
   
         java.net.URL imgURL = SwingTester.class.getResource("dogdog.png");
         if (imgURL != null) {
            arrowIcon = new ImageIcon(imgURL);
-           frame.setIconImage(arrowIcon.getImage());
+           windowFrame.setIconImage(arrowIcon.getImage());
         } else {
-           JOptionPane.showMessageDialog(frame, "Icon image not found.");
+           JOptionPane.showMessageDialog(windowFrame, "Icon image not found.");
         }
-  
-        createUI(frame);
-        frame.setSize(560, 200);      
-        frame.setLocationRelativeTo(null);  
-        frame.setVisible(true);
-     }
-  
-     private static void createUI(JFrame frame){      
+
+        createUI(windowFrame);
+        putdog(windowFrame);
+        windowFrame.setSize(750, 400);      
+        windowFrame.setLocationRelativeTo(null);  
+        windowFrame.setVisible(true);
+    }
+
+    private static void putdog(JFrame windowFrame){
+
+        JLabel dog=new JLabel(new ImageIcon("demo\\src\\main\\java\\com\\example\\dogdog.png"));
+        windowFrame.add(dog);
+        dog.setBounds(375, 0, 300, 300);
+    }
+     
+    private static void createUI(JFrame windowFrame){      
         JPanel panel = new JPanel();
-        LayoutManager layout = new FlowLayout();  
+        LayoutManager layout = new BorderLayout();  
         panel.setLayout(layout);       
-        panel.add(new JLabel("Welcome to Tw511.com!"));
-  
-        frame.getContentPane().add(panel, BorderLayout.CENTER);    
-     }
+        panel.add(new JLabel("hello world!"),BorderLayout.WEST);
+
+        windowFrame.getContentPane().add(panel, BorderLayout.CENTER);  
+    }
 }
