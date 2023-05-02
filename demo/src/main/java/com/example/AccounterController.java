@@ -20,8 +20,8 @@ public class AccounterController {
 
             InsertOneResult result = collection.insertOne(new Document()
                     .append("_id", new ObjectId())
-                    .append("username", "Hi")
-                    .append("password", "女人"));
+                    .append("username", "test")
+                    .append("password", "test"));
             System.out.println("Success insert!");
         } catch (MongoException e) {
             System.out.println("Unable to insert due to an error " + e);
