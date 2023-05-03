@@ -5,28 +5,47 @@ import java.io.DataOutputStream;
 import java.io.InputStreamReader;
 import java.net.HttpURLConnection;
 import java.net.URL;
+import java.security.SecureRandom;
+import java.util.HashMap;
+import java.util.Map;
 
-public class sms_sample {
+public class SMS {
 
     private HttpURLConnection sms_gw = null;
+    private final String HostUsername = "say859462";
+    private final String HostPassword = "say1472580";
+    private Map<String, String> Validator = new HashMap<>();
 
-    public sms_sample() {
+    public SMS() {
     }
 
-    private void SendSMS() {
+    private String generateValidCode() {
+        SecureRandom random = new SecureRandom();
+
+        String validCode = "";// 儲存產生的驗證碼
+
+        String digits;
+
+        for (int i = 0; i < 6; i++) {
+            digits = String.format("%d", random.nextInt(10));
+            validCode = validCode + digits;
+        }
+        return validCode;
+    }
+
+    // 發送手機驗證碼到使用者手機
+    public void SendSMS(String phoneNumber) {
         try {
             // 設定變數 StringBuffer 使得String可以修改內容
             StringBuffer MSGData = new StringBuffer();
 
             // 設定參數
-            String username = "say859462"; // 帳號
-            String password = "say1472580"; // 密碼
-            String mobile = "0974002156"; // 電話
-            String message = "給JAVA專題小隊的簡訊測試"; // 簡訊內容
-
-            MSGData.append("username=" + username);
-            MSGData.append("&password=" + password);
-            MSGData.append("&mobile=" + mobile);
+            String validCode = generateValidCode();
+            String message = "歡迎使用Doge密碼管理系統，這是您的驗證碼:" + validCode; // 簡訊內容
+            Validator.put(phoneNumber, validCode);
+            MSGData.append("username=" + HostUsername);
+            MSGData.append("&password=" + HostPassword);
+            MSGData.append("&mobile=" + phoneNumber);
             MSGData.append("&message=");
             MSGData.append(UrlEncode(message.toString().getBytes("big5")));
 
@@ -104,8 +123,13 @@ public class sms_sample {
         return "";
     }
 
-    void Process(String[] args) {
-        SendSMS();
+    // 檢查使用者輸入的手機驗證碼是否正確
+    public boolean ValidCodeComparison(String userPhoneNumber, String userInput) {
+        if (Validator.get(userPhoneNumber).equals((userInput))) {
+            Validator.remove(userPhoneNumber);
+            return true;
+        }
+        return false;
     }
 
 }
