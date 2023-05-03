@@ -20,6 +20,7 @@ public class SwingTester {
       frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
       ImageIcon arrowIcon = null;
 
+      //設置左上角小圖片
       java.net.URL imgURL = SwingTester.class.getResource("dogdog.png");
       if (imgURL != null) {
          arrowIcon = new ImageIcon(imgURL);
@@ -33,6 +34,7 @@ public class SwingTester {
       frame.setLocationRelativeTo(null);  
       frame.setVisible(true);
    }
+   
 
    private static void createUI(JFrame frame){      
       JPanel panel = new JPanel();
