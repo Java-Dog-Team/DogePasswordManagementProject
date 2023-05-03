@@ -22,7 +22,7 @@ public class AESEncryption {
         return Base64.getEncoder().encodeToString(encryptedValue);
     }
 
-    // 解密method
+    // 解密method hi
     public static String decrypt(String value) throws Exception {
         SecretKeySpec secretKeySpec = new SecretKeySpec(KEY.getBytes(), ALGORITHM);
         Cipher cipher = Cipher.getInstance(ALGORITHM);
