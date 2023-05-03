@@ -8,7 +8,7 @@ public class App {
         // AccounterController accounterController = new AccounterController();
         // System.out.println(accounterController.reapeatedAccount("ss66112"));
         // accounterController.regiserAccount("test001@gmail.com", "test002",
-        // "0986577869"); asdlajdlk
+        // "0986577869");
 
     }
 }
