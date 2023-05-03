@@ -16,7 +16,7 @@ public class login {
     }
     private static void createWindow() {    
         JFrame windowFrame = new JFrame("更改Swing視窗的預設圖示");   
-        windowFrame.setLayout(new GridLayout(1,2));
+        
         windowFrame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         ImageIcon arrowIcon = new ImageIcon("dogdog.png");
   
