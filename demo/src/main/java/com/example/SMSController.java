@@ -9,14 +9,14 @@ import java.security.SecureRandom;
 import java.util.HashMap;
 import java.util.Map;
 
-public class SMS {
+public class SMSController {
 
     private HttpURLConnection sms_gw = null;
     private final String HostUsername = "say859462";
     private final String HostPassword = "say1472580";
     private Map<String, String> Validator = new HashMap<>();
 
-    public SMS() {
+    public SMSController() {
     }
 
     private String generateValidCode() {

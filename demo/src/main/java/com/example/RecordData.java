@@ -1,6 +1,7 @@
 package com.example;
 
 public class RecordData {
+    
     private String AppName;
     private String Username;
     private String Password;
