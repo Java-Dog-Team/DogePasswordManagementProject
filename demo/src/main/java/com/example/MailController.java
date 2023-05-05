@@ -14,7 +14,7 @@ import javax.mail.Transport;
 import javax.mail.internet.InternetAddress;
 import javax.mail.internet.MimeMessage;
 
-class MailController {
+public class MailController {
 
     private final String SenderEmail = "sw710407@gmail.com";
     private Map<String, String> Validator = new HashMap<>();// 紀錄使用者的驗證碼 用於驗證馬比對
@@ -23,7 +23,9 @@ class MailController {
 
     }
 
+    // 驗證碼產生method
     private String generateValidCode() {
+
         SecureRandom random = new SecureRandom();
 
         String validCode = "";// 儲存產生的驗證碼
@@ -35,6 +37,7 @@ class MailController {
             validCode = validCode + digits;
         }
         return validCode;
+
     }
 
     public void sendMail(String userMail) {
@@ -82,11 +85,12 @@ class MailController {
 
     // 驗證驗證碼是否正確
     public boolean ValidCodeComparison(String userMail, String userInput) {
-        if (Validator.get(userMail).equals(userInput)){
+
+        if (Validator.get(userMail).equals(userInput)) {
             Validator.remove(userMail);
             return true;
         }
-            
+
         return false;
     }
 }

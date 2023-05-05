@@ -9,7 +9,8 @@ import com.mongodb.client.MongoCollection;
 import com.mongodb.client.MongoDatabase;
 
 public class AccounterController {
-    // mongodb connect url
+
+    // Mongodb Connect URL
     private final String url = "mongodb+srv://say859462:0000@cluster0.n4rhnlu.mongodb.net/?retryWrites=true&w=majority";
     private final String CollectionName = "JavaProject";
     private MongoClient mongoClient = MongoClients.create(url);
@@ -18,7 +19,7 @@ public class AccounterController {
     // 電子郵件正規表達式
     private final String emailRegularExpression = "[a-zA-Z0-9._]+@([a-zA-Z0-9_]+.[a-zA-Z0-9_]+)+";
 
-    public static final int USERNAME_NOT_EMAIL = 1;// 帳號不為電子郵件格式
+    public static final int USERNAME_NOT_EMAIL_FORMAT = 1;// 帳號不為電子郵件格式
     public static final int USERNAME_REPEAT = 2;// 帳號重複
     public static final int OK = 0;// 成功
 
@@ -40,12 +41,12 @@ public class AccounterController {
         return false;
     }
 
-    // 註冊帳號 return ture代表帳號創建成功
+    // 註冊帳號 return OK代表帳號創建成功
     public int regiserAccount(String username, String password, String phone) throws Exception {
 
         if (!username.matches(emailRegularExpression)) {// 判斷帳號是否為email格式
             System.out.println("帳號不為email");
-            return USERNAME_NOT_EMAIL;
+            return USERNAME_NOT_EMAIL_FORMAT;
         }
 
         if (!reapeatedAccount(username)) {// 若此帳號不重複
@@ -67,6 +68,8 @@ public class AccounterController {
     }
 
 }
+
+
 // try () {
 
 // MongoCollection<Document> collection = database.getCollection("Users");
