@@ -16,7 +16,11 @@ public class SMSController {
     private final String HostPassword = "say1472580";
     private Map<String, String> Validator = new HashMap<>();
 
+    public static final int SMS_VALIDCODE_CORRECT = 0;// 手機驗證碼正確
+    public static final int SMS_VALIDCODE_INCORRECT = 1;// 手機驗證碼錯誤
+
     public SMSController() {
+
     }
 
     private String generateValidCode() {
@@ -124,12 +128,16 @@ public class SMSController {
     }
 
     // 檢查使用者輸入的手機驗證碼是否正確
-    public boolean ValidCodeComparison(String userPhoneNumber, String userInput) {
-        if (Validator.get(userPhoneNumber).equals((userInput))) {
-            Validator.remove(userPhoneNumber);
-            return true;
+    public int ValidCodeVerify(String userPhoneNumber, String userInput) {
+        try {
+            if (Validator.get(userPhoneNumber).equals((userInput))) {
+                Validator.remove(userPhoneNumber);
+                return SMS_VALIDCODE_CORRECT;
+            }
+        } catch (Exception err) {// 找不到該電話的驗證碼
+            return SMS_VALIDCODE_INCORRECT;
         }
-        return false;
+        return SMS_VALIDCODE_INCORRECT;
     }
 
 }

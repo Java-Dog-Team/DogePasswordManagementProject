@@ -19,6 +19,9 @@ public class MailController {
     private final String SenderEmail = "sw710407@gmail.com";
     private Map<String, String> Validator = new HashMap<>();// 紀錄使用者的驗證碼 用於驗證馬比對
 
+    public static final int MAIL_VALIDCODE_CORRECT = 0;// 電子郵件驗證碼正確
+    public static final int MAIL_VALIDCODE_INCORRECT = 1;// 電子郵件驗證碼錯誤
+
     public MailController() {
 
     }
@@ -84,13 +87,17 @@ public class MailController {
     }
 
     // 驗證驗證碼是否正確
-    public boolean ValidCodeComparison(String userMail, String userInput) {
-
-        if (Validator.get(userMail).equals(userInput)) {
-            Validator.remove(userMail);
-            return true;
+    public int ValidCodeVerify(String userMail, String userInput) {
+        try {
+            if (Validator.get(userMail).equals(userInput)) {
+                Validator.remove(userMail);// 該使用者驗證碼已通過 將其刪除
+                return MAIL_VALIDCODE_CORRECT;
+            }
+        } catch (Exception e) {// 找不到該電子郵件的驗證碼
+            return MAIL_VALIDCODE_INCORRECT;
         }
 
-        return false;
+        return MAIL_VALIDCODE_INCORRECT;
     }
+
 }
