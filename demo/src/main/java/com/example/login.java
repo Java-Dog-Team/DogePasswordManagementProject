@@ -21,13 +21,12 @@ public class login {
     private static ImageIcon dogPicture=new ImageIcon("demo\\src\\main\\java\\com\\example\\yellow_dog.jpeg");
     private static JLabel dog=new JLabel(dogPicture,JLabel.CENTER);
     private static Container container = windowFrame.getContentPane();
+    //取得螢幕大小
+    private static Dimension dimension=Toolkit.getDefaultToolkit().getScreenSize();
     public static void main(String[] args) {
         createWindow();
     }
     private static void createWindow() {    
-        
-        //取得螢幕大小
-        Dimension dimension=Toolkit.getDefaultToolkit().getScreenSize();
         //設定視窗大小為螢幕的2/3
         windowFrame.setSize(dimension.width*2/3, dimension.height*2/3);
         
@@ -60,18 +59,18 @@ public class login {
         dogPicture.setImage(dogPicture.getImage().getScaledInstance(w/2, h/2, Image.SCALE_DEFAULT));
         // dog.setLayout(new BorderLayout());
         // dog.setIcon(dogPicture);
-        dog.setSize(w/2, h/2);
+        dog.setSize(dimension.width*2/3, dimension.height*2/3);
         
         //圖片應該會在中間阿QAQ
         container.add(dog,BorderLayout.CENTER);
     }
 
     private static void createUI(JFrame windowFrame){      
-        JPanel panel = new JPanel();
-        LayoutManager layout = new BorderLayout();  
-        panel.setLayout(layout);       
-        panel.add(new JLabel("hello world!"));
+        // JPanel panel = new JPanel();
+        // LayoutManager layout = new BorderLayout();  
+        // panel.setLayout(layout);       
+        // panel.add(new JLabel("hello world!"));
 
-        windowFrame.getContentPane().add(panel, BorderLayout.CENTER);  
+        // windowFrame.getContentPane().add(panel, BorderLayout.CENTER);  
     }
 }
