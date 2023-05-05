@@ -4,7 +4,7 @@ import java.awt.Color;
 import java.awt.event.FocusEvent;
 import java.awt.event.FocusListener;
 import javax.swing.JPasswordField;
-
+//密碼輸入提示語
 public class JPasswordFieldHintListener implements FocusListener{
 
     static char defaultChar;
@@ -15,7 +15,19 @@ public class JPasswordFieldHintListener implements FocusListener{
         this.hintText=hintText;
         textField.setText(hintText);
         textField.setForeground(Color.GRAY);
+        //默認的密碼隱藏符號
         defaultChar = textField.getEchoChar();
+    }
+
+    @Override
+    public void focusLost(FocusEvent e){
+        String temp=new String(textField.getPassword()).trim();
+        if(temp.equals("")){
+            textField.setEchoChar('\0');
+            textField.setForeground(Color.GRAY);
+            textField.setText(hintText);
+            
+        }
     }
 
     @Override
@@ -28,13 +40,5 @@ public class JPasswordFieldHintListener implements FocusListener{
         }
     }
 
-    @Override
-    public void focusLost(FocusEvent e){
-        String temp=new String(textField.getPassword()).trim();
-        if(temp.equals("")){
-            textField.setForeground(Color.GRAY);
-            textField.setText(hintText);
-            textField.setEchoChar('\0');
-        }
-    }
+    
 }

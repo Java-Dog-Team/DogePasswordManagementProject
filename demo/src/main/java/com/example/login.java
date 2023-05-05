@@ -30,7 +30,10 @@ public class login {
     private static Container container = windowFrame.getContentPane();
     //取得螢幕大小
     private static Dimension dimension=Toolkit.getDefaultToolkit().getScreenSize();
-    
+    private static JLabel frame_up=new JLabel(" ");
+    private static JLabel frame_left=new JLabel(" ");
+    private static JLabel frame_right=new JLabel(" ");
+    private static JLabel frame_down=new JLabel(" ");
     public static void main(String[] args) {
         createWindow();
     }
@@ -42,6 +45,7 @@ public class login {
         container.setLayout(new BorderLayout());
         //設定關閉可以關掉程式
         windowFrame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        
 
         //設置左上角小圖片
         ImageIcon arrowIcon = null;
@@ -57,8 +61,7 @@ public class login {
         createUI(windowFrame);
         //顯示圖片
         container.add(dog,BorderLayout.CENTER);
-        //windowFrame.setSize(750, 400);      
-
+        
         windowFrame.setLocationRelativeTo(null);  
         windowFrame.setVisible(true);
     }
@@ -67,47 +70,64 @@ public class login {
         int w=dogPicture.getIconWidth();
         int h=dogPicture.getIconHeight();
         //縮小狗狗
-        dogPicture.setImage(dogPicture.getImage().getScaledInstance((int)(0.65*w), (int)(0.65*h), Image.SCALE_DEFAULT));
+        dogPicture.setImage(dogPicture.getImage().getScaledInstance((int)(0.55*w), (int)(0.55*h), Image.SCALE_DEFAULT));
         //視窗下緣和對齊
         dog.setVerticalAlignment(JLabel.BOTTOM);
         //視窗左邊和對齊
         dog.setHorizontalAlignment(JLabel.LEFT);
-        // dog.setLayout(new BorderLayout());
-        // dog.setIcon(dogPicture);
-        //dog.setSize(w/2, h/2);
-
     }
 
     private static void createUI(JFrame windowFrame){
-        //int w=dogPicture.getIconWidth();
-        //int h=dogPicture.getIconHeight();
-        //JLabel label=new JLabel("Login");
+        
         JLabel label1=new JLabel("Login");
         JLabel label2=new JLabel("Account:");
         JLabel label3=new JLabel("Password:");
-        JTextField accountText=new JTextField(null, "", 0);//帳號輸入
+        //帳號輸入
+        JTextField accountText=new JTextField(null, "", 0);
+        //帳號提示語
         accountText.addFocusListener(new JTextFieldHintListener(accountText, "Enter your account(email):"));
-        JPasswordField text2=new JPasswordField(null, null, 0);//密碼輸入
+        //密碼輸入
+        JPasswordField passWord=new JPasswordField(null, "", 0);
+        //密碼提示語
+        passWord.addFocusListener(new JPasswordFieldHintListener(passWord,"Enter your password:"));
+        //密碼框框文字會顯示
+        passWord.setEchoChar('\0');
         
-        text2.addFocusListener(new JPasswordFieldHintListener(text2,"Enter your password:"));
-        //text2.setEchoChar('\0');
-        //text2.addFocusListener(new JTextFieldHintListener(text2, "Enter your password:"));
-        // label.setSize(w/2, h/2);
-        label1.setBounds(620, 90,200,100);
-        label2.setBounds(450, 150,90,90);
-        accountText.setBounds(540, 180, 319, 30);
-        
-        label3.setBounds(450, 200,200,100);
-        text2.setBounds(560, 235, 300, 30);
+        label1.setBounds(610, 90,200,100);
+        label2.setBounds(440, 150,90,90);
+        accountText.setBounds(530, 180, 319, 30);
+        label3.setBounds(440, 200,200,100);
+        passWord.setBounds(550, 235, 300, 30);
 
         label1.setFont((new Font("",Font.ITALIC,35)));
         label2.setFont((new Font("",Font.ITALIC,20)));
         label3.setFont((new Font("",Font.ITALIC,20)));
+
+        //設定Lebel為不透明
+        frame_up.setOpaque(true); 
+        frame_left.setOpaque(true); 
+        frame_right.setOpaque(true); 
+        frame_down.setOpaque(true);
+        //設定Lebel顏色
+        frame_up.setBackground(Color.orange);
+        frame_left.setBackground(Color.orange);
+        frame_right.setBackground(Color.orange);
+        frame_down.setBackground(Color.orange);
+        //設定大小
+        frame_up.setFont((new Font("",0,20)));
+        frame_left.setFont((new Font("",0,100)));
+        frame_right.setFont((new Font("",0,100)));
+        frame_down.setFont((new Font("",0,20)));
+        //加入windowFrame
         windowFrame.add(label1);
         windowFrame.add(label2);
         windowFrame.add(accountText);
         windowFrame.add(label3);
-        windowFrame.add(text2);
-        //windowFrame.add(text,BorderLayout.SOUTH);
+        windowFrame.add(passWord);
+        windowFrame.add(frame_up,BorderLayout.NORTH);
+        windowFrame.add(frame_left,BorderLayout.WEST);
+        windowFrame.add(frame_right,BorderLayout.EAST);
+        windowFrame.add(frame_down,BorderLayout.SOUTH);
+        
     }
 }

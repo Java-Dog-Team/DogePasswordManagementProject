@@ -4,7 +4,7 @@ import java.awt.Color;
 import java.awt.event.FocusEvent;
 import java.awt.event.FocusListener;
 import javax.swing.JTextField;
-
+//帳號輸入提示語
 public class JTextFieldHintListener implements FocusListener{
     private String hintText;
     private JTextField textField;
