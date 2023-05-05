@@ -17,6 +17,7 @@ import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
+import javax.swing.JPasswordField;
 import javax.swing.JTextField;
 
 public class login {
@@ -81,12 +82,15 @@ public class login {
         JLabel label1=new JLabel("Login");
         JLabel label2=new JLabel("Account:");
         JLabel label3=new JLabel("Password:");
-        JTextField text1=new JTextField(null, "Anter your account", 0);//帳號輸入
-        JTextField text2=new JTextField(null, "Anter your password", 0);//密碼輸入
+        JTextField text1=new JTextField(null, "", 0);//帳號輸入
+        text1.addFocusListener(new JTextFieldHintListener(text1, "Enter your account(email):"));
+        JTextField text2=new JTextField(null, null, 0);//密碼輸入
+        text2.addFocusListener(new JTextFieldHintListener(text2, "Enter your password:"));
         // label.setSize(w/2, h/2);
         label1.setBounds(620, 90,200,100);
         label2.setBounds(450, 150,90,90);
         text1.setBounds(540, 180, 319, 30);
+        
         label3.setBounds(450, 200,200,100);
         text2.setBounds(560, 235, 300, 30);
 
