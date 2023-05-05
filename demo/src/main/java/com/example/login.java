@@ -12,9 +12,8 @@ import java.awt.Toolkit;
 import java.awt.Dimension;
 import java.awt.Color;
 
-import java.awt.event.FocusEvent;
-import java.awt.event.FocusListener;
 import javax.swing.ImageIcon;
+import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
@@ -78,7 +77,7 @@ public class login {
     }
 
     private static void createUI(JFrame windowFrame){
-        
+        JButton confirm=new JButton("Confirm");
         JLabel label1=new JLabel("Login");
         JLabel label2=new JLabel("Account:");
         JLabel label3=new JLabel("Password:");
@@ -92,7 +91,8 @@ public class login {
         passWord.addFocusListener(new JPasswordFieldHintListener(passWord,"Enter your password:"));
         //密碼框框文字會顯示
         passWord.setEchoChar('\0');
-        
+        //各位置設定
+        confirm.setBounds(615, 300, 80, 20);
         label1.setBounds(610, 90,200,100);
         label2.setBounds(440, 150,90,90);
         accountText.setBounds(530, 180, 319, 30);
@@ -119,6 +119,7 @@ public class login {
         frame_right.setFont((new Font("",0,100)));
         frame_down.setFont((new Font("",0,20)));
         //加入windowFrame
+        windowFrame.add(confirm);
         windowFrame.add(label1);
         windowFrame.add(label2);
         windowFrame.add(accountText);
