@@ -8,13 +8,14 @@ import com.mongodb.client.MongoClients;
 import com.mongodb.client.MongoCollection;
 import com.mongodb.client.MongoDatabase;
 
+//與主資料庫做互動
 public class AccountController {
 
     // Mongodb 連線
     private final String url = "mongodb+srv://say859462:0000@cluster0.n4rhnlu.mongodb.net/?retryWrites=true&w=majority";
-    private final String CollectionName = "JavaProject";
+    private final String DatabaseName = "JavaProject";
     private MongoClient mongoClient = MongoClients.create(url);
-    private MongoDatabase database = mongoClient.getDatabase(CollectionName);
+    private MongoDatabase database = mongoClient.getDatabase(DatabaseName);
     private final MongoCollection<Document> UserCollection = database.getCollection("Users");// 連接到使用者名單資料庫
 
     // 電子郵件正規表達式

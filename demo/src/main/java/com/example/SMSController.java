@@ -6,15 +6,16 @@ import java.io.InputStreamReader;
 import java.net.HttpURLConnection;
 import java.net.URL;
 import java.security.SecureRandom;
-import java.util.HashMap;
-import java.util.Map;
+import java.util.Timer;
+import java.util.TimerTask;
 
 public class SMSController {
 
     private HttpURLConnection sms_gw = null;
     private final String HostUsername = "say859462";
     private final String HostPassword = "say1472580";
-    private Map<String, String> Validator = new HashMap<>();
+    private String ValidCode = null;
+    private final Timer timer = new Timer();
 
     public static final int SMS_VALIDCODE_CORRECT = 0;// 手機驗證碼正確
     public static final int SMS_VALIDCODE_INCORRECT = 1;// 手機驗證碼錯誤
@@ -23,6 +24,7 @@ public class SMSController {
 
     }
 
+    // 產生驗證碼
     private String generateValidCode() {
         SecureRandom random = new SecureRandom();
 
@@ -45,8 +47,8 @@ public class SMSController {
 
             // 設定參數
             String validCode = generateValidCode();
-            String message = "歡迎使用Doge密碼管理系統，這是您的驗證碼:" + validCode; // 簡訊內容
-            Validator.put(phoneNumber, validCode);
+            String message = "歡迎使用Doge密碼管理系統，這是您的驗證碼:" + validCode + "請在5分鐘內使用"; // 簡訊內容
+            this.ValidCode = validCode;
             MSGData.append("username=" + HostUsername);
             MSGData.append("&password=" + HostPassword);
             MSGData.append("&mobile=" + phoneNumber);
@@ -54,6 +56,8 @@ public class SMSController {
             MSGData.append(UrlEncode(message.toString().getBytes("big5")));
 
             SendToGW(MSGData.toString());
+
+            timer.schedule(new ExpiredTask(), 5 * 60 * 1000);// 開始計時器 5分鐘後讓驗證碼失效
 
         } catch (Exception e) {
             System.out.println("程式錯誤!");
@@ -129,15 +133,24 @@ public class SMSController {
 
     // 檢查使用者輸入的手機驗證碼是否正確
     public int ValidCodeVerify(String userPhoneNumber, String userInput) {
+
         try {
-            if (Validator.get(userPhoneNumber).equals((userInput))) {
-                Validator.remove(userPhoneNumber);
+            if (ValidCode.equals(userInput)) {
+                ValidCode = null;
                 return SMS_VALIDCODE_CORRECT;
             }
         } catch (Exception err) {// 找不到該電話的驗證碼
             return SMS_VALIDCODE_INCORRECT;
         }
+
         return SMS_VALIDCODE_INCORRECT;
     }
 
+    // 計時器終止觸發事件
+    class ExpiredTask extends TimerTask {
+        public void run() {
+            ValidCode = null;
+            System.out.println("手機驗證碼已過時效!");
+        }
+    }
 }
