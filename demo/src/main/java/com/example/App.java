@@ -22,8 +22,8 @@ public class App {
         // accounterController.disconnectMongoDB();
 
         UserInterface tmp = new UserInterface("test001@gmail.com");
-        // tmp.deleteOneUserData("Discord", "test01", "test01");
-        // tmp.updateOneUserData("Discord", "test01", "test01");
+        // tmp.deleteOneUserData("Discord", "test01", "test01@%");
+        // tmp.updateOneUserData("Discord", "test01", "test01@%Sa");
         // tmp.updateOneUserData("Google", "hi@gmail.com", "saysay");
         // List<RecordData> result = new ArrayList<>();
         // result = tmp.fetchAllUserData();
@@ -32,6 +32,10 @@ public class App {
         // System.out.println(result.get(i).getAppName() + " " +
         // result.get(i).getUsername());
         // }
+        RandomPasswordGenerator gen = new RandomPasswordGenerator();
+        System.out.println(
+                gen.PasswordGenerate(15, RandomPasswordGenerator.LowerCase, RandomPasswordGenerator.UpperCase,
+                        RandomPasswordGenerator.Special, RandomPasswordGenerator.Digits));
 
     }
 }

@@ -26,15 +26,17 @@ public class UserInterface {
 
     public UserInterface(String Username) {
         this.Username = Username;
-        this.UserCollection = database.getCollection(Username);
+        this.UserCollection = database.getCollection(Username);// 與儲存該使用者資料的資料庫做連線
     }
 
     // 獲取所有使用者儲存的資料
     public List<RecordData> fetchAllUserData() throws Exception {
         try {
+            // 從Mongodb上獲取該使用者的所有資料
             MongoCursor<Document> result = UserCollection.find().iterator();
             List<RecordData> finalResult = new ArrayList<>();
 
+            // 迭代拿數據並存在arrayList
             while (result.hasNext()) {
                 Document doc = result.next();
                 finalResult.add(
@@ -43,7 +45,7 @@ public class UserInterface {
             }
             System.out.println("獲取所有資料成功!");
             return finalResult;
-        } catch (Exception err) {
+        } catch (Exception err) {// 獲取資料過程中出錯
             System.out.println("獲取所有資料失敗!");
             return null;
         }
@@ -51,13 +53,14 @@ public class UserInterface {
     }
 
     // 獲取使用者特定資料
-    public RecordData fetchOneUserData() {
+    public RecordData fetchOneUserData(String AppName) {
         return null;
     }
 
     // 使用者新增一筆新資料
     public void updateOneUserData(String AppName, String Username, String Password) throws Exception {
         try {
+            // 將新資料插入該使用者的資料庫
             UserCollection.insertOne(new Document("_id", new ObjectId())
                     .append("AppName", AppName)
                     .append("Username", Username)
