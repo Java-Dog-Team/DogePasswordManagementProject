@@ -45,7 +45,6 @@ public class login {
         //設定關閉可以關掉程式
         windowFrame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         
-
         //設置左上角小圖片
         ImageIcon arrowIcon = null;
         java.net.URL imgURL = SwingTester.class.getResource("dogdog.png");
@@ -103,6 +102,17 @@ public class login {
         label2.setFont((new Font("",Font.ITALIC,20)));
         label3.setFont((new Font("",Font.ITALIC,20)));
 
+        //加入windowFrame
+        windowFrame.add(confirm);
+        windowFrame.add(label1);
+        windowFrame.add(label2);
+        windowFrame.add(accountText);
+        windowFrame.add(label3);
+        windowFrame.add(passWord);
+        yellow_frame(windowFrame);
+    }
+    //加上黃色邊框
+    private static void yellow_frame(JFrame windowFrame){
         //設定Lebel為不透明
         frame_up.setOpaque(true); 
         frame_left.setOpaque(true); 
@@ -119,16 +129,9 @@ public class login {
         frame_right.setFont((new Font("",0,100)));
         frame_down.setFont((new Font("",0,20)));
         //加入windowFrame
-        windowFrame.add(confirm);
-        windowFrame.add(label1);
-        windowFrame.add(label2);
-        windowFrame.add(accountText);
-        windowFrame.add(label3);
-        windowFrame.add(passWord);
         windowFrame.add(frame_up,BorderLayout.NORTH);
         windowFrame.add(frame_left,BorderLayout.WEST);
         windowFrame.add(frame_right,BorderLayout.EAST);
         windowFrame.add(frame_down,BorderLayout.SOUTH);
-        
     }
 }
