@@ -44,6 +44,7 @@ public class MailController {
 
     }
 
+    // 寄送驗證碼(email)
     public void sendMail(String userMail) {
 
         Properties props = new Properties();

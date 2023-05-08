@@ -21,7 +21,7 @@ public class App {
         // "0986577869");
         // accounterController.disconnectMongoDB();
 
-        UserInterface tmp = new UserInterface("test001@gmail.com");
+        // UserInterface tmp = new UserInterface("test001@gmail.com");
         // tmp.deleteOneUserData("Discord", "test01", "test01@%");
         // tmp.updateOneUserData("Discord", "test01", "test01@%Sa");
         // tmp.updateOneUserData("Google", "hi@gmail.com", "saysay");
