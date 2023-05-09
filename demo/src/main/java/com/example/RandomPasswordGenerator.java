@@ -5,6 +5,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import org.passay.CharacterData;
 import org.passay.CharacterRule;
 import org.passay.EnglishCharacterData;
 import org.passay.EnglishSequenceData;
@@ -21,26 +22,36 @@ public class RandomPasswordGenerator {
     public static int Digits = 2;// 數字
     public static int Special = 3;// 特殊符號
 
-    // length upperCase lowerCase digits symbols dictionary uncertainChar
-    // 避免生成以生成過的密碼
-    private Map<Integer, EnglishCharacterData> charMap = new HashMap<>();
+    private Map<Integer, CharacterRule> charMap = new HashMap<>();
 
     public RandomPasswordGenerator() {
-        charMap.put(Special, EnglishCharacterData.Special);
-        charMap.put(Digits, EnglishCharacterData.Digit);
-        charMap.put(LowerCase, EnglishCharacterData.LowerCase);
-        charMap.put(UpperCase, EnglishCharacterData.UpperCase);
+        charMap.put(Special, new CharacterRule(new CharacterData() {
+            @Override
+            public String getErrorCode() {
+                return null;
+            }
+
+            @Override
+            public String getCharacters() {
+                return "@$*^#!&%";
+            }
+        }, 1));
+        charMap.put(Digits, new CharacterRule(EnglishCharacterData.Digit, 1));
+        charMap.put(LowerCase, new CharacterRule(EnglishCharacterData.LowerCase, 1));
+        charMap.put(UpperCase, new CharacterRule(EnglishCharacterData.UpperCase, 1));
     }
 
     // 生成特定長度 特定條件的密碼
     public String PasswordGenerate(int length, int... param) {// 參數:長度為必須參數 後面的參數
 
         List<Rule> list = new ArrayList<>();
-        System.err.println(length);
+
         for (int data : param) {
-            CharacterRule tmp = new CharacterRule(charMap.get(data), 1);
+            CharacterRule tmp = charMap.get(data);
             list.add(tmp);
         }
+        if (list.isEmpty())
+            list.add(charMap.get(UpperCase));
 
         list.add(new WhitespaceRule());// 避免生成具有空白字元的密碼
 
@@ -56,9 +67,12 @@ public class RandomPasswordGenerator {
                 CharacterRule cr = (CharacterRule) rule;
                 rules.add(cr);
             }
+
         }
-        // 還要考慮避免生成已經生成過的密碼 避免生成過多的特殊字元
-        return new PasswordGenerator().generatePassword(length, rules);
+
+        String pass = new PasswordGenerator().generatePassword(length, rules);
+
+        return pass;
 
     }
 

@@ -32,10 +32,8 @@ public class App {
         // System.out.println(result.get(i).getAppName() + " " +
         // result.get(i).getUsername());
         // }
-        RandomPasswordGenerator gen = new RandomPasswordGenerator();
-        System.out.println(
-                gen.PasswordGenerate(15, RandomPasswordGenerator.LowerCase, RandomPasswordGenerator.UpperCase,
-                        RandomPasswordGenerator.Special, RandomPasswordGenerator.Digits));
+        // RandomPasswordGenerator gen = new RandomPasswordGenerator();
+        // System.out.println(gen.PasswordGenerate(15, RandomPasswordGenerator.LowerCase, RandomPasswordGenerator.UpperCase,RandomPasswordGenerator.Special, RandomPasswordGenerator.Digits));
 
     }
 }
