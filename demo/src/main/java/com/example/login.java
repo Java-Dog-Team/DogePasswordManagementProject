@@ -22,7 +22,7 @@ import javax.swing.JPasswordField;
 import javax.swing.JTextField;
 
 public class login {
-    private static JFrame windowFrame = new JFrame("更改Swing視窗的預設圖示");
+    private static JFrame windowFrame = new JFrame("歡迎使用看門狗");
     //登入的背景圖片
     private static ImageIcon dogPicture=new ImageIcon("demo\\src\\main\\java\\com\\example\\white_dog2.png");
     private static JLabel dog=new JLabel(dogPicture);
