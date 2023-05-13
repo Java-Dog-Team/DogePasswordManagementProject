@@ -33,6 +33,8 @@ public class login {
     private static JLabel frame_left=new JLabel(" ");
     private static JLabel frame_right=new JLabel(" ");
     private static JLabel frame_down=new JLabel(" ");
+    private static JPanel panelLeft=new JPanel();//
+    private static JPanel panelRight=new JPanel();
     public static void main(String[] args) {
         createWindow();
     }
@@ -41,7 +43,7 @@ public class login {
         windowFrame.setSize(dimension.width*2/3, dimension.height*2/3);
         //設定背景顏色
         windowFrame.getContentPane().setBackground( Color.WHITE );
-        container.setLayout(new BorderLayout());
+        //container.setLayout(new BorderLayout());
         //設定關閉可以關掉程式
         windowFrame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         
@@ -58,7 +60,7 @@ public class login {
         putdog(windowFrame);
         createUI(windowFrame);
         //顯示圖片
-        container.add(dog,BorderLayout.CENTER);
+        //container.add(dog,BorderLayout.CENTER);
         
         windowFrame.setLocationRelativeTo(null);  
         windowFrame.setVisible(true);
@@ -69,17 +71,22 @@ public class login {
         int h=dogPicture.getIconHeight();
         //縮小狗狗
         dogPicture.setImage(dogPicture.getImage().getScaledInstance((int)(0.55*w), (int)(0.55*h), Image.SCALE_DEFAULT));
+        panelLeft.add(dog);
+        container.add(panelLeft,BorderLayout.WEST);
+        
         //視窗下緣和對齊
-        dog.setVerticalAlignment(JLabel.BOTTOM);
+        //dog.setVerticalAlignment(JLabel.BOTTOM);
         //視窗左邊和對齊
-        dog.setHorizontalAlignment(JLabel.LEFT);
+        //dog.setHorizontalAlignment(JLabel.LEFT);
     }
 
     private static void createUI(JFrame windowFrame){
         JButton confirm=new JButton("Confirm");
-        JLabel label1=new JLabel("Login");
-        JLabel label2=new JLabel("Account:");
-        JLabel label3=new JLabel("Password:");
+        JLabel Login=new JLabel("Login");
+        JLabel Account=new JLabel("Account:");
+        JLabel Password=new JLabel("Password:");
+        JPanel panel=new JPanel();
+		panel.setLayout(new GridLayout(6,1));
         //帳號輸入
         JTextField accountText=new JTextField(null, "", 0);
         //帳號提示語
@@ -90,26 +97,41 @@ public class login {
         passWord.addFocusListener(new JPasswordFieldHintListener(passWord,"Enter your password:"));
         //密碼框框文字會顯示
         passWord.setEchoChar('\0');
+        
         //各位置設定
-        confirm.setBounds(615, 300, 80, 20);
-        label1.setBounds(610, 90,200,100);
-        label2.setBounds(440, 150,90,90);
-        accountText.setBounds(530, 180, 319, 30);
-        label3.setBounds(440, 200,200,100);
-        passWord.setBounds(550, 235, 300, 30);
+        // confirm.setBounds(615, 300, 80, 20);
+        // label1.setBounds(610, 90,200,100);
+        // label2.setBounds(440, 150,90,90);
+        // accountText.setBounds(530, 180, 319, 30);
+        // label3.setBounds(440, 200,200,100);
+        // passWord.setBounds(550, 235, 300, 30);
 
-        label1.setFont((new Font("",Font.ITALIC,35)));
-        label2.setFont((new Font("",Font.ITALIC,20)));
-        label3.setFont((new Font("",Font.ITALIC,20)));
+        // Login.setFont((new Font("",Font.ITALIC,35)));
+        // Account.setFont((new Font("",Font.ITALIC,20)));
+        // Password.setFont((new Font("",Font.ITALIC,20)));
+        
+        // panel.add(confirm);
+        // panel.add(Login);
+        // panel.add(Account);
+        // panel.add(accountText);
+        // panel.add(Password);
+        // panel.add(passWord);
+
+        // windowFrame.add(panel,BorderLayout.EAST);
+
+        panelRight.add(confirm);
 
         //加入windowFrame
-        windowFrame.add(confirm);
-        windowFrame.add(label1);
-        windowFrame.add(label2);
-        windowFrame.add(accountText);
-        windowFrame.add(label3);
-        windowFrame.add(passWord);
+        // windowFrame.add(confirm,BorderLayout.CENTER);
+        // windowFrame.add(Login);
+        // windowFrame.add(Account);
+        // windowFrame.add(accountText);
+        // windowFrame.add(Password);
+        // windowFrame.add(passWord);
+        // windowFrame.add(panel);
+        windowFrame.add(panelRight,BorderLayout.EAST);
         yellow_frame(windowFrame);
+        
     }
     //加上黃色邊框
     private static void yellow_frame(JFrame windowFrame){
