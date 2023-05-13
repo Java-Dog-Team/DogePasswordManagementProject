@@ -24,7 +24,7 @@ import javax.swing.JTextField;
 public class login {
     private static JFrame windowFrame = new JFrame("歡迎使用看門狗");
     //登入的背景圖片
-    private static ImageIcon dogPicture=new ImageIcon("demo\\src\\main\\java\\com\\example\\white_dog2.png");
+    private static ImageIcon dogPicture=new ImageIcon("demo\\src\\picture\\white_dog2.png");
     private static JLabel dog=new JLabel(dogPicture);
     private static Container container = windowFrame.getContentPane();
     //取得螢幕大小
