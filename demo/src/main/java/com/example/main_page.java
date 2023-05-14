@@ -63,7 +63,7 @@ public class main_page{
         //加入大頭貼
         panel.add(topMyHeadIconJLabel,BorderLayout.EAST);
         // 設定上方邊條背景顏色
-        panel.setBackground(new Color(250,250,210,255));
+        panel.setBackground(new Color(230,217,148,255));
         panel.setOpaque(true);;
         // 設定上方邊條大小
         panel.setPreferredSize(new Dimension(w, h/15));
@@ -72,7 +72,7 @@ public class main_page{
 
     public static void setTopJLabel(JLabel topJLabel) {
         main_page.topJLabel = new JLabel("WatchDog");
-        main_page.topJLabel.setForeground(new Color(0,0,0));
+        main_page.topJLabel.setForeground(new Color(32,41,107));
         main_page.topJLabel.setPreferredSize(new Dimension(100, h/20));
         main_page.topJLabel.setFont(new Font(Font.SERIF, 0, 18));
         // main_page.topJLabel.setSize(10, h/20);
