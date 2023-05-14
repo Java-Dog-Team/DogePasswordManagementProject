@@ -28,7 +28,7 @@ public class login {
     //登入的背景圖片
     private static ImageIcon dogPicture=new ImageIcon("demo\\src\\picture\\white_dog3.png");
     private static JLabel dog=new JLabel(dogPicture);
-    private static JPanel panelBack=new JPanel();
+    private static JPanel panelInside=new JPanel();
     private static JPanel panelLeft=new JPanel();//
     private static JPanel panelRight=new JPanel();
 
@@ -69,7 +69,9 @@ public class login {
 
         panelLeft.setBorder(new LineBorder(Color.BLUE));//暫時先加邊框顏色 好區別
         panelRight.setBorder(new LineBorder(Color.RED));//暫時先加邊框顏色 好區別
-
+        //panelInside.setBackground(Color.YELLOW);//暫時先加邊框顏色 好區別
+        panelInside.setPreferredSize(new Dimension(100, 10));
+        //windowFrame.add(panelInside,BorderLayout.EAST);
         //設定背景顏色
         panelLeft.setBackground(Color.WHITE);
         panelRight.setBackground(Color.WHITE);
@@ -88,6 +90,7 @@ public class login {
         windowFrame.add(panelLeft);
         windowFrame.add(panelRight);
 
+        
         windowFrame.setLocationRelativeTo(null);  
         windowFrame.setVisible(true);
         
