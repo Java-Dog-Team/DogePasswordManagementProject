@@ -1,6 +1,7 @@
 package com.example;
 
 import java.awt.BorderLayout;
+import java.awt.GridLayout;
 import java.awt.Color;
 import java.awt.Toolkit;
 import java.awt.Dimension;
@@ -24,6 +25,18 @@ public class main_page{
     //大頭貼
     private static JLabel topMyHeadIconJLabel=new JLabel();
     private static ImageIcon myheadIcon=new ImageIcon();
+    //左方五個選單按鈕圖片
+    private static ImageIcon homeIcon=new ImageIcon();
+    private static ImageIcon lockIcon=new ImageIcon();
+    private static ImageIcon bellIcon=new ImageIcon();
+    private static ImageIcon sparklesIcon=new ImageIcon();
+    private static ImageIcon interrogationIcon=new ImageIcon();
+    //左方五個選單按鈕
+    private static JLabel homeLabel=new JLabel();
+    private static JLabel passwordLabel=new JLabel();
+    private static JLabel alertLabel=new JLabel();
+    private static JLabel themeLabel=new JLabel();
+    private static JLabel QALabel=new JLabel();
     public static void main(String[] args) {
         createWindow();
     }
@@ -47,27 +60,42 @@ public class main_page{
             JOptionPane.showMessageDialog(jFrame, "Icon image not found.");
         }
 
-        setTopJLabel(topJLabel);
-        setTopJLabelPicture(myheadIcon);
-        createUI(jFrame);   
+        setTopJLabel(topJLabel);//設定上方邊條
+        setTopJLabelPicture(myheadIcon);//設定大頭貼
+        setFiveButton(homeIcon,lockIcon,bellIcon,sparklesIcon,interrogationIcon);
+        createUI(jFrame);//放入物件
         // JFrame.setDefaultLookAndFeelDecorated(true);
         jFrame.setLocationRelativeTo(null);  
         jFrame.setVisible(true);
     }
 
     private static void createUI(JFrame frame){      
-        JPanel panel = new JPanel();
-        panel.setLayout(new BorderLayout());    
+        //上方的Panel
+        JPanel topPanel = new JPanel();
+        //左方放按鈕的Panel
+        JPanel leftPanel=new JPanel();
+        topPanel.setLayout(new BorderLayout());
+        leftPanel.setLayout(new GridLayout(5,1));
         //加入上面的標題文字   
-        panel.add(topJLabel,BorderLayout.WEST);
+        topPanel.add(topJLabel,BorderLayout.WEST);
         //加入大頭貼
-        panel.add(topMyHeadIconJLabel,BorderLayout.EAST);
+        topPanel.add(topMyHeadIconJLabel,BorderLayout.EAST);
+        //加入五個按鈕
+        leftPanel.add(homeLabel);
+        leftPanel.add(passwordLabel);
+        leftPanel.add(alertLabel);
+        leftPanel.add(themeLabel);
+        leftPanel.add(QALabel);
         // 設定上方邊條背景顏色
-        panel.setBackground(new Color(230,217,148,255));
-        panel.setOpaque(true);;
+        topPanel.setBackground(new Color(230,217,148,255));
+        topPanel.setOpaque(true);
+        //設定左方邊條背景顏色
+        leftPanel.setBackground(new Color(255, 255, 255, 255));
+        leftPanel.setOpaque(true);
         // 設定上方邊條大小
-        panel.setPreferredSize(new Dimension(w, h/15));
-        frame.add(panel, BorderLayout.NORTH);    
+        topPanel.setPreferredSize(new Dimension(w, h/15));
+        frame.add(topPanel, BorderLayout.NORTH); 
+        frame.add(leftPanel,BorderLayout.WEST);   
     }
 
     public static void setTopJLabel(JLabel topJLabel) {
@@ -82,12 +110,24 @@ public class main_page{
         // main_page.jFrame.getContentPane().add(main_page.topJLabel,BorderLayout.NORTH);
     }
     public static void setTopJLabelPicture(ImageIcon myheadIcon){
-        // myheadIcon= RoundImageIconObject.getRoundImageIcon("C:\\Users\\user\\OneDrive\\桌面\\DogePasswordManagementProject\\DogePasswordManagementProject\\demo\\src\\main\\java\\com\\example\\dogdog.png");
         //將圖片切成圓形
         myheadIcon= RoundImageIconObject.getRoundImageIcon("dog.png");
         myheadIcon.setImage(myheadIcon.getImage().getScaledInstance(50, 40, Image.SCALE_DEFAULT));
         main_page.topMyHeadIconJLabel=new JLabel(myheadIcon);
         main_page.topMyHeadIconJLabel.setPreferredSize(new Dimension(50, 40));
     }
-    
+
+    public static void setFiveButton(ImageIcon homeIcon,ImageIcon lockIcon,ImageIcon bellIcon,ImageIcon sparklesIcon,ImageIcon interrogationIcon){
+        homeIcon=new ImageIcon("demo\\src\\picture\\home.jpg");
+        lockIcon=new ImageIcon("demo\\src\\picture\\lock.jpg");
+        bellIcon=new ImageIcon("demo\\src\\picture\\bell.jpg");
+        sparklesIcon=new ImageIcon("demo\\src\\picture\\sparkles.jpg");
+        interrogationIcon=new ImageIcon("demo\\src\\picture\\interrogation.jpg");
+        
+        main_page.homeLabel=new JLabel(homeIcon);
+        main_page.passwordLabel=new JLabel(lockIcon);
+        main_page.alertLabel=new JLabel(bellIcon);
+        main_page.themeLabel=new JLabel(sparklesIcon);
+        main_page.QALabel=new JLabel(interrogationIcon);
+    }
 }
