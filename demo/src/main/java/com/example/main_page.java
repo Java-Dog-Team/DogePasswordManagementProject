@@ -73,7 +73,7 @@ public class main_page{
         //上方的Panel
         JPanel topPanel = new JPanel();
         //左方放按鈕的Panel
-        JPanel leftPanel=new JPanel();
+        MouseTest leftPanel=new MouseTest();
         topPanel.setLayout(new BorderLayout());
         leftPanel.setLayout(new GridLayout(5,1));
         //加入上面的標題文字   
@@ -118,11 +118,11 @@ public class main_page{
     }
 
     public static void setFiveButton(ImageIcon homeIcon,ImageIcon lockIcon,ImageIcon bellIcon,ImageIcon sparklesIcon,ImageIcon interrogationIcon){
-        homeIcon=new ImageIcon("demo\\src\\picture\\home.jpg");
-        lockIcon=new ImageIcon("demo\\src\\picture\\lock.jpg");
-        bellIcon=new ImageIcon("demo\\src\\picture\\bell.jpg");
-        sparklesIcon=new ImageIcon("demo\\src\\picture\\sparkles.jpg");
-        interrogationIcon=new ImageIcon("demo\\src\\picture\\interrogation.jpg");
+        homeIcon=new ImageIcon("demo\\src\\picture\\home.png");
+        lockIcon=new ImageIcon("demo\\src\\picture\\lock.png");
+        bellIcon=new ImageIcon("demo\\src\\picture\\bell.png");
+        sparklesIcon=new ImageIcon("demo\\src\\picture\\sparkles.png");
+        interrogationIcon=new ImageIcon("demo\\src\\picture\\interrogation.png");
         
         main_page.homeLabel=new JLabel(homeIcon);
         main_page.passwordLabel=new JLabel(lockIcon);
