@@ -152,11 +152,10 @@ public class login {
     private static class MouseHandler extends MouseAdapter{
         
         public void mouseClicked(MouseEvent event){
-            // registerFrame registerFrame=new registerFrame();
-            // registerFrame.setSize(dimension.width*1/3, dimension.height*1/3);
-            // registerFrame.setVisible(true);
-            // registerFrame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-            JFrame registerFrame=new JFrame("Register Your Account");
+            registerFrame registerFrame=new registerFrame();
+            registerFrame.setSize(dimension.width*1/3, dimension.height*1/3);
+            registerFrame.setVisible(true);
+            registerFrame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
             //設置左上角小圖片
             ImageIcon arrowIcon = null;
             java.net.URL imgURL = SwingTester.class.getResource("dogdog.png");
@@ -166,10 +165,6 @@ public class login {
             } else {
                 JOptionPane.showMessageDialog(registerFrame, "Icon image not found.");
             }
-            registerFrame.setBackground(Color.BLACK);
-            registerFrame.setSize(dimension.width*1/3, dimension.height*1/3);
-            registerFrame.setVisible(true);
-            registerFrame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         }
         
     }

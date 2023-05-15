@@ -25,19 +25,11 @@ import javax.swing.JPasswordField;
 import javax.swing.JTextField;
 import javax.swing.plaf.basic.BasicTabbedPaneUI.MouseHandler;
 
-public class registerFrame {
+public class registerFrame extends JFrame{
     
     public registerFrame(){
-        JFrame registerFrame=new JFrame("Register Your Account");
-        //設置左上角小圖片
-        ImageIcon arrowIcon = null;
-        java.net.URL imgURL = SwingTester.class.getResource("dogdog.png");
-        if (imgURL != null) {
-        arrowIcon = new ImageIcon(imgURL);
-        registerFrame.setIconImage(arrowIcon.getImage());
-        } else {
-            JOptionPane.showMessageDialog(registerFrame, "Icon image not found.");
-        }
+        super("Register Your Account");
+        JFrame registerFrame=new JFrame();
         registerFrame.setBackground(Color.BLACK);
     }
             
