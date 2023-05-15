@@ -11,6 +11,10 @@ import java.awt.LayoutManager;
 import java.awt.Toolkit;
 import java.awt.Dimension;
 import java.awt.Color;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseListener;
+import java.awt.event.MouseMotionListener;
+import java.awt.event.MouseEvent;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JFrame;
@@ -19,6 +23,7 @@ import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JPasswordField;
 import javax.swing.JTextField;
+import javax.swing.plaf.basic.BasicTabbedPaneUI.MouseHandler;
 
 public class login {
     private static JFrame windowFrame = new JFrame("更改Swing視窗的預設圖示");
@@ -80,6 +85,7 @@ public class login {
         JLabel label1=new JLabel("Login");
         JLabel label2=new JLabel("Account:");
         JLabel label3=new JLabel("Password:");
+        JLabel register=new JLabel("Register Account");
         //帳號輸入
         JTextField accountText=new JTextField(null, "", 0);
         //帳號提示語
@@ -97,10 +103,18 @@ public class login {
         accountText.setBounds(530, 180, 319, 30);
         label3.setBounds(440, 200,200,100);
         passWord.setBounds(550, 235, 300, 30);
-
+        register.setBounds(610, 299, 150, 80);
+        //字型&大小設定
         label1.setFont((new Font("",Font.ITALIC,35)));
         label2.setFont((new Font("",Font.ITALIC,20)));
         label3.setFont((new Font("",Font.ITALIC,20)));
+        register.setFont((new Font("",Font.ITALIC,12)));
+
+        //事件設定
+        MouseHandler handler = new MouseHandler();
+        register.addMouseListener(handler);
+        register.addMouseMotionListener(handler);
+
         //加入windowFrame
         windowFrame.add(confirm);
         windowFrame.add(label1);
@@ -108,6 +122,7 @@ public class login {
         windowFrame.add(accountText);
         windowFrame.add(label3);
         windowFrame.add(passWord);
+        windowFrame.add(register);
         //加上黃色邊框
         yellow_frame(windowFrame);
     }
@@ -133,5 +148,29 @@ public class login {
         windowFrame.add(frame_left,BorderLayout.WEST);
         windowFrame.add(frame_right,BorderLayout.EAST);
         windowFrame.add(frame_down,BorderLayout.SOUTH);
+    }
+    private static class MouseHandler extends MouseAdapter{
+        
+        public void mouseClicked(MouseEvent event){
+            // registerFrame registerFrame=new registerFrame();
+            // registerFrame.setSize(dimension.width*1/3, dimension.height*1/3);
+            // registerFrame.setVisible(true);
+            // registerFrame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+            JFrame registerFrame=new JFrame("Register Your Account");
+            //設置左上角小圖片
+            ImageIcon arrowIcon = null;
+            java.net.URL imgURL = SwingTester.class.getResource("dogdog.png");
+            if (imgURL != null) {
+            arrowIcon = new ImageIcon(imgURL);
+            registerFrame.setIconImage(arrowIcon.getImage());
+            } else {
+                JOptionPane.showMessageDialog(registerFrame, "Icon image not found.");
+            }
+            registerFrame.setBackground(Color.BLACK);
+            registerFrame.setSize(dimension.width*1/3, dimension.height*1/3);
+            registerFrame.setVisible(true);
+            registerFrame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        }
+        
     }
 }
