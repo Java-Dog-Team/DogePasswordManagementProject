@@ -5,32 +5,59 @@ import java.io.DataOutputStream;
 import java.io.InputStreamReader;
 import java.net.HttpURLConnection;
 import java.net.URL;
+import java.security.SecureRandom;
+import java.util.Timer;
+import java.util.TimerTask;
 
-public class sms_sample {
+public class SMSController {
 
     private HttpURLConnection sms_gw = null;
+    private final String HostUsername = "say859462";
+    private final String HostPassword = "say1472580";
+    private String ValidCode = null;
+    private final Timer timer = new Timer();
 
-    public sms_sample() {
+    public static final int SMS_VALIDCODE_CORRECT = 0;// 手機驗證碼正確
+    public static final int SMS_VALIDCODE_INCORRECT = 1;// 手機驗證碼錯誤
+
+    public SMSController() {
+
     }
 
-    private void SendSMS() {
+    // 產生驗證碼
+    private String generateValidCode() {
+        SecureRandom random = new SecureRandom();
+
+        String validCode = "";// 儲存產生的驗證碼
+
+        String digits;
+
+        for (int i = 0; i < 6; i++) {
+            digits = String.format("%d", random.nextInt(10));
+            validCode = validCode + digits;
+        }
+        return validCode;
+    }
+
+    // 發送手機驗證碼到使用者手機
+    public void SendSMS(String phoneNumber) {
         try {
             // 設定變數 StringBuffer 使得String可以修改內容
             StringBuffer MSGData = new StringBuffer();
 
             // 設定參數
-            String username = "say859462"; // 帳號
-            String password = "say1472580"; // 密碼
-            String mobile = "0974002156"; // 電話
-            String message = "給JAVA專題小隊的簡訊測試"; // 簡訊內容
-
-            MSGData.append("username=" + username);
-            MSGData.append("&password=" + password);
-            MSGData.append("&mobile=" + mobile);
+            String validCode = generateValidCode();
+            String message = "歡迎使用Doge密碼管理系統，這是您的驗證碼:" + validCode + "請在5分鐘內使用"; // 簡訊內容
+            this.ValidCode = validCode;
+            MSGData.append("username=" + HostUsername);
+            MSGData.append("&password=" + HostPassword);
+            MSGData.append("&mobile=" + phoneNumber);
             MSGData.append("&message=");
             MSGData.append(UrlEncode(message.toString().getBytes("big5")));
 
             SendToGW(MSGData.toString());
+
+            timer.schedule(new ExpiredTask(), 5 * 60 * 1000);// 開始計時器 5分鐘後讓驗證碼失效
 
         } catch (Exception e) {
             System.out.println("程式錯誤!");
@@ -104,8 +131,26 @@ public class sms_sample {
         return "";
     }
 
-    void Process(String[] args) {
-        SendSMS();
+    // 檢查使用者輸入的手機驗證碼是否正確
+    public int ValidCodeVerify(String userPhoneNumber, String userInput) {
+
+        try {
+            if (ValidCode.equals(userInput)) {
+                ValidCode = null;
+                return SMS_VALIDCODE_CORRECT;
+            }
+        } catch (Exception err) {// 找不到該電話的驗證碼
+            return SMS_VALIDCODE_INCORRECT;
+        }
+
+        return SMS_VALIDCODE_INCORRECT;
     }
 
+    // 計時器終止觸發事件
+    class ExpiredTask extends TimerTask {
+        public void run() {
+            ValidCode = null;
+            System.out.println("手機驗證碼已過時效!");
+        }
+    }
 }
