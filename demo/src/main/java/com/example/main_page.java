@@ -17,11 +17,11 @@ import javax.swing.JPanel;
 
 public class main_page{
     private static JFrame jFrame=new JFrame("看門狗系統");
-    private static JLabel topJLabel=new JLabel();
+    private static JLabel topJLabel=new JLabel("WatchDog");
     //取得螢幕大小
     private static Dimension dimension=Toolkit.getDefaultToolkit().getScreenSize();
-    private static int w=dimension.width;
-    private static int h=dimension.height;
+    public static int w=dimension.width;
+    public static int h=dimension.height;
     //大頭貼
     private static JLabel topMyHeadIconJLabel=new JLabel();
     private static ImageIcon myheadIcon=new ImageIcon();
@@ -37,6 +37,8 @@ public class main_page{
     private static JLabel alertLabel=new JLabel();
     private static JLabel themeLabel=new JLabel();
     private static JLabel QALabel=new JLabel();
+    //背景圖片
+    private static ImageIcon backGround;
     public static void main(String[] args) {
         createWindow();
     }
@@ -45,9 +47,8 @@ public class main_page{
         jFrame.getContentPane().setLayout(new BorderLayout());
         //設定視窗大小為螢幕的2/3
         jFrame.setSize(w*2/3, h*2/3);
-        //設定背景顏色
-        jFrame.getContentPane().setBackground( new Color(255,255,255,255) );
-        
+        //視窗不可調整大小
+        jFrame.setResizable(false);
         //設定關閉視窗即程式結束
         jFrame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         //設置左上角小圖片
@@ -60,13 +61,15 @@ public class main_page{
             JOptionPane.showMessageDialog(jFrame, "Icon image not found.");
         }
 
+        setBackground(backGround);
         setTopJLabel(topJLabel);//設定上方邊條
         setTopJLabelPicture(myheadIcon);//設定大頭貼
-        setFiveButton(homeIcon,lockIcon,bellIcon,sparklesIcon,interrogationIcon);
+        setFiveButton(homeIcon,lockIcon,bellIcon,sparklesIcon,interrogationIcon);//設定左邊5個按鈕
         createUI(jFrame);//放入物件
         // JFrame.setDefaultLookAndFeelDecorated(true);
         jFrame.setLocationRelativeTo(null);  
         jFrame.setVisible(true);
+        // callMouse();
     }
 
     private static void createUI(JFrame frame){      
@@ -74,6 +77,7 @@ public class main_page{
         JPanel topPanel = new JPanel();
         //左方放按鈕的Panel
         MouseTest leftPanel=new MouseTest();
+        leftPanel.setJframe(jFrame);
         topPanel.setLayout(new BorderLayout());
         leftPanel.setLayout(new GridLayout(5,1));
         //加入上面的標題文字   
@@ -99,7 +103,7 @@ public class main_page{
     }
 
     public static void setTopJLabel(JLabel topJLabel) {
-        main_page.topJLabel = new JLabel("WatchDog");
+        main_page.topJLabel = topJLabel;
         main_page.topJLabel.setForeground(new Color(32,41,107));
         main_page.topJLabel.setPreferredSize(new Dimension(100, h/20));
         main_page.topJLabel.setFont(new Font(Font.SERIF, 0, 18));
@@ -129,5 +133,11 @@ public class main_page{
         main_page.alertLabel=new JLabel(bellIcon);
         main_page.themeLabel=new JLabel(sparklesIcon);
         main_page.QALabel=new JLabel(interrogationIcon);
+    }
+    public static void setBackground(ImageIcon backGround){
+        if(backGround==null){
+            //設定背景顏色
+            jFrame.getContentPane().setBackground( new Color(255,255,255,255) );
+        }
     }
 }
