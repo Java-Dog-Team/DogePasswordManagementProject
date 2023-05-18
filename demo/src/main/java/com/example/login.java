@@ -30,7 +30,7 @@ public class login {
     //登入的背景圖片
     private static ImageIcon dogPicture=new ImageIcon("demo\\src\\picture\\white_dog2.png");
     private static JLabel dog=new JLabel(dogPicture);
-    private static Container container = windowFrame.getContentPane();
+    //private static Container container = windowFrame.getContentPane();
     //取得螢幕大小
     private static Dimension dimension=Toolkit.getDefaultToolkit().getScreenSize();
     private static JLabel frame_up=new JLabel(" ");
@@ -45,7 +45,7 @@ public class login {
         windowFrame.setSize(dimension.width*2/3, dimension.height*2/3);
         //設定背景顏色
         windowFrame.getContentPane().setBackground( Color.WHITE );
-        container.setLayout(new BorderLayout());
+        windowFrame.setLayout(new BorderLayout());
         //視窗不可調整大小
         windowFrame.setResizable(false);
         //設定關閉可以關掉程式
@@ -63,7 +63,7 @@ public class login {
         putdog(windowFrame);
         createUI(windowFrame);
         //顯示圖片
-        container.add(dog,BorderLayout.CENTER);
+        windowFrame.add(dog,BorderLayout.CENTER);
         
         windowFrame.setLocationRelativeTo(null);  
         windowFrame.setVisible(true);
@@ -152,18 +152,21 @@ public class login {
     private static class MouseHandler extends MouseAdapter{
         
         public void mouseClicked(MouseEvent event){
-            registerFrame registerFrame=new registerFrame();
-            registerFrame.setSize(dimension.width*1/3, dimension.height*1/3);
-            registerFrame.setVisible(true);
-            registerFrame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+            registerFrame register=new registerFrame();
+            register.setBounds(450, 250, 0, 0);
+            register.setSize(dimension.width*1/3, dimension.height*1/3);
+            register.setVisible(true);
+            // register.setResizable(false);
+            //只關閉當前視窗
+            register.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
             //設置左上角小圖片
             ImageIcon arrowIcon = null;
             java.net.URL imgURL = SwingTester.class.getResource("dogdog.png");
             if (imgURL != null) {
             arrowIcon = new ImageIcon(imgURL);
-            registerFrame.setIconImage(arrowIcon.getImage());
+            register.setIconImage(arrowIcon.getImage());
             } else {
-                JOptionPane.showMessageDialog(registerFrame, "Icon image not found.");
+                JOptionPane.showMessageDialog(register, "Icon image not found.");
             }
         }
         
