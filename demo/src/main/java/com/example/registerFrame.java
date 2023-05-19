@@ -71,18 +71,29 @@ public class registerFrame extends JFrame{
     private static class ButtonActionListener implements ActionListener{
         public void actionPerformed(ActionEvent e){
             String ACCOUNT=emailText.getText().trim();
-            // if("Email:".equals(ACCOUNT) ){
+            String PASSWORD=new String(passWordText.getPassword());
+            String PASSWORD2=new String(passWordText2.getPassword());
+
+            if("Password:".equals(PASSWORD) || "Email:".equals(ACCOUNT) || "Password again:".equals(PASSWORD2)){
+                JOptionPane.showMessageDialog(null,"Please enter complete information!!","WARNING",JOptionPane.WARNING_MESSAGE);
+                return;
+            }
+            if(PASSWORD!=PASSWORD2){
+                JOptionPane.showMessageDialog(null,"Two !!","WARNING",JOptionPane.WARNING_MESSAGE);
+                return;
+            }
+            // else if("Password:".equals(PASSWORD)){
+            //     JOptionPane.showMessageDialog(null,"Please enter your password!!","WARNING",JOptionPane.WARNING_MESSAGE);
+            //     return;
+            // }
+            // else if("Email:".equals(ACCOUNT)){
             //     JOptionPane.showMessageDialog(null,"Please enter your account!!","WARNING",JOptionPane.WARNING_MESSAGE);
             //     return;
             // }
-            if("Email:".equals(ACCOUNT)){
-                JOptionPane.showMessageDialog(null,"Please enter your account!!","WARNING",JOptionPane.WARNING_MESSAGE);
-                return;
-            }
-            System.out.println(ACCOUNT);
-            // System.out.println(emailText.getText()=="Email:");
-
-
+            // else if("Password again:".equals(PASSWORD2)){
+            //     JOptionPane.showMessageDialog(null,"Please enter your password again!!","WARNING",JOptionPane.WARNING_MESSAGE);
+            //     return;
+            // }
         }
     }
 }
