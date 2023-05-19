@@ -71,7 +71,11 @@ public class registerFrame extends JFrame{
     private static class ButtonActionListener implements ActionListener{
         public void actionPerformed(ActionEvent e){
             String ACCOUNT=emailText.getText().trim();
-            if(ACCOUNT=="Email:"){
+            // if("Email:".equals(ACCOUNT) ){
+            //     JOptionPane.showMessageDialog(null,"Please enter your account!!","WARNING",JOptionPane.WARNING_MESSAGE);
+            //     return;
+            // }
+            if("Email:".equals(ACCOUNT)){
                 JOptionPane.showMessageDialog(null,"Please enter your account!!","WARNING",JOptionPane.WARNING_MESSAGE);
                 return;
             }
