@@ -31,7 +31,7 @@ public class MouseTest extends JPanel{
             int y = e.getY();
             
             if(y>=24 && y<=74){//主頁面
-
+                Home home=new Home(jFrame);
             }
             else if (y>=115 && y<=175){//密碼產生器
 
