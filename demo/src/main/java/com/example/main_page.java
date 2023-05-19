@@ -13,6 +13,8 @@ import javax.swing.JLabel;
 import javax.swing.ImageIcon;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
+import javax.swing.JButton;
+
 
 
 public class main_page{
@@ -39,6 +41,8 @@ public class main_page{
     private static JLabel QALabel=new JLabel();
     //背景圖片
     private static ImageIcon backGround;
+    //其他功能
+    private static Home home=new Home(jFrame);
     public static void main(String[] args) {
         createWindow();
     }
@@ -66,17 +70,18 @@ public class main_page{
         setTopJLabelPicture(myheadIcon);//設定大頭貼
         setFiveButton(homeIcon,lockIcon,bellIcon,sparklesIcon,interrogationIcon);//設定左邊5個按鈕
         createUI(jFrame);//放入物件
+        setAddPasswardButton(jFrame); //放入 Home 的加 passward buttom
         // JFrame.setDefaultLookAndFeelDecorated(true);
         jFrame.setLocationRelativeTo(null);  
         jFrame.setVisible(true);
         // callMouse();
     }
 
-    private static void createUI(JFrame frame){      
+    private static void createUI(JFrame frame){     
         //上方的Panel
         JPanel topPanel = new JPanel();
         //左方放按鈕的Panel
-        MouseTest leftPanel=new MouseTest();
+        MouseTest leftPanel=new MouseTest(home);
         leftPanel.setJframe(jFrame);
         topPanel.setLayout(new BorderLayout());
         leftPanel.setLayout(new GridLayout(5,1));
@@ -139,5 +144,24 @@ public class main_page{
             //設定背景顏色
             jFrame.getContentPane().setBackground( new Color(255,255,255,255) );
         }
+    }
+    public static JFrame getjFrame() {
+        return jFrame;
+    }
+    public static void setjFrame(JFrame jFrame) {
+        System.out.print(jFrame);
+        main_page.jFrame = jFrame;
+    }
+    public static void setAddPasswardButton(JFrame frame){
+        //加入buttom的測試區
+        JButton addPasswardButton =new JButton(new ImageIcon("demo\\src\\picture\\addPassward.png")); 
+        JPanel addJPanel=new JPanel();
+        addPasswardButton.setPreferredSize(new Dimension(57, 54));
+        addJPanel.setLayout(new BorderLayout());
+        addJPanel.add(addPasswardButton,BorderLayout.SOUTH);
+        addJPanel.setBackground(new Color(255, 255, 255, 255));
+        addJPanel.setOpaque(true);
+        frame.getContentPane().add(addJPanel,BorderLayout.EAST);
+        //到這裡結束
     }
 }

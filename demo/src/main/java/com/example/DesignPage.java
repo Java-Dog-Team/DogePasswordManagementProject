@@ -30,6 +30,7 @@ public class DesignPage extends main_page{
     }
     public void changeBack(){
         backGround.setImage(backGround.getImage().getScaledInstance(super.w*2/3, super.h*2/3, Image.SCALE_DEFAULT));
+        
         // super.setBackground(backGround);
         // JLabel backLabel=new JLabel(backGround);
         // backLabel.setBounds(0, 0, super.w*2/3, super.h*2/3);
