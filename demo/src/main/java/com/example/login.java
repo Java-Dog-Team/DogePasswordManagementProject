@@ -15,6 +15,8 @@ import java.awt.event.MouseAdapter;
 import java.awt.event.MouseListener;
 import java.awt.event.MouseMotionListener;
 import java.awt.event.MouseEvent;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JFrame;
@@ -37,6 +39,14 @@ public class login {
     private static JLabel frame_left=new JLabel(" ");
     private static JLabel frame_right=new JLabel(" ");
     private static JLabel frame_down=new JLabel(" ");
+    private static JButton confirm=new JButton("Confirm");
+    private static JLabel label1=new JLabel("Login");
+    private static JLabel label2=new JLabel("Account:");
+    private static JLabel label3=new JLabel("Password:");
+    private static JLabel register=new JLabel("Register Account");
+    private static JLabel forGot=new JLabel("Forget password");
+    private static JTextField accountText=new JTextField(null, "", 0);//帳號輸入
+    private static JPasswordField passWord=new JPasswordField(null, "", 0);//密碼輸入
     public static void main(String[] args) {
         createWindow();
     }
@@ -81,17 +91,9 @@ public class login {
     }
 
     private static void createUI(JFrame windowFrame){
-        JButton confirm=new JButton("Confirm");
-        JLabel label1=new JLabel("Login");
-        JLabel label2=new JLabel("Account:");
-        JLabel label3=new JLabel("Password:");
-        JLabel register=new JLabel("Register Account");
-        //帳號輸入
-        JTextField accountText=new JTextField(null, "", 0);
+
         //帳號提示語
         accountText.addFocusListener(new JTextFieldHintListener(accountText, "Enter your account(email):"));
-        //密碼輸入
-        JPasswordField passWord=new JPasswordField(null, "", 0);
         //密碼提示語
         passWord.addFocusListener(new JPasswordFieldHintListener(passWord,"Enter your password:"));
         //密碼框框文字會顯示
@@ -103,17 +105,22 @@ public class login {
         accountText.setBounds(530, 180, 319, 30);
         label3.setBounds(440, 200,200,100);
         passWord.setBounds(550, 235, 300, 30);
-        register.setBounds(610, 299, 150, 80);
+        register.setBounds(530, 299, 150, 80);
+        forGot.setBounds(690, 299, 150, 80);
+        
         //字型&大小設定
         label1.setFont((new Font("",Font.ITALIC,35)));
         label2.setFont((new Font("",Font.ITALIC,20)));
         label3.setFont((new Font("",Font.ITALIC,20)));
         register.setFont((new Font("",Font.ITALIC,12)));
+        forGot.setFont((new Font("",Font.ITALIC,12)));
 
         //事件設定
         MouseHandler handler = new MouseHandler();
         register.addMouseListener(handler);
         register.addMouseMotionListener(handler);
+        forGot.addMouseListener(handler);
+        forGot.addMouseMotionListener(handler);
 
         //加入windowFrame
         windowFrame.add(confirm);
@@ -123,6 +130,7 @@ public class login {
         windowFrame.add(label3);
         windowFrame.add(passWord);
         windowFrame.add(register);
+        windowFrame.add(forGot);
         //加上黃色邊框
         yellow_frame(windowFrame);
     }
@@ -149,24 +157,47 @@ public class login {
         windowFrame.add(frame_right,BorderLayout.EAST);
         windowFrame.add(frame_down,BorderLayout.SOUTH);
     }
+
     private static class MouseHandler extends MouseAdapter{
         
         public void mouseClicked(MouseEvent event){
-            registerFrame register=new registerFrame();
-            register.setBounds(450, 250, 0, 0);
-            register.setSize(dimension.width*1/3, dimension.height*1/3);
-            register.setVisible(true);
-            // register.setResizable(false);
-            //只關閉當前視窗
-            register.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
-            //設置左上角小圖片
-            ImageIcon arrowIcon = null;
-            java.net.URL imgURL = SwingTester.class.getResource("dogdog.png");
-            if (imgURL != null) {
-            arrowIcon = new ImageIcon(imgURL);
-            register.setIconImage(arrowIcon.getImage());
-            } else {
-                JOptionPane.showMessageDialog(register, "Icon image not found.");
+            if(event.getSource()==register){
+                registerFrame register=new registerFrame();
+                register.setBounds(450, 250, 0, 0);
+                register.setSize(dimension.width*1/3, dimension.height*1/3);
+                //設定背景顏色
+                register.getContentPane().setBackground( Color.WHITE );
+                register.setVisible(true);
+                //只關閉當前視窗
+                register.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+                //設置左上角小圖片
+                ImageIcon arrowIcon = null;
+                java.net.URL imgURL = SwingTester.class.getResource("dogdog.png");
+                if (imgURL != null) {
+                arrowIcon = new ImageIcon(imgURL);
+                register.setIconImage(arrowIcon.getImage());
+                } else {
+                    JOptionPane.showMessageDialog(register, "Icon image not found.");
+                }
+            }
+            if(event.getSource()==forGot){
+                forgot_password forGot=new forgot_password();
+                forGot.setBounds(450, 250, 0, 0);
+                forGot.setSize(dimension.width*1/3, dimension.height*1/3);
+                //設定背景顏色
+                forGot.getContentPane().setBackground( Color.WHITE );
+                forGot.setVisible(true);
+                //只關閉當前視窗
+                forGot.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+                //設置左上角小圖片
+                ImageIcon arrowIcon = null;
+                java.net.URL imgURL = SwingTester.class.getResource("dogdog.png");
+                if (imgURL != null) {
+                arrowIcon = new ImageIcon(imgURL);
+                forGot.setIconImage(arrowIcon.getImage());
+                } else {
+                    JOptionPane.showMessageDialog(forGot, "Icon image not found.");
+                }
             }
         }
         
