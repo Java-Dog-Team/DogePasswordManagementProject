@@ -56,7 +56,7 @@ public class login {
     }
     private static void createWindow() {    
         //設定視窗大小為螢幕的2/3
-        windowFrame.setSize(dimension.width*2/3, dimension.height*2/3);
+        windowFrame.setSize(960,600);
         //設定背景顏色
         windowFrame.getContentPane().setBackground( Color.WHITE );
         windowFrame.setLayout(new BorderLayout());
