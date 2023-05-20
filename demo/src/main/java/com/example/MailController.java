@@ -92,7 +92,7 @@ public class MailController {
     }
 
     // 驗證驗證碼是否正確
-    public int ValidCodeVerify(String userMail, String userInput) {
+    public int ValidCodeVerify(String userInput) {
         try {
             if (ValidCode.equals(userInput)) {
                 ValidCode = null;
