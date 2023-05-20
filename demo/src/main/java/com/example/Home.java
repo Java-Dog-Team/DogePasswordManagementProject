@@ -4,6 +4,8 @@ import java.awt.BorderLayout;
 import java.awt.GridLayout;
 import java.awt.Color;
 import java.awt.Toolkit;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.awt.event.ItemEvent;
 import java.awt.event.ItemListener;
 import java.util.ArrayList;
@@ -43,8 +45,13 @@ public class Home extends main_page{
         addJPanel.setBackground(Color.WHITE);
         addJPanel.add(addPasswardButton,BorderLayout.SOUTH);
         addJPanel.setVisible(true);
-        
+        addPasswardButton.addActionListener(null);
         // this.mainLabel.add(addJPanel,BorderLayout.EAST);
-
+    }
+    private class ButtonHandler implements ActionListener{
+        @Override
+        public void actionPerformed(ActionEvent e){
+            
+        }
     }
 }
