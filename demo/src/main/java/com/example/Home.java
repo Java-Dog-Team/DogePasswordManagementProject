@@ -25,26 +25,33 @@ public class Home extends main_page{
     public static JPanel passwordPanel=new JPanel();
     public static JScrollPane scrollPane=new JScrollPane(passwordPanel);
     public static ArrayList<MouseTestHome> passward=new ArrayList<MouseTestHome>();
-    public static JButton addPasswardButton =new JButton(new ImageIcon("demo\\src\\picture\\addPassward.png"));
+    public JButton addPasswardButton =new JButton(new ImageIcon("demo\\src\\picture\\addPassward.png"));
     public Home(JFrame jFrame){
         // System.out.print(jFrame);
         this.jFrame=jFrame;
-        creatAddPasswardButton();
+        // creatAddPasswardButton();
         // creatPasswordPanel();
     }
     public static void creatPasswordPanel(){
         
     }
-    public void creatAddPasswardButton(){
+    public void creatAddPasswardButton(JFrame jFrame){
         JPanel addJPanel=new JPanel();
+        addPasswardButton.setPreferredSize(new Dimension(57, 54));
+        addJPanel.setLayout(new BorderLayout());
         addJPanel.add(addPasswardButton,BorderLayout.SOUTH);
-        addJPanel.setBackground(new Color(0, 0, 0, 255));
-        addJPanel.setOpaque(true);
-        super.getjFrame().getContentPane().add(addJPanel,BorderLayout.EAST);
-        // super.getjFrame().getContentPane().setBackground( new Color(0,0,0,255) );
+        jFrame.getContentPane().add(addJPanel,BorderLayout.EAST);
+        //左方放按鈕的Panel
+        JPanel leftPanel=new JPanel();
+        leftPanel.setLayout(new GridLayout(5,1));
+
+        
+        // addJPanel.setBackground(new Color(0, 0, 0, 255));
+        // addJPanel.setOpaque(true);
+        // jFrame.getContentPane().setBackground( new Color(0,0,0,255) );
         // super.setjFrame(this.jFrame);
-        System.out.printf("%n");
-        System.out.print(this.jFrame);
+        // System.out.printf("%n");
+        // System.out.print(this.jFrame);
         // super.setAddPasswardButton(this.jFrame);
     }
 }

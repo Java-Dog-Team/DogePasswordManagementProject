@@ -18,7 +18,12 @@ import javax.swing.JButton;
 
 
 public class main_page{
-    private static JFrame jFrame=new JFrame("看門狗系統");
+    //上方的Panel
+    private static JPanel topPanel = new JPanel();
+    //左方放按鈕的Panel
+    private static JPanel leftPanel=new JPanel();
+
+    private static MouseTest jFrame=new MouseTest(leftPanel);
     private static JLabel topJLabel=new JLabel("WatchDog");
     //取得螢幕大小
     private static Dimension dimension=Toolkit.getDefaultToolkit().getScreenSize();
@@ -27,6 +32,7 @@ public class main_page{
     //大頭貼
     private static JLabel topMyHeadIconJLabel=new JLabel();
     private static ImageIcon myheadIcon=new ImageIcon();
+    
     //左方五個選單按鈕圖片
     private static ImageIcon homeIcon=new ImageIcon();
     private static ImageIcon lockIcon=new ImageIcon();
@@ -70,7 +76,7 @@ public class main_page{
         setTopJLabelPicture(myheadIcon);//設定大頭貼
         setFiveButton(homeIcon,lockIcon,bellIcon,sparklesIcon,interrogationIcon);//設定左邊5個按鈕
         createUI(jFrame);//放入物件
-        setAddPasswardButton(jFrame); //放入 Home 的加 passward buttom
+        // setAddPasswardButton(jFrame); //放入 Home 的加 passward buttom
         // JFrame.setDefaultLookAndFeelDecorated(true);
         jFrame.setLocationRelativeTo(null);  
         jFrame.setVisible(true);
@@ -78,13 +84,8 @@ public class main_page{
     }
 
     private static void createUI(JFrame frame){     
-        //上方的Panel
-        JPanel topPanel = new JPanel();
-        //左方放按鈕的Panel
-        MouseTest leftPanel=new MouseTest(home);
-        leftPanel.setJframe(jFrame);
-        topPanel.setLayout(new BorderLayout());
         leftPanel.setLayout(new GridLayout(5,1));
+        topPanel.setLayout(new BorderLayout());
         //加入上面的標題文字   
         topPanel.add(topJLabel,BorderLayout.WEST);
         //加入大頭貼
@@ -153,15 +154,16 @@ public class main_page{
         main_page.jFrame = jFrame;
     }
     public static void setAddPasswardButton(JFrame frame){
-        //加入buttom的測試區
-        JButton addPasswardButton =new JButton(new ImageIcon("demo\\src\\picture\\addPassward.png")); 
-        JPanel addJPanel=new JPanel();
-        addPasswardButton.setPreferredSize(new Dimension(57, 54));
-        addJPanel.setLayout(new BorderLayout());
-        addJPanel.add(addPasswardButton,BorderLayout.SOUTH);
-        addJPanel.setBackground(new Color(255, 255, 255, 255));
-        addJPanel.setOpaque(true);
-        frame.getContentPane().add(addJPanel,BorderLayout.EAST);
-        //到這裡結束
+        // //加入buttom的測試區
+        // JButton addPasswardButton =new JButton(new ImageIcon("demo\\src\\picture\\addPassward.png")); 
+        // JPanel addJPanel=new JPanel();
+        // addPasswardButton.setPreferredSize(new Dimension(57, 54));
+        // addJPanel.setLayout(new BorderLayout());
+        // addJPanel.add(addPasswardButton,BorderLayout.SOUTH);
+        // addJPanel.setBackground(new Color(255, 255, 255, 255));
+        // addJPanel.setOpaque(true);
+        // frame.getContentPane().add(addJPanel,BorderLayout.EAST);
+        // //到這裡結束
+        home.creatAddPasswardButton(main_page.jFrame);
     }
 }
