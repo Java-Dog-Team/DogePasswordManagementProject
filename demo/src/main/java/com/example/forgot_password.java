@@ -15,6 +15,8 @@ import java.awt.event.MouseAdapter;
 import java.awt.event.MouseListener;
 import java.awt.event.MouseMotionListener;
 import java.awt.event.MouseEvent;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JFrame;
@@ -52,11 +54,34 @@ public class forgot_password extends JFrame{
         passWordText.setBounds(100, 155, 300, 30);
         confirm.setBounds(210, 200, 80, 20);
         
+        //事件設定
+        ButtonActionListener Bhandler = new ButtonActionListener();
+        sendNewpassword.addActionListener(Bhandler);
+        confirm.addActionListener(Bhandler);
+
         add(email);
         add(emailText);
         add(sendNewpassword);
         add(passWord);
         add(passWordText);
         add(confirm);
+    }
+    private static class ButtonActionListener implements ActionListener{
+        public void actionPerformed(ActionEvent e){
+            String ACCOUNT=email.getText().trim();
+            String PASSWORD=new String(passWordText.getPassword());
+            if(e.getSource()==sendNewpassword){
+                if("Enter your account(email):".equals(ACCOUNT)){
+                    JOptionPane.showMessageDialog(null,"Please enter your account first!!","WARNING",JOptionPane.WARNING_MESSAGE);
+                    return;
+                }
+            }
+            else if(e.getSource()==confirm){
+                if("Password:".equals(PASSWORD)){
+                    JOptionPane.showMessageDialog(null,"Please enter new password!!","WARNING",JOptionPane.WARNING_MESSAGE);
+                    return;
+                }
+            }
+        }
     }
 }

@@ -78,22 +78,10 @@ public class registerFrame extends JFrame{
                 JOptionPane.showMessageDialog(null,"Please enter complete information!!","WARNING",JOptionPane.WARNING_MESSAGE);
                 return;
             }
-            if(PASSWORD!=PASSWORD2){
-                JOptionPane.showMessageDialog(null,"Two !!","WARNING",JOptionPane.WARNING_MESSAGE);
+            else if(!(PASSWORD.equals(PASSWORD2))){
+                JOptionPane.showMessageDialog(null,"Two password are different!!","WARNING",JOptionPane.WARNING_MESSAGE);
                 return;
             }
-            // else if("Password:".equals(PASSWORD)){
-            //     JOptionPane.showMessageDialog(null,"Please enter your password!!","WARNING",JOptionPane.WARNING_MESSAGE);
-            //     return;
-            // }
-            // else if("Email:".equals(ACCOUNT)){
-            //     JOptionPane.showMessageDialog(null,"Please enter your account!!","WARNING",JOptionPane.WARNING_MESSAGE);
-            //     return;
-            // }
-            // else if("Password again:".equals(PASSWORD2)){
-            //     JOptionPane.showMessageDialog(null,"Please enter your password again!!","WARNING",JOptionPane.WARNING_MESSAGE);
-            //     return;
-            // }
         }
     }
 }

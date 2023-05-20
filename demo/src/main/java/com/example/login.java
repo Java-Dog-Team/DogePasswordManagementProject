@@ -40,13 +40,17 @@ public class login {
     private static JLabel frame_right=new JLabel(" ");
     private static JLabel frame_down=new JLabel(" ");
     private static JButton confirm=new JButton("Confirm");
+    private static JButton sendVerButton=new JButton("Send verification code");
     private static JLabel label1=new JLabel("Login");
     private static JLabel label2=new JLabel("Account:");
     private static JLabel label3=new JLabel("Password:");
+    private static JLabel label4=new JLabel("Verification code:");
     private static JLabel register=new JLabel("Register Account");
     private static JLabel forGot=new JLabel("Forget password");
     private static JTextField accountText=new JTextField(null, "", 0);//帳號輸入
     private static JPasswordField passWord=new JPasswordField(null, "", 0);//密碼輸入
+    private static JTextField verificationText=new JTextField(null, "", 0);//驗證碼輸入
+    
     public static void main(String[] args) {
         createWindow();
     }
@@ -98,37 +102,48 @@ public class login {
         passWord.addFocusListener(new JPasswordFieldHintListener(passWord,"Enter your password:"));
         //密碼框框文字會顯示
         passWord.setEchoChar('\0');
+        //驗證碼提示語
+        verificationText.addFocusListener(new JTextFieldHintListener(verificationText, "Enter verification code:"));
         //各位置設定
-        confirm.setBounds(615, 300, 80, 20);
         label1.setBounds(610, 90,200,100);
         label2.setBounds(440, 150,90,90);
         accountText.setBounds(530, 180, 319, 30);
         label3.setBounds(440, 200,200,100);
         passWord.setBounds(550, 235, 300, 30);
-        register.setBounds(530, 299, 150, 80);
-        forGot.setBounds(690, 299, 150, 80);
+        label4.setBounds(438, 255,200,100);
+        verificationText.setBounds(600, 290,135,30);
+        sendVerButton.setBounds(745, 295, 163, 20);
+        confirm.setBounds(630, 350, 80, 20);
+        register.setBounds(555, 350, 150, 80);
+        forGot.setBounds(690, 350, 150, 80);
         
         //字型&大小設定
         label1.setFont((new Font("",Font.ITALIC,35)));
         label2.setFont((new Font("",Font.ITALIC,20)));
         label3.setFont((new Font("",Font.ITALIC,20)));
+        label4.setFont((new Font("",Font.ITALIC,20)));
         register.setFont((new Font("",Font.ITALIC,12)));
         forGot.setFont((new Font("",Font.ITALIC,12)));
 
         //事件設定
-        MouseHandler handler = new MouseHandler();
-        register.addMouseListener(handler);
-        register.addMouseMotionListener(handler);
-        forGot.addMouseListener(handler);
-        forGot.addMouseMotionListener(handler);
+        MouseHandler Mhandler = new MouseHandler();
+        register.addMouseListener(Mhandler);
+        register.addMouseMotionListener(Mhandler);
+        forGot.addMouseListener(Mhandler);
+        forGot.addMouseMotionListener(Mhandler);
+        ButtonActionListener Bhandler = new ButtonActionListener();
+        confirm.addActionListener(Bhandler);
 
         //加入windowFrame
-        windowFrame.add(confirm);
         windowFrame.add(label1);
         windowFrame.add(label2);
         windowFrame.add(accountText);
         windowFrame.add(label3);
         windowFrame.add(passWord);
+        windowFrame.add(label4);
+        windowFrame.add(verificationText);
+        windowFrame.add(sendVerButton);
+        windowFrame.add(confirm);
         windowFrame.add(register);
         windowFrame.add(forGot);
         //加上黃色邊框
@@ -200,6 +215,16 @@ public class login {
                 }
             }
         }
-        
+    }
+    private static class ButtonActionListener implements ActionListener{
+        public void actionPerformed(ActionEvent e){
+            String ACCOUNT=accountText.getText().trim();
+            String PASSWORD=new String(passWord.getPassword());
+            String VERIFICATION=verificationText.getText().trim();
+            if("Enter your password:".equals(PASSWORD) || "Enter your account(email):".equals(ACCOUNT) || "Enter verification code:".equals(VERIFICATION)){
+                JOptionPane.showMessageDialog(null,"Please enter complete information!!","WARNING",JOptionPane.WARNING_MESSAGE);
+                return;
+            }
+        }
     }
 }
