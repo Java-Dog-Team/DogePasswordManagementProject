@@ -9,6 +9,7 @@ import java.security.SecureRandom;
 import java.util.Timer;
 import java.util.TimerTask;
 
+//手機驗證碼寄送、驗證
 public class SMSController {
 
     private HttpURLConnection sms_gw = null;
@@ -132,7 +133,7 @@ public class SMSController {
     }
 
     // 檢查使用者輸入的手機驗證碼是否正確
-    public int ValidCodeVerify(String userPhoneNumber, String userInput) {
+    public int ValidCodeVerify(String userInput) {
 
         try {
             if (ValidCode.equals(userInput)) {

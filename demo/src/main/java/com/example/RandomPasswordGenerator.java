@@ -14,6 +14,7 @@ import org.passay.PasswordGenerator;
 import org.passay.Rule;
 import org.passay.WhitespaceRule;
 
+//密碼產生器
 public class RandomPasswordGenerator {
 
     // 常數
