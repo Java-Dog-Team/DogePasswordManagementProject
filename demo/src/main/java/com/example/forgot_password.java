@@ -42,7 +42,7 @@ public class forgot_password extends JFrame{
         //提示語
         setLayout(null);
         email_phoneText.addFocusListener(new JTextFieldHintListener(email_phoneText, "Enter email/phone number:"));
-        passWordText.addFocusListener(new JPasswordFieldHintListener(passWordText,"Password:"));
+        passWordText.addFocusListener(new JPasswordFieldHintListener(passWordText,"New password:"));
         verificationText.addFocusListener(new JTextFieldHintListener(verificationText, "Verification code:"));
 
         //密碼框框文字會顯示
@@ -80,19 +80,28 @@ public class forgot_password extends JFrame{
     private static class ButtonActionListener implements ActionListener{
         public void actionPerformed(ActionEvent e){
             String ACCOUNT=email_phoneText.getText().trim();
+            String vCode=verificationText.getText().trim();
             String PASSWORD=new String(passWordText.getPassword());
-
             if(e.getSource()==sendVerification){
                 if("Enter email/phone number:".equals(ACCOUNT)){
-                    JOptionPane.showMessageDialog(null,"Please enter your account first!!","WARNING",JOptionPane.WARNING_MESSAGE);
+                    JOptionPane.showMessageDialog(null,"Please enter your email or phone number.","WARNING",JOptionPane.WARNING_MESSAGE);
                     return;
                 }
             }
             else if(e.getSource()==confirm){
-                if("Password:".equals(PASSWORD)){
+                if("New password:".equals(PASSWORD) && !("Enter email/phone number:".equals(ACCOUNT)) && !("Verification code:".equals(vCode))){
                     JOptionPane.showMessageDialog(null,"Please enter new password!!","WARNING",JOptionPane.WARNING_MESSAGE);
                     return;
                 }
+                else if(("Verification code:".equals(vCode)) && (!("Enter email/phone number:".equals(ACCOUNT)))){
+                    JOptionPane.showMessageDialog(null,"Please enter verification code","WARNING",JOptionPane.WARNING_MESSAGE);
+                    return;
+                }
+                else{
+                    JOptionPane.showMessageDialog(null,"Please enter your email or phone number.","WARNING",JOptionPane.WARNING_MESSAGE);
+                    return;
+                }
+                
             }
         }
     }
