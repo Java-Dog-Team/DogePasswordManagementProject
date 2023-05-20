@@ -54,7 +54,7 @@ public class main_page{
     }
     
     public static void createWindow(){
-
+        
         jFrame.setContentPane(mainLabel);
         mainLabel.setOpaque(true);
         
@@ -113,6 +113,8 @@ public class main_page{
         mainLabel.add(topPanel, BorderLayout.NORTH); 
         mainLabel.add(leftPanel,BorderLayout.WEST);   
         home=new Home(mainLabel);
+        jFrame.setHome(home);
+        jFrame.setMainLabel(mainLabel);
     }
 
     public static void setTopJLabel(JLabel topJLabel) {

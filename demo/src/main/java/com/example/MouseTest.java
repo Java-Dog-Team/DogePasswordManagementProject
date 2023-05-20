@@ -9,28 +9,21 @@ import java.io.File;
 public class MouseTest extends JFrame{
     public JFrame jFrame;
     public Home home;
-    public main_page MainPage;
     public JPanel addJPanel=new JPanel();
     public JButton addPasswardButton =new JButton(new ImageIcon("demo\\src\\picture\\addPassward.png"));
 
-    private JLabel testJLabel;
+    public JLabel mainLabel;
+    private JLabel testJLabel=new JLabel("");
+    public JLabel smallLabel=new JLabel();
+    public JLabel rightJLabel=new JLabel();
     public MouseTest(JPanel leftPanel,JLabel mainLabel){
         super("看門狗系統");
-        // addJPanel.setBackground(Color.BLACK);
-        // addJPanel.setOpaque(true);
-        // super.getContentPane().add(addJPanel,BorderLayout.CENTER);
-        // super.setVisible(true);
-
-        testJLabel=mainLabel;
-        getContentPane().add(testJLabel,BorderLayout.SOUTH);
 
         MouseHandler handler=new MouseHandler();
         leftPanel.addMouseListener(handler);
         leftPanel.addMouseMotionListener(handler);
-        // leftPanel
-        // this.home=home_1;
-        // this.jFrame=jFrame_1;
-        // MainPage=mainPage;
+
+        addJPanel.setPreferredSize(new Dimension(60, 500));
    }
    private class MouseHandler implements MouseListener,MouseMotionListener{
         @Override
@@ -58,7 +51,6 @@ public class MouseTest extends JFrame{
             Graphics g = getGraphics();
             int x = e.getX();
             int y = e.getY();
-            System.out.printf("%d %d%n",x,y);
             if(y>=19 && y<=63 && x<=150){//主頁面
                 // MainPage.setAddPasswardButton(jFrame);
                 // home.creatAddPasswardButton(jFrame);
@@ -68,6 +60,9 @@ public class MouseTest extends JFrame{
                 // addJPanel.add(addPasswardButton,BorderLayout.SOUTH);
                 // getContentPane().setBackground( new Color(0,0,0,255) );;
                 // contentPane.setLayout(null);
+                // testJLabel.setBackground(Color.BLACK);
+                home.creatPasswordPanel(testJLabel);
+                home.creatAddPasswardButton(addJPanel);
             }
             else if (y>=95 && y<=142 && x<=150){//密碼產生器
 
@@ -76,7 +71,7 @@ public class MouseTest extends JFrame{
 
             }
             else if(y>=253 && y<=301 && x<=150){//主題設定
-                DesignPage designPage=new DesignPage(jFrame);
+                // DesignPage designPage=new DesignPage(jFrame);
                 // MainPage.jFrame.getContentPane().setBackground(Color.BLACK);
                 // System.out.printf("%d %d%n",x,y);
             }
@@ -173,11 +168,15 @@ public class MouseTest extends JFrame{
             // }
         }
    }
-   public static JLabel setPicture(ImageIcon fileName){
-        JLabel jLabel=new JLabel(fileName);
-        return jLabel;
+   public void setHome(Home home) {
+       this.home = home;
    }
-   public void setJframe(JFrame jFrame){
-        this.jFrame=jFrame;
+   public void setMainLabel(JLabel mainLabel) {
+       this.mainLabel = mainLabel;
+       testJLabel.setOpaque(true);
+       testJLabel.setBackground(Color.WHITE);
+       addJPanel.setVisible(false);
+       this.mainLabel.add(testJLabel,BorderLayout.CENTER);
+       this.mainLabel.add(addJPanel,BorderLayout.EAST);
    }
 }
