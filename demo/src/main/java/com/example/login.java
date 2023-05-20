@@ -133,6 +133,7 @@ public class login {
         forGot.addMouseMotionListener(Mhandler);
         ButtonActionListener Bhandler = new ButtonActionListener();
         confirm.addActionListener(Bhandler);
+        sendVerButton.addActionListener(Bhandler);
 
         //加入windowFrame
         windowFrame.add(label1);
@@ -178,8 +179,10 @@ public class login {
         public void mouseClicked(MouseEvent event){
             if(event.getSource()==register){
                 registerFrame register=new registerFrame();
-                register.setBounds(450, 250, 0, 0);
-                register.setSize(dimension.width*1/3, dimension.height*1/3);
+                //設定視窗出現位置和大小
+                register.setBounds(450, 250,500,450);
+                //視窗不可改變大小
+                register.setResizable(false);
                 //設定背景顏色
                 register.getContentPane().setBackground( Color.WHITE );
                 register.setVisible(true);
@@ -197,8 +200,10 @@ public class login {
             }
             if(event.getSource()==forGot){
                 forgot_password forGot=new forgot_password();
-                forGot.setBounds(450, 250, 0, 0);
-                forGot.setSize(dimension.width*1/3, dimension.height*1/3);
+                //設定視窗出現位置和大小
+                forGot.setBounds(450, 250, 500, 450);
+                //視窗不可改變大小
+                forGot.setResizable(false);
                 //設定背景顏色
                 forGot.getContentPane().setBackground( Color.WHITE );
                 forGot.setVisible(true);
@@ -221,9 +226,17 @@ public class login {
             String ACCOUNT=accountText.getText().trim();
             String PASSWORD=new String(passWord.getPassword());
             String VERIFICATION=verificationText.getText().trim();
-            if("Enter your password:".equals(PASSWORD) || "Enter your account(email):".equals(ACCOUNT) || "Enter verification code:".equals(VERIFICATION)){
-                JOptionPane.showMessageDialog(null,"Please enter complete information!!","WARNING",JOptionPane.WARNING_MESSAGE);
-                return;
+            if (e.getSource()==confirm){
+                if("Enter your password:".equals(PASSWORD) || "Enter your account(email):".equals(ACCOUNT) || "Enter verification code:".equals(VERIFICATION)){
+                    JOptionPane.showMessageDialog(null,"Please enter complete information!!","WARNING",JOptionPane.WARNING_MESSAGE);
+                    return;
+                }
+            }
+            else if(e.getSource()==sendVerButton){
+                if("Enter your account(email):".equals(ACCOUNT)){
+                    JOptionPane.showMessageDialog(null,"Please enter your account!!","WARNING",JOptionPane.WARNING_MESSAGE);
+                    return;
+                }
             }
         }
     }
