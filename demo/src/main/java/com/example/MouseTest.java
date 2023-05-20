@@ -13,11 +13,15 @@ public class MouseTest extends JFrame{
     public JPanel addJPanel=new JPanel();
     public JButton addPasswardButton =new JButton(new ImageIcon("demo\\src\\picture\\addPassward.png"));
 
+    private JLabel testJLabel;
     public MouseTest(JPanel leftPanel){
         super("看門狗系統");
-        addJPanel.setBackground(new Color(0, 255, 255, 255));
-        addJPanel.setOpaque(true);
-        add(addJPanel,BorderLayout.EAST);
+        addJPanel.setBackground(Color.BLACK);
+        add(addJPanel,BorderLayout.CENTER);
+
+        testJLabel=new JLabel("test");
+        add(testJLabel,BorderLayout.SOUTH);
+
         MouseHandler handler=new MouseHandler();
         leftPanel.addMouseListener(handler);
         leftPanel.addMouseMotionListener(handler);
@@ -56,9 +60,10 @@ public class MouseTest extends JFrame{
             if(y>=19 && y<=63 && x<=150){//主頁面
                 // MainPage.setAddPasswardButton(jFrame);
                 // home.creatAddPasswardButton(jFrame);
-                addPasswardButton.setPreferredSize(new Dimension(57, 54));
-                addJPanel.setLayout(new BorderLayout());
-                addJPanel.add(addPasswardButton,BorderLayout.SOUTH);
+
+                // addPasswardButton.setPreferredSize(new Dimension(57, 54));
+                // addJPanel.setLayout(new BorderLayout());
+                // addJPanel.add(addPasswardButton,BorderLayout.SOUTH);
                 getContentPane().setBackground( new Color(0,0,0,255) );
             }
             else if (y>=95 && y<=142 && x<=150){//密碼產生器

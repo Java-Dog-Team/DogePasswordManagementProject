@@ -76,7 +76,7 @@ public class main_page{
         setTopJLabelPicture(myheadIcon);//設定大頭貼
         setFiveButton(homeIcon,lockIcon,bellIcon,sparklesIcon,interrogationIcon);//設定左邊5個按鈕
         createUI(jFrame);//放入物件
-        // setAddPasswardButton(jFrame); //放入 Home 的加 passward buttom
+        setAddPasswardButton(jFrame); //放入 Home 的加 passward buttom
         // JFrame.setDefaultLookAndFeelDecorated(true);
         jFrame.setLocationRelativeTo(null);  
         jFrame.setVisible(true);
@@ -164,6 +164,9 @@ public class main_page{
         // addJPanel.setOpaque(true);
         // frame.getContentPane().add(addJPanel,BorderLayout.EAST);
         // //到這裡結束
-        home.creatAddPasswardButton(main_page.jFrame);
+        // home.creatAddPasswardButton(main_page.jFrame);
+        JPanel addJPanel=new JPanel();
+        addJPanel.setBackground(Color.BLACK);
+        frame.add(addJPanel,BorderLayout.CENTER);
     }
 }
