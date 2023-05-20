@@ -6,7 +6,7 @@ import javax.crypto.Cipher;
 import javax.crypto.spec.SecretKeySpec;
 
 /*
- * AES algorithm 
+ * AES algorithm 密碼加密、解密
  */
 public class AESEncryption {
 

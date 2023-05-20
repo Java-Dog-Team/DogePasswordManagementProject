@@ -14,6 +14,7 @@ import javax.mail.Transport;
 import javax.mail.internet.InternetAddress;
 import javax.mail.internet.MimeMessage;
 
+//Email驗證碼寄送、驗證
 public class MailController {
 
     private final String SenderEmail = "sw710407@gmail.com";

@@ -8,7 +8,7 @@ import com.mongodb.client.MongoClients;
 import com.mongodb.client.MongoCollection;
 import com.mongodb.client.MongoDatabase;
 
-//與主資料庫做互動
+//與主資料庫做互動 帳號資料驗證
 public class AccountController {
 
     // Mongodb 連線
@@ -32,7 +32,7 @@ public class AccountController {
 
     }
 
-    // 帳密是否正確
+    // 檢查登入帳密是否正確
     public int AccountIsCorrect(String username, String password) {
 
         try {
@@ -41,7 +41,7 @@ public class AccountController {
             Document query = new Document("Username", username);
             Document result = UserCollection.find(query).first();
 
-            if (result != null) {// 沒找到該帳號
+            if (result != null) {// 找到該帳號
 
                 String encrypPassword = result.getString("Password");// 獲取該帳號的加密密碼
 
@@ -58,7 +58,7 @@ public class AccountController {
         }
     }
 
-    // 檢查帳號是否重複 true代表存在重複帳號
+    // 檢查帳號是否重複
     public int reapeatedAccount(String username) throws Exception {
 
         // 嘗試找尋該帳號
