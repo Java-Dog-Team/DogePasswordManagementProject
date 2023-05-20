@@ -37,6 +37,7 @@ public class forgot_password extends JFrame{
     private static JPasswordField passWordText=new JPasswordField(null, "", 0);
     public forgot_password(){
         super("Reset Your Password");
+        
         setLayout(null);
         emailText.addFocusListener(new JTextFieldHintListener(emailText, "Email:"));
         passWordText.addFocusListener(new JPasswordFieldHintListener(passWordText,"Password:"));

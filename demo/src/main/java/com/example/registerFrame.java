@@ -34,7 +34,7 @@ public class registerFrame extends JFrame{
     public registerFrame(){
         super("Register Your Account");
         setLayout(null);
-        
+        setSize(960, 960);
         //提示語
         emailText.addFocusListener(new JTextFieldHintListener(emailText, "Email:"));
         passWordText.addFocusListener(new JPasswordFieldHintListener(passWordText,"Password:"));
