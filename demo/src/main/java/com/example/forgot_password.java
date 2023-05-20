@@ -1,20 +1,11 @@
 package com.example;
 
-import java.awt.BorderLayout;
 import java.awt.Container;
-import java.awt.FlowLayout;
 import java.awt.Font;
-import java.awt.GridLayout;
 import java.awt.Image;
 import java.awt.Label;
-import java.awt.LayoutManager;
 import java.awt.Toolkit;
-import java.awt.Dimension;
 import java.awt.Color;
-import java.awt.event.MouseAdapter;
-import java.awt.event.MouseListener;
-import java.awt.event.MouseMotionListener;
-import java.awt.event.MouseEvent;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import javax.swing.ImageIcon;
@@ -22,10 +13,9 @@ import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
-import javax.swing.JPanel;
 import javax.swing.JPasswordField;
 import javax.swing.JTextField;
-import javax.swing.plaf.basic.BasicTabbedPaneUI.MouseHandler;
+
 public class forgot_password extends JFrame{
     private static JButton confirm = new JButton("Confirm");
     private static JButton sendVerification = new JButton("Send verification code");
@@ -68,6 +58,7 @@ public class forgot_password extends JFrame{
         sendVerification.addActionListener(Bhandler);
         confirm.addActionListener(Bhandler);
 
+        //加進視窗
         add(email_phone);
         add(email_phoneText);
         add(sendVerification);
@@ -82,6 +73,7 @@ public class forgot_password extends JFrame{
             String ACCOUNT=email_phoneText.getText().trim();
             String vCode=verificationText.getText().trim();
             String PASSWORD=new String(passWordText.getPassword());
+            //跳出提醒
             if(e.getSource()==sendVerification){
                 if("Enter email/phone number:".equals(ACCOUNT)){
                     JOptionPane.showMessageDialog(null,"Please enter your email or phone number.","WARNING",JOptionPane.WARNING_MESSAGE);

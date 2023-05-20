@@ -2,9 +2,7 @@ package com.example;
 
 import java.awt.BorderLayout;
 import java.awt.Container;
-import java.awt.FlowLayout;
 import java.awt.Font;
-import java.awt.GridLayout;
 import java.awt.Image;
 import java.awt.Label;
 import java.awt.LayoutManager;
@@ -22,10 +20,8 @@ import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
-import javax.swing.JPanel;
 import javax.swing.JPasswordField;
 import javax.swing.JTextField;
-import javax.swing.plaf.basic.BasicTabbedPaneUI.MouseHandler;
 
 public class login {
     private static JFrame windowFrame = new JFrame("更改Swing視窗的預設圖示");
@@ -48,8 +44,8 @@ public class login {
     
     private static JLabel register=new JLabel("Register Account");
     private static JLabel forGot=new JLabel("Forget password");
-    private static JTextField emailText=new JTextField(null, "", 0);//email輸入
     
+    private static JTextField emailText=new JTextField(null, "", 0);//email輸入
     private static JPasswordField passWord=new JPasswordField(null, "", 0);//密碼輸入
     private static JTextField verificationText=new JTextField(null, "", 0);//驗證碼輸入
     
