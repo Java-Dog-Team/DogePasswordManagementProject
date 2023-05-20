@@ -28,51 +28,62 @@ import javax.swing.JTextField;
 import javax.swing.plaf.basic.BasicTabbedPaneUI.MouseHandler;
 public class forgot_password extends JFrame{
     private static JButton confirm = new JButton("Confirm");
-    private static JButton sendNewpassword = new JButton("Send new password");
-    private static JLabel email = new JLabel("Enter your account(email):");
-    private static JLabel passWord = new JLabel("Enter your password:");
+    private static JButton sendVerification = new JButton("Send verification code");
+    private static JLabel email_phone = new JLabel("Enter your email/phone number:");
+    private static JLabel vJLabel = new JLabel("Enter verification code:");
+    private static JLabel passWord = new JLabel("Enter your new password:");
     
     //帳號輸入
-    private static JTextField emailText=new JTextField(null, "", 0);
+    private static JTextField email_phoneText=new JTextField(null, "", 0);
+    private static JTextField verificationText=new JTextField(null, "", 0);
     private static JPasswordField passWordText=new JPasswordField(null, "", 0);
     public forgot_password(){
         super("Reset Your Password");
-        
+        //提示語
         setLayout(null);
-        emailText.addFocusListener(new JTextFieldHintListener(emailText, "Email:"));
+        email_phoneText.addFocusListener(new JTextFieldHintListener(email_phoneText, "Enter email/phone number:"));
         passWordText.addFocusListener(new JPasswordFieldHintListener(passWordText,"Password:"));
+        verificationText.addFocusListener(new JTextFieldHintListener(verificationText, "Verification code:"));
 
         //密碼框框文字會顯示
         passWordText.setEchoChar('\0');
 
-        email.setFont((new Font("",Font.ITALIC,15)));
+        //字型&大小設定
+        email_phone.setFont((new Font("",Font.ITALIC,15)));
         passWord.setFont((new Font("",Font.ITALIC,15)));
+        vJLabel.setFont((new Font("",Font.ITALIC,15)));
 
-        email.setBounds(100,0,180,50);
-        emailText.setBounds(100, 40,300,30);
-        sendNewpassword.setBounds(170, 90, 150, 20);
-        passWord.setBounds(100, 115, 180, 50);
-        passWordText.setBounds(100, 155, 300, 30);
-        confirm.setBounds(210, 200, 80, 20);
+        //各位置設定
+        email_phone.setBounds(100,0,250,50);
+        email_phoneText.setBounds(100, 40,300,30);
+        sendVerification.setBounds(165, 90, 163, 20);
+        vJLabel.setBounds(100, 115, 180, 50);
+        verificationText.setBounds(260, 125, 120, 30);
+        passWord.setBounds(100, 155, 180, 50);
+        passWordText.setBounds(100, 195, 300, 30);
+        confirm.setBounds(210, 245, 80, 20);
         
         //事件設定
         ButtonActionListener Bhandler = new ButtonActionListener();
-        sendNewpassword.addActionListener(Bhandler);
+        sendVerification.addActionListener(Bhandler);
         confirm.addActionListener(Bhandler);
 
-        add(email);
-        add(emailText);
-        add(sendNewpassword);
+        add(email_phone);
+        add(email_phoneText);
+        add(sendVerification);
+        add(vJLabel);
+        add(verificationText);
         add(passWord);
         add(passWordText);
         add(confirm);
     }
     private static class ButtonActionListener implements ActionListener{
         public void actionPerformed(ActionEvent e){
-            String ACCOUNT=email.getText().trim();
+            String ACCOUNT=email_phoneText.getText().trim();
             String PASSWORD=new String(passWordText.getPassword());
-            if(e.getSource()==sendNewpassword){
-                if("Enter your account(email):".equals(ACCOUNT)){
+
+            if(e.getSource()==sendVerification){
+                if("Enter email/phone number:".equals(ACCOUNT)){
                     JOptionPane.showMessageDialog(null,"Please enter your account first!!","WARNING",JOptionPane.WARNING_MESSAGE);
                     return;
                 }

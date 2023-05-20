@@ -41,20 +41,23 @@ public class login {
     private static JLabel frame_down=new JLabel(" ");
     private static JButton confirm=new JButton("Confirm");
     private static JButton sendVerButton=new JButton("Send verification code");
-    private static JLabel label1=new JLabel("Login");
-    private static JLabel label2=new JLabel("Account:");
-    private static JLabel label3=new JLabel("Password:");
-    private static JLabel label4=new JLabel("Verification code:");
+    private static JLabel loginLabel=new JLabel("Login");
+    private static JLabel emailLabel=new JLabel("Account:");
+    private static JLabel passwordLabel=new JLabel("Password:");
+    private static JLabel vJLabel=new JLabel("Verification code:");
+    
     private static JLabel register=new JLabel("Register Account");
     private static JLabel forGot=new JLabel("Forget password");
-    private static JTextField accountText=new JTextField(null, "", 0);//帳號輸入
+    private static JTextField emailText=new JTextField(null, "", 0);//email輸入
+    
     private static JPasswordField passWord=new JPasswordField(null, "", 0);//密碼輸入
     private static JTextField verificationText=new JTextField(null, "", 0);//驗證碼輸入
     
     public static void main(String[] args) {
         createWindow();
     }
-    private static void createWindow() {    
+    private static void createWindow() { 
+        windowFrame.setTitle("Dog密碼管理系統");
         //設定視窗大小為螢幕的2/3
         windowFrame.setSize(960,600);
         //設定背景顏色
@@ -96,32 +99,34 @@ public class login {
 
     private static void createUI(JFrame windowFrame){
 
-        //帳號提示語
-        accountText.addFocusListener(new JTextFieldHintListener(accountText, "Enter your account(email):"));
+        //email提示語
+        emailText.addFocusListener(new JTextFieldHintListener(emailText, "Enter your email/phone number:"));
+        
         //密碼提示語
         passWord.addFocusListener(new JPasswordFieldHintListener(passWord,"Enter your password:"));
         //密碼框框文字會顯示
         passWord.setEchoChar('\0');
         //驗證碼提示語
         verificationText.addFocusListener(new JTextFieldHintListener(verificationText, "Enter verification code:"));
+        
         //各位置設定
-        label1.setBounds(610, 90,200,100);
-        label2.setBounds(440, 150,90,90);
-        accountText.setBounds(530, 180, 319, 30);
-        label3.setBounds(440, 200,200,100);
-        passWord.setBounds(550, 235, 300, 30);
-        label4.setBounds(438, 255,200,100);
-        verificationText.setBounds(600, 290,135,30);
-        sendVerButton.setBounds(745, 295, 163, 20);
-        confirm.setBounds(630, 350, 80, 20);
-        register.setBounds(555, 350, 150, 80);
-        forGot.setBounds(690, 350, 150, 80);
+        loginLabel.setBounds(610, 90,200,100);
+        emailLabel.setBounds(440, 150,90,90);
+        emailText.setBounds(530, 180, 319, 30);
+        passwordLabel.setBounds(440, 200,200,100);
+        passWord.setBounds(540, 235, 310, 30);
+        vJLabel.setBounds(438, 260,200,100);
+        verificationText.setBounds(600, 295,135,30);
+        sendVerButton.setBounds(745, 300, 163, 20);
+        confirm.setBounds(630, 340, 80, 20);
+        register.setBounds(555, 335, 150, 80);
+        forGot.setBounds(690, 335, 150, 80);
         
         //字型&大小設定
-        label1.setFont((new Font("",Font.ITALIC,35)));
-        label2.setFont((new Font("",Font.ITALIC,20)));
-        label3.setFont((new Font("",Font.ITALIC,20)));
-        label4.setFont((new Font("",Font.ITALIC,20)));
+        loginLabel.setFont((new Font("",Font.ITALIC,35)));
+        emailLabel.setFont((new Font("",Font.ITALIC,20)));
+        passwordLabel.setFont((new Font("",Font.ITALIC,20)));
+        vJLabel.setFont((new Font("",Font.ITALIC,20)));
         register.setFont((new Font("",Font.ITALIC,12)));
         forGot.setFont((new Font("",Font.ITALIC,12)));
 
@@ -136,12 +141,12 @@ public class login {
         sendVerButton.addActionListener(Bhandler);
 
         //加入windowFrame
-        windowFrame.add(label1);
-        windowFrame.add(label2);
-        windowFrame.add(accountText);
-        windowFrame.add(label3);
+        windowFrame.add(loginLabel);
+        windowFrame.add(emailLabel);
+        windowFrame.add(emailText);
+        windowFrame.add(passwordLabel);
         windowFrame.add(passWord);
-        windowFrame.add(label4);
+        windowFrame.add(vJLabel);
         windowFrame.add(verificationText);
         windowFrame.add(sendVerButton);
         windowFrame.add(confirm);
@@ -223,7 +228,7 @@ public class login {
     }
     private static class ButtonActionListener implements ActionListener{
         public void actionPerformed(ActionEvent e){
-            String ACCOUNT=accountText.getText().trim();
+            String ACCOUNT=emailText.getText().trim();
             String PASSWORD=new String(passWord.getPassword());
             String VERIFICATION=verificationText.getText().trim();
             if (e.getSource()==confirm){

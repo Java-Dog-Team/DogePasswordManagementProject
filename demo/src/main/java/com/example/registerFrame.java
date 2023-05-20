@@ -27,8 +27,9 @@ public class registerFrame extends JFrame{
     private static JLabel email = new JLabel("Enter your account(email):");
     private static JLabel passWord = new JLabel("Enter your password:");
     private static JLabel passWord2 = new JLabel("Enter your password again:");
-    
-    private static JTextField emailText=new JTextField(null, "", 0);//帳號輸入
+    private static JLabel phoneLabel=new JLabel("Phone number:");
+    private static JTextField phoneText=new JTextField(null, "", 0);//手機號碼輸入
+    private static JTextField emailText=new JTextField(null, "", 0);//mail輸入
     private static JPasswordField passWordText=new JPasswordField(null, "", 0);//第一次輸入密碼
     private static JPasswordField passWordText2=new JPasswordField(null, "", 0);//第二次輸入密碼
     public registerFrame(){
@@ -39,6 +40,8 @@ public class registerFrame extends JFrame{
         emailText.addFocusListener(new JTextFieldHintListener(emailText, "Email:"));
         passWordText.addFocusListener(new JPasswordFieldHintListener(passWordText,"Password:"));
         passWordText2.addFocusListener(new JPasswordFieldHintListener(passWordText2,"Password again:"));
+        //手機號碼提示語
+        phoneText.addFocusListener(new JTextFieldHintListener(phoneText, "Phone number:"));
 
         //密碼框框文字會顯示
         passWordText.setEchoChar('\0');
@@ -48,20 +51,27 @@ public class registerFrame extends JFrame{
         ButtonActionListener handler = new ButtonActionListener();
         confirm.addActionListener(handler);
 
+        //各位置設定
         email.setBounds(100,0,180,50);
         emailText.setBounds(100, 40,300,30);
-        passWord.setBounds(100, 70,180, 50);
-        passWordText.setBounds(100,110,300,30);
-        passWord2.setBounds(100, 140, 300, 50);
-        passWordText2.setBounds(100, 180,300,30);
-        confirm.setBounds(210, 220, 80, 20);
+        phoneLabel.setBounds(100, 65,180, 50);
+        phoneText.setBounds(100,105,300,30);
+        passWord.setBounds(100, 135,180, 50);
+        passWordText.setBounds(100,170,300,30);
+        passWord2.setBounds(100, 200, 300, 50);
+        passWordText2.setBounds(100, 235,300,30);
+        confirm.setBounds(210, 280, 80, 20);
 
+        //字型&大小設定
         email.setFont((new Font("",Font.ITALIC,15)));
         passWord.setFont((new Font("",Font.ITALIC,15)));
         passWord2.setFont((new Font("",Font.ITALIC,15)));
+        phoneLabel.setFont((new Font("",Font.ITALIC,15)));
 
         add(email);
         add(emailText);
+        add(phoneLabel);
+        add(phoneText);
         add(passWord);
         add(passWordText);
         add(passWord2);
@@ -70,11 +80,11 @@ public class registerFrame extends JFrame{
     }
     private static class ButtonActionListener implements ActionListener{
         public void actionPerformed(ActionEvent e){
-            String ACCOUNT=emailText.getText().trim();
+            String EMAIL=emailText.getText().trim();
             String PASSWORD=new String(passWordText.getPassword());
             String PASSWORD2=new String(passWordText2.getPassword());
-
-            if("Password:".equals(PASSWORD) || "Email:".equals(ACCOUNT) || "Password again:".equals(PASSWORD2)){
+            String PHONE=phoneText.getText().trim();
+            if("Password:".equals(PASSWORD) || "Email:".equals(EMAIL) || "Password again:".equals(PASSWORD2)|| "Phone number:".equals(PHONE)){
                 JOptionPane.showMessageDialog(null,"Please enter complete information!!","WARNING",JOptionPane.WARNING_MESSAGE);
                 return;
             }
