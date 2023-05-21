@@ -24,6 +24,7 @@ public class UserInterface {
     private MongoDatabase database = mongoClient.getDatabase(DatabaseName);
     private final MongoCollection<Document> UserCollection;
 
+    // 物件Constructor 帳號作為參數 抓取該使用者資料
     public UserInterface(String Username) {
         this.Username = Username;
         this.UserCollection = database.getCollection(Username);// 與儲存該使用者資料的資料庫做連線
@@ -52,7 +53,7 @@ public class UserInterface {
 
     }
 
-    // 獲取使用者特定資料
+    // 獲取使用者特定資料 (還不知道須不須要)
     public RecordData fetchOneUserData(String AppName) {
         return null;
     }
@@ -84,5 +85,9 @@ public class UserInterface {
             System.out.println("資料刪除失敗!");
         }
 
+    }
+
+    public String toString() {
+        return String.format("%s", "當前正在連結帳號為" + Username + "的資料庫");
     }
 }

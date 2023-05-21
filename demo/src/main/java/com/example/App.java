@@ -12,6 +12,7 @@ public class App {
         // MailController mailController = new MailController();
         // mailController.sendMail("say859462@yahoo.com.tw");
         // AccountController accounterController = new AccountController();
+        // System.out.println(accounterController.forgetPasswordTest("test00gmail.com"));
         // accounterController.regiserAccount("test001@gmail.com", "test001",
         // "0909000222");
         // System.out.println(accounterController.AccountIsCorrect("test001@gmail.com",
@@ -22,6 +23,7 @@ public class App {
         // accounterController.disconnectMongoDB();
 
         // UserInterface tmp = new UserInterface("test001@gmail.com");
+        // System.out.println(tmp);
         // tmp.deleteOneUserData("Discord", "test01", "test01@%");
         // tmp.updateOneUserData("Discord", "test01", "test01@%Sa");
         // tmp.updateOneUserData("Google", "hi@gmail.com", "saysay");
@@ -33,7 +35,10 @@ public class App {
         // result.get(i).getUsername());
         // }
         // RandomPasswordGenerator gen = new RandomPasswordGenerator();
-        // System.out.println(gen.PasswordGenerate(15, RandomPasswordGenerator.LowerCase, RandomPasswordGenerator.UpperCase,RandomPasswordGenerator.Special, RandomPasswordGenerator.Digits));
+        // System.out.println(gen.PasswordGenerate(15,
+        // RandomPasswordGenerator.LowerCase,
+        // RandomPasswordGenerator.UpperCase,RandomPasswordGenerator.Special,
+        // RandomPasswordGenerator.Digits));
 
     }
 }
