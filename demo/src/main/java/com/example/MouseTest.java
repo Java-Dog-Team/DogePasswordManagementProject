@@ -51,31 +51,23 @@ public class MouseTest extends JFrame{
             Graphics g = getGraphics();
             int x = e.getX();
             int y = e.getY();
-            if(y>=19 && y<=63 && x<=150){//主頁面
-                // MainPage.setAddPasswardButton(jFrame);
-                // home.creatAddPasswardButton(jFrame);
-
-                // addPasswardButton.setPreferredSize(new Dimension(57, 54));
-                // addJPanel.setLayout(new BorderLayout());
-                // addJPanel.add(addPasswardButton,BorderLayout.SOUTH);
-                // getContentPane().setBackground( new Color(0,0,0,255) );;
-                // contentPane.setLayout(null);
-                // testJLabel.setBackground(Color.BLACK);
+            System.out.printf("%d %d%n",x,y);
+            if(y>=27 && y<=73 && x<=150){//主頁面
                 home.creatPasswordPanel(testJLabel);
                 home.creatAddPasswardButton(addJPanel);
             }
-            else if (y>=95 && y<=142 && x<=150){//密碼產生器
+            else if (y>=122 && y<=168 && x<=150){//密碼產生器
 
             }
-            else if(y>=175 && y<=223 && x<=150){//提醒設定
+            else if(y>=218 && y<=270 && x<=150){//提醒設定
 
             }
-            else if(y>=253 && y<=301 && x<=150){//主題設定
+            else if(y>=315 && y<=365 && x<=150){//主題設定
                 // DesignPage designPage=new DesignPage(jFrame);
                 // MainPage.jFrame.getContentPane().setBackground(Color.BLACK);
                 // System.out.printf("%d %d%n",x,y);
             }
-            else if(y>=332 && y<=373 && x<=50){//使用教學
+            else if(y>=411 && y<=461 && x<=50){//使用教學
 
             }
             
@@ -92,57 +84,49 @@ public class MouseTest extends JFrame{
             Graphics g = getGraphics();
             int x = e.getX();
             int y = e.getY();
-            
-            if(y>=19 && y<=63 && x<=50){
+            //偵測滑鼠到左側選單按鈕，讓選單彈出
+            if(y>=27 && y<=73 && x<=50){//主畫面
                 try{
                     Image image = ImageIO.read(new File("demo\\src\\picture\\home_end.jpg"));
-                    
-                    g.drawImage(image, 7, 92, getFocusCycleRootAncestor());
-                    
+                    g.drawImage(image, 7, 111, getFocusCycleRootAncestor());
                 }
                 catch(Exception ex){
                     System.out.println(ex);
                 }
             }
-            else if (y>=95 && y<=142 && x<=50){
+            else if (y>=122 && y<=168 && x<=50){//密碼產生器
                     try{
                         Image image = ImageIO.read(new File("demo\\src\\picture\\lock_end.jpg"));
-                        
-                        g.drawImage(image, 7, 172, getFocusCycleRootAncestor());
-                        
+                        g.drawImage(image, 8, 208, getFocusCycleRootAncestor());
                     }
                     catch(Exception ex){
                         System.out.println(ex);
                     }
             }
-            else if(y>=175 && y<=223 && x<=50){
+            else if(y>=218 && y<=270 && x<=50){//提醒設定
                     try{
                         Image image = ImageIO.read(new File("demo\\src\\picture\\bell_end.jpg"));
-                        
-                        g.drawImage(image, 7, 250, getFocusCycleRootAncestor());
-                        
+                        g.drawImage(image, 7, 302, getFocusCycleRootAncestor());
                     }
                     catch(Exception ex){
                         System.out.println(ex);
                     }
             }
-            else if(y>=253 && y<=301 && x<=50){
+            else if(y>=315 && y<=365 && x<=50){//主題設定
                     try{
                         Image image = ImageIO.read(new File("demo\\src\\picture\\sparkles_end.jpg"));
                         
-                        g.drawImage(image, 7, 329, getFocusCycleRootAncestor());
+                        g.drawImage(image, 8, 400, getFocusCycleRootAncestor());
                         
                     }
                     catch(Exception ex){
                         System.out.println(ex);
                     }
             }
-            else if(y>=332 && y<=373 && x<=50){
+            else if(y>=411 && y<=461 && x<=50){//使用教學
                     try{
                         Image image = ImageIO.read(new File("demo\\src\\picture\\interrogation_end.jpg"));
-                        
-                        g.drawImage(image, 7, 409, getFocusCycleRootAncestor());
-                        
+                        g.drawImage(image, 8, 495, getFocusCycleRootAncestor());
                     }
                     catch(Exception ex){
                         System.out.println(ex);

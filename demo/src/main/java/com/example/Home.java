@@ -40,18 +40,29 @@ public class Home extends main_page{
         testJLabel.setBackground(Color.BLACK);
     }
     public void creatAddPasswardButton(JPanel addJPanel){
-        addPasswardButton.setPreferredSize(new Dimension(57, 54));
+        ButtonHandler handler=new ButtonHandler();//加入密碼的buttonHandler
+        //設定button
+        addPasswardButton.setPreferredSize(new Dimension(57, 54));//大小
+        addPasswardButton.addActionListener(handler);//ActionListener
+        //設定 Button 的 pannel
         addJPanel.setLayout(new BorderLayout());
         addJPanel.setBackground(Color.WHITE);
         addJPanel.add(addPasswardButton,BorderLayout.SOUTH);
         addJPanel.setVisible(true);
-        addPasswardButton.addActionListener(null);
         // this.mainLabel.add(addJPanel,BorderLayout.EAST);
     }
     private class ButtonHandler implements ActionListener{
         @Override
         public void actionPerformed(ActionEvent e){
-            
+            //彈出加入新密碼的視窗
+            JFrame addNewPasswardFrame=new JFrame("加入新密碼");
+            addNewPasswardFrame.setSize(300, 300);
+            addNewPasswardFrame.setLocationRelativeTo(null);//視窗出現在中間
+            addNewPasswardFrame.setResizable(false);
+            addNewPasswardFrame.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);//只關閉當前視窗
+            JLabel label = new JLabel("新窗口");
+            addNewPasswardFrame.add(label);
+            addNewPasswardFrame.setVisible(true);
         }
     }
 }

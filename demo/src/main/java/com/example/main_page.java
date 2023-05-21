@@ -60,9 +60,8 @@ public class main_page{
         
         // mainLabel.setBackground(Color.BLACK);
         jFrame.getContentPane().setLayout(new BorderLayout());
-
-        //設定視窗大小為螢幕的2/3
-        jFrame.setSize(w*2/3, h*2/3);
+        //設定視窗大小
+        jFrame.setSize(1024, 576);
         //視窗不可調整大小
         jFrame.setResizable(false);
         //設定關閉視窗即程式結束
