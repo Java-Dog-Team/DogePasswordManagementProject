@@ -78,7 +78,7 @@ public class MailController {
 
             String validCode = generateValidCode();
 
-            message.setText("歡迎使用Doge密碼管理系統，這是您的驗證碼:" + validCode + "請在5分鐘內使用");
+            message.setText("歡迎使用Doge密碼管理系統，這是您的驗證碼:" + validCode + "，請在5分鐘內使用");
             ValidCode = validCode;
             Transport.send(message);
 
@@ -94,6 +94,7 @@ public class MailController {
 
     // 驗證驗證碼是否正確
     public int ValidCodeVerify(String userInput) {
+        System.out.println(ValidCode);
         try {
             if (ValidCode.equals(userInput)) {
                 ValidCode = null;

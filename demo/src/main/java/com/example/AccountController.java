@@ -24,11 +24,10 @@ public class AccountController {
     private final String phoneRegularEXpression = "09[0-9]{8}";
     // 常數
     public static final int OK = 0;// 成功
-    public static final int USERNAME_NOT_EMAIL_FORMAT = 1;// 帳號不為電子郵件格式
-    public static final int USERNAME_REPEAT = 2;// 帳號重複
-    public static final int USER_NOT_FOUND = 3;// 帳號不存在
-    public static final int USER_PASSWORD_INCORRECT = 4;// 使用者輸入的密碼錯誤
-    public static final int INPUT_FORMAT_NOT_CORRECT = 5;// 使用者輸入格式錯誤
+    public static final int USERNAME_REPEAT = 1;// 帳號重複
+    public static final int USER_NOT_FOUND = 2;// 帳號不存在
+    public static final int USER_PASSWORD_INCORRECT = 3;// 使用者輸入的密碼錯誤
+    public static final int INPUT_FORMAT_NOT_CORRECT = 4;// 使用者輸入格式錯誤
 
     public void Account() {
 
@@ -58,6 +57,18 @@ public class AccountController {
             System.out.println("User collection not found!");
             return USER_NOT_FOUND;
         }
+    }
+
+    public int emailFormatCheck(String userInput) {
+        if (userInput.matches(emailRegularExpression))
+            return OK;
+        return INPUT_FORMAT_NOT_CORRECT;
+    }
+
+    public int phoneFormatCheck(String userInput) {
+        if (userInput.matches(phoneRegularEXpression))
+            return OK;
+        return INPUT_FORMAT_NOT_CORRECT;
     }
 
     // 忘記密碼 檢查電子郵件和手機是否存在
@@ -110,31 +121,21 @@ public class AccountController {
         return USERNAME_REPEAT;
     }
 
-    // 註冊帳號 return OK代表帳號創建成功 並將新使用者資料上傳到資料庫
-    public int regiserAccount(String username, String password, String phone) throws Exception {
+    
 
-        if (!username.matches(emailRegularExpression)) {// 判斷帳號是否為email格式
-            System.out.println("帳號不為email");
-            return USERNAME_NOT_EMAIL_FORMAT;
-        }
+    // 註冊帳號 並將新使用者資料上傳到資料庫
+    public void regiserAccount(String username, String password, String phone) throws Exception {
 
-        if (reapeatedAccount(username) == OK) {// 若此帳號不重複
+        String encrypPassword = AESEncryption.encrypt(password);// 將密碼加密
 
-            String encrypPassword = AESEncryption.encrypt(password);// 將密碼加密
+        UserCollection.insertOne(new Document("_id", new ObjectId())// 新增新使用者
+                .append("Username", username)
+                .append("Password", encrypPassword)
+                .append("PhoneNumber", phone));
 
-            UserCollection.insertOne(new Document("_id", new ObjectId())// 新增新使用者
-                    .append("Username", username)
-                    .append("Password", encrypPassword)
-                    .append("PhoneNumber", phone));
+        database.createCollection(username);// 新增屬於該使用者的資料庫
 
-            database.createCollection(username);// 新增屬於該使用者的資料庫
-
-            System.out.println("註冊成功!");
-            return OK;
-        }
-
-        else
-            return USERNAME_REPEAT;
+        System.out.println("註冊成功!");
 
     }
 
