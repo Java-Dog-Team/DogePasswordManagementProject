@@ -61,6 +61,7 @@ public class Home extends main_page{
         // passwordPanel.add(testJLabel,BorderLayout.CENTER);
     }
     public void creatAddPasswardButton(JPanel addJPanel){
+        
         ButtonHandler handler=new ButtonHandler();//加入密碼的buttonHandler
         //設定button
         addPasswardButton.setPreferredSize(new Dimension(57, 54));//大小
@@ -196,11 +197,14 @@ public class Home extends main_page{
                     addNewPasswardFrame.dispose();
                 }
             });
-            confirmButton.addMouseListener(new MouseAdapter() {
+            confirmButton.addActionListener(new ActionListener() {
                 @Override
-                public void mouseClicked(MouseEvent e){
-                    passward.add(new MouseTestHome(accountJTextField.getText(),passwardJTextField.getText().trim(),picturelabel.getIcon()));
+                public void actionPerformed(ActionEvent e){
+                    // char[] passwordChars = passwardJTextField.getPassword();
+                    // String password = new String(passwordChars);
+                    // passward.add(new MouseTestHome(accountJTextField.getText(),password,picturelabel.getIcon()));
                     passwardUpdate();
+                    addNewPasswardFrame.dispose();
                 }
             });
             //右方所有東西的統整
@@ -291,28 +295,31 @@ public class Home extends main_page{
         }
     }
     public void passwardUpdate(){
-        passwordPanel=new JPanel();
-        for(MouseTestHome i:passward){
-            JLabel newPasswardJLabel=new JLabel(passwardimg);
-            JPanel newPasswardJPanel=new JPanel();
-            ImageIcon img=RoundImageIconObject.getRoundImageIcon(i.getImg());
-            JLabel imgJLabel;
-            JLabel account=new JLabel(i.getAccount());
-            JLabel passward=new JLabel(i.getPassward());
-            //設定一個 passward panel 大小
-            newPasswardJLabel.setPreferredSize(new Dimension(500, 162));
-            newPasswardJPanel.setPreferredSize(new Dimension(500, 162));
-            //設定圖片大小
-            img.setImage(img.getImage().getScaledInstance(50, 40, Image.SCALE_DEFAULT));
-            imgJLabel=new JLabel(img);
-            //放帳密的 panel
-            JPanel apJPanel=new JPanel();
-            apJPanel.setPreferredSize(new Dimension(150, 160));
-            apJPanel.setLayout(new GridLayout(2,1));
-            apJPanel.add(account);
-            apJPanel.add(passward);
-            passwordPanel.add(imgJLabel,BorderLayout.WEST);
-            passwordPanel.add(apJPanel,BorderLayout.CENTER);
-        }
+        JLabel testJLabel=new JLabel("testRRRRRRRRRRR");
+        passwordPanel.add(testJLabel,BorderLayout.CENTER);
+        // JLabel label=new JLabel(passwardimg);
+        // passwordPanel.add(label);
+        // for(MouseTestHome i:passward){
+        //     JLabel newPasswardJLabel=new JLabel(passwardimg);
+        //     JPanel newPasswardJPanel=new JPanel();
+        //     ImageIcon img=RoundImageIconObject.getRoundImageIcon(i.getImg());
+        //     JLabel imgJLabel;
+        //     JLabel account=new JLabel(i.getAccount());
+        //     JLabel passward=new JLabel(i.getPassward());
+        //     //設定一個 passward panel 大小
+        //     newPasswardJLabel.setPreferredSize(new Dimension(500, 162));
+        //     newPasswardJPanel.setPreferredSize(new Dimension(500, 162));
+        //     //設定圖片大小
+        //     img.setImage(img.getImage().getScaledInstance(50, 40, Image.SCALE_DEFAULT));
+        //     imgJLabel=new JLabel(img);
+        //     //放帳密的 panel
+        //     JPanel apJPanel=new JPanel();
+        //     apJPanel.setPreferredSize(new Dimension(150, 160));
+        //     apJPanel.setLayout(new GridLayout(2,1));
+        //     apJPanel.add(account);
+        //     apJPanel.add(passward);
+        //     passwordPanel.add(imgJLabel,BorderLayout.WEST);
+        //     passwordPanel.add(apJPanel,BorderLayout.CENTER);
+        // }
     }
 }
