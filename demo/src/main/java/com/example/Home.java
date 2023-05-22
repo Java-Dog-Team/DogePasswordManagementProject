@@ -54,8 +54,11 @@ public class Home extends main_page{
         this.mainLabel=mainLabel;
     }
     public void creatPasswordPanel(JPanel passwardJPanel){
-        JLabel testJLabel=new JLabel("testRRRRRRRRRRR");
-        passwardJPanel.add(testJLabel,BorderLayout.CENTER);
+        passwordPanel=passwardJPanel;
+        // passwordPanel.setOpaque(true);
+        // passwordPanel.setBackground(Color.WHITE);
+        // JLabel testJLabel=new JLabel("testRRRRRRRRRRR");
+        // passwordPanel.add(testJLabel,BorderLayout.CENTER);
     }
     public void creatAddPasswardButton(JPanel addJPanel){
         ButtonHandler handler=new ButtonHandler();//加入密碼的buttonHandler
@@ -302,7 +305,14 @@ public class Home extends main_page{
             //設定圖片大小
             img.setImage(img.getImage().getScaledInstance(50, 40, Image.SCALE_DEFAULT));
             imgJLabel=new JLabel(img);
-
+            //放帳密的 panel
+            JPanel apJPanel=new JPanel();
+            apJPanel.setPreferredSize(new Dimension(150, 160));
+            apJPanel.setLayout(new GridLayout(2,1));
+            apJPanel.add(account);
+            apJPanel.add(passward);
+            passwordPanel.add(imgJLabel,BorderLayout.WEST);
+            passwordPanel.add(apJPanel,BorderLayout.CENTER);
         }
     }
 }

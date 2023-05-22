@@ -52,7 +52,6 @@ public class MouseTest extends JFrame{
             Graphics g = getGraphics();
             int x = e.getX();
             int y = e.getY();
-            System.out.printf("%d %d%n",x,y);
             if(y>=27 && y<=73 && x<=150){//主頁面
                 home.creatPasswordPanel(passwardJPanel);
                 home.creatAddPasswardButton(addJPanel);
