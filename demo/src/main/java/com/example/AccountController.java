@@ -7,6 +7,9 @@ import com.mongodb.client.MongoClient;
 import com.mongodb.client.MongoClients;
 import com.mongodb.client.MongoCollection;
 import com.mongodb.client.MongoDatabase;
+import com.mongodb.client.model.Filters;
+import com.mongodb.client.model.Updates;
+import com.mongodb.client.result.UpdateResult;
 
 //與儲存使用者資料的資料庫做互動 (帳號資料驗證)
 public class AccountController {
@@ -33,13 +36,53 @@ public class AccountController {
 
     }
 
+    public int AccountExist(String userInput) {
+        Document query;
+        Document result;
+        if (userInput.matches(emailRegularExpression)) {// 檢查使用者輸入是否為電子郵件
+            try {// 嘗試抓取該使用者資料
+                query = new Document("Username", userInput);// 以電子郵件作為查詢參數
+                result = UserCollection.find(query).first();// 抓取資料
+
+                if (result != null) {// 若存在該使用者
+                    return OK;
+                } else// 不存在該使用者
+                    return USER_NOT_FOUND;
+
+            } catch (Exception err) {// 若找不到 回傳使用者不存在常數
+                return USER_NOT_FOUND;
+            }
+
+        } else if (userInput.matches(phoneRegularEXpression)) {// 檢查使用者輸入是否為手機號碼
+            try {
+                query = new Document("PhoneNumber", userInput);
+                result = UserCollection.find(query).first();
+                if (result != null) {
+                    // 若存在該使用者
+                    return OK;
+                } else// 不存在該使用者
+                    return USER_NOT_FOUND;
+            } catch (Exception err) {// 若找不到 回傳使用者不存在常數
+                return USER_NOT_FOUND;
+            }
+        }
+
+        return USER_NOT_FOUND;// 使用者輸入格式錯誤
+    }
+
     // 檢查登入帳密是否正確
-    public int AccountIsCorrect(String username, String password) {
+    public int AccountIsCorrect(String username, String password, int magicNumber) {
 
         try {
 
             // 找尋該使用者的帳號密碼
-            Document query = new Document("Username", username);
+
+            Document query;
+            if (magicNumber == 1) {// 若使用者輸入的為email
+                query = new Document("Username", username);
+            } else {// 若使用者輸入的是電話號碼
+                query = new Document("PhoneNumber", username);
+            }
             Document result = UserCollection.find(query).first();
 
             if (result != null) {// 找到該帳號
@@ -80,9 +123,9 @@ public class AccountController {
                 query = new Document("Username", userInput);// 以電子郵件作為查詢參數
                 result = UserCollection.find(query).first();// 抓取資料
 
-                if (result != null)// 若存在該使用者
+                if (result != null) {// 若存在該使用者
                     return OK;
-                else// 不存在該使用者
+                } else// 不存在該使用者
                     return USER_NOT_FOUND;
 
             } catch (Exception err) {// 若找不到 回傳使用者不存在常數
@@ -93,9 +136,10 @@ public class AccountController {
             try {
                 query = new Document("PhoneNumber", userInput);
                 result = UserCollection.find(query).first();
-                if (result != null)// 若存在該使用者
+                if (result != null) {
+                    // 若存在該使用者
                     return OK;
-                else// 不存在該使用者
+                } else// 不存在該使用者
                     return USER_NOT_FOUND;
             } catch (Exception err) {// 若找不到 回傳使用者不存在常數
                 return USER_NOT_FOUND;
@@ -121,8 +165,6 @@ public class AccountController {
         return USERNAME_REPEAT;
     }
 
-    
-
     // 註冊帳號 並將新使用者資料上傳到資料庫
     public void regiserAccount(String username, String password, String phone) throws Exception {
 
@@ -136,6 +178,22 @@ public class AccountController {
         database.createCollection(username);// 新增屬於該使用者的資料庫
 
         System.out.println("註冊成功!");
+
+    }
+
+    // 用於忘記密碼 更新一位使用者的密碼
+    public void updatePassword(String identifier, String newPassword, int magicNumber) throws Exception {
+        try {
+            if (magicNumber == 1) {// 若為使用email辨別
+                UpdateResult updateResult = UserCollection.updateOne(Filters.eq("Username", identifier),
+                        Updates.set("Password", AESEncryption.encrypt(newPassword)));
+            } else {
+                UpdateResult updateResult = UserCollection.updateOne(Filters.eq("PhoneNumber", identifier),
+                        Updates.set("Password", AESEncryption.encrypt(newPassword)));
+            }
+        } catch (Exception err) {
+            System.err.println(err.getStackTrace() + "更新密碼出現錯誤");
+        }
 
     }
 

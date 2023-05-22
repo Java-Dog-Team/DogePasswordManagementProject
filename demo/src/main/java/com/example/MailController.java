@@ -23,6 +23,10 @@ public class MailController {
     private final String APIKey = "dfmiylxxxzixdkds";// 電子郵件API金鑰
     public static final int MAIL_VALIDCODE_CORRECT = 0;// 電子郵件驗證碼正確
     public static final int MAIL_VALIDCODE_INCORRECT = 1;// 電子郵件驗證碼錯誤
+    // 檢查是否可以寄送驗證碼
+    public static final int OK = 2;
+    public static final int REJECT = 3;
+    private boolean flag = true;// 驗證是否可以傳送驗證碼
 
     public MailController() {
 
@@ -82,6 +86,7 @@ public class MailController {
             ValidCode = validCode;
             Transport.send(message);
 
+            flag = false;// 禁止短時間內寄送驗證碼
             System.out.println("電子郵件驗證碼寄送成功!");
 
             timer.schedule(new Expried(), 5 * 60 * 1000);// 啟動計時器 5分鐘後讓驗證碼失效
@@ -92,12 +97,19 @@ public class MailController {
 
     }
 
+    public int SendRequest() {
+        if (flag == true)
+            return OK;
+        return REJECT;
+    }
+
     // 驗證驗證碼是否正確
     public int ValidCodeVerify(String userInput) {
-        System.out.println(ValidCode);
+        //System.out.println(ValidCode);
         try {
             if (ValidCode.equals(userInput)) {
                 ValidCode = null;
+                flag = true;
                 return MAIL_VALIDCODE_CORRECT;
             }
         } catch (Exception e) {// 找不到該電子郵件的驗證碼
@@ -111,6 +123,7 @@ public class MailController {
         public void run() {
             ValidCode = null;
             System.out.println("電子郵件驗證碼已過時效!");
+            flag = true;
         }
     }
 }

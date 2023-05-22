@@ -17,9 +17,11 @@ public class SMSController {
     private final String HostPassword = "say1472580";
     private String ValidCode = null;
     private final Timer timer = new Timer();
-
+    private boolean flag = true;
     public static final int SMS_VALIDCODE_CORRECT = 0;// 手機驗證碼正確
     public static final int SMS_VALIDCODE_INCORRECT = 1;// 手機驗證碼錯誤
+    public static final int OK = 2;
+    public static final int REJECT = 3;
 
     public SMSController() {
 
@@ -40,6 +42,12 @@ public class SMSController {
         return validCode;
     }
 
+    public int SendRequest() {
+        if (flag == true)
+            return OK;
+        return REJECT;
+    }
+
     // 發送手機驗證碼到使用者手機
     public void SendSMS(String phoneNumber) {
         try {
@@ -57,7 +65,7 @@ public class SMSController {
             MSGData.append(UrlEncode(message.toString().getBytes("big5")));
 
             SendToGW(MSGData.toString());
-
+            flag = false;
             timer.schedule(new ExpiredTask(), 5 * 60 * 1000);// 開始計時器 5分鐘後讓驗證碼失效
 
         } catch (Exception e) {
@@ -138,6 +146,7 @@ public class SMSController {
         try {
             if (ValidCode.equals(userInput)) {
                 ValidCode = null;
+                flag = true;
                 return SMS_VALIDCODE_CORRECT;
             }
         } catch (Exception err) {// 找不到該電話的驗證碼
@@ -151,6 +160,7 @@ public class SMSController {
     class ExpiredTask extends TimerTask {
         public void run() {
             ValidCode = null;
+            flag = true;
             System.out.println("手機驗證碼已過時效!");
         }
     }

@@ -125,7 +125,16 @@ public class registerFrame extends JFrame {
                                 JOptionPane.WARNING_MESSAGE);
                         return;
                     } else {// 帳號不重複 寄送驗證碼做電子郵件驗證
-                        mailController.sendMail(EMAIL);
+                        if (mailController.SendRequest() == MailController.OK)
+                            mailController.sendMail(EMAIL);
+                        else {
+                            JOptionPane.showMessageDialog(null,
+                                    "Your verification code is already send,you can not send again in 5 minutes.",
+                                    "SUCCESS",
+                                    JOptionPane.INFORMATION_MESSAGE);
+                            return;
+                        }
+
                         JOptionPane.showMessageDialog(null, "Verification code send",
                                 "SUCCESS",
                                 JOptionPane.INFORMATION_MESSAGE);
@@ -134,6 +143,7 @@ public class registerFrame extends JFrame {
                 } catch (Exception e1) {
                     // TODO Auto-generated catch block
                     e1.printStackTrace();
+                    return;
                 }
             }
             // 按下確認後檢查驗證碼輸入是否正確 正確的話將使用者資料上傳到資料庫
@@ -149,11 +159,13 @@ public class registerFrame extends JFrame {
                     } catch (Exception e1) {
                         // TODO Auto-generated catch block
                         e1.printStackTrace();
+                        return;
                     }
                 } else {
                     JOptionPane.showMessageDialog(null, "Verification code is not correct",
                             "WARNING",
                             JOptionPane.WARNING_MESSAGE);
+                    return;
                 }
             }
         }
