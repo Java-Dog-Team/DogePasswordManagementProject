@@ -9,6 +9,7 @@ import java.io.File;
 public class MouseTest extends JFrame{
     public JFrame jFrame;
     public Home home;
+    public Reminder remider;
     public JPanel addJPanel=new JPanel();
     public JButton addPasswardButton =new JButton(new ImageIcon("demo\\src\\picture\\addPassward.png"));
 
@@ -60,7 +61,7 @@ public class MouseTest extends JFrame{
 
             }
             else if(y>=218 && y<=270 && x<=150){//提醒設定
-
+                remider.createReminder(passwardJPanel);
             }
             else if(y>=315 && y<=365 && x<=150){//主題設定
                 // DesignPage designPage=new DesignPage(jFrame);
@@ -155,6 +156,9 @@ public class MouseTest extends JFrame{
    public void setHome(Home home) {
        this.home = home;
    }
+   public void setReminder(Reminder reminder) {
+    this.remider = reminder;
+}
    public void setMainLabel(JLabel mainLabel) {
        this.mainLabel = mainLabel;
        passwardJPanel.setOpaque(true);
