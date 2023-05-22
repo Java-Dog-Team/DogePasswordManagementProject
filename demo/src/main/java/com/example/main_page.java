@@ -14,8 +14,7 @@ import javax.swing.ImageIcon;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JButton;
-
-
+import javax.swing.Icon;
 
 public class main_page{
     //上方的Panel
@@ -129,7 +128,8 @@ public class main_page{
     }
     public static void setTopJLabelPicture(ImageIcon myheadIcon){
         //將圖片切成圓形
-        myheadIcon= RoundImageIconObject.getRoundImageIcon("dog.png");
+        Icon img=new ImageIcon("demo\\src\\picture\\dog.png");
+        myheadIcon= RoundImageIconObject.getRoundImageIcon(img);
         myheadIcon.setImage(myheadIcon.getImage().getScaledInstance(50, 40, Image.SCALE_DEFAULT));
         main_page.topMyHeadIconJLabel=new JLabel(myheadIcon);
         main_page.topMyHeadIconJLabel.setPreferredSize(new Dimension(50, 40));

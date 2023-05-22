@@ -13,7 +13,7 @@ public class MouseTest extends JFrame{
     public JButton addPasswardButton =new JButton(new ImageIcon("demo\\src\\picture\\addPassward.png"));
 
     public JLabel mainLabel;
-    private JLabel testJLabel=new JLabel("");
+    private JPanel passwardJPanel=new JPanel();
     public JLabel smallLabel=new JLabel();
     public JLabel rightJLabel=new JLabel();
     public MouseTest(JPanel leftPanel,JLabel mainLabel){
@@ -53,7 +53,7 @@ public class MouseTest extends JFrame{
             int y = e.getY();
             System.out.printf("%d %d%n",x,y);
             if(y>=27 && y<=73 && x<=150){//主頁面
-                home.creatPasswordPanel(testJLabel);
+                home.creatPasswordPanel(passwardJPanel);
                 home.creatAddPasswardButton(addJPanel);
             }
             else if (y>=122 && y<=168 && x<=150){//密碼產生器
@@ -157,10 +157,10 @@ public class MouseTest extends JFrame{
    }
    public void setMainLabel(JLabel mainLabel) {
        this.mainLabel = mainLabel;
-       testJLabel.setOpaque(true);
-       testJLabel.setBackground(Color.WHITE);
+       passwardJPanel.setOpaque(true);
+       passwardJPanel.setBackground(Color.WHITE);
        addJPanel.setVisible(false);
-       this.mainLabel.add(testJLabel,BorderLayout.CENTER);
+       this.mainLabel.add(passwardJPanel,BorderLayout.CENTER);
        this.mainLabel.add(addJPanel,BorderLayout.EAST);
    }
 }
