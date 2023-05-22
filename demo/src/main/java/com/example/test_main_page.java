@@ -17,13 +17,13 @@ import javax.swing.JButton;
 
 
 
-public class main_page{
+public class test_main_page{
     //上方的Panel
     private static JPanel topPanel = new JPanel();
     //左方放按鈕的Panel
     private static JPanel leftPanel=new JPanel();
     public static JLabel mainLabel=new JLabel();
-    private static MouseTest jFrame=new MouseTest(leftPanel,mainLabel);
+    private static test jFrame=new test(leftPanel,mainLabel);
     private static JLabel topJLabel=new JLabel("WatchDog");
     //取得螢幕大小
     private static Dimension dimension=Toolkit.getDefaultToolkit().getScreenSize();
@@ -120,10 +120,10 @@ public class main_page{
     }
 
     public static void setTopJLabel(JLabel topJLabel) {
-        main_page.topJLabel = topJLabel;
-        main_page.topJLabel.setForeground(new Color(32,41,107));
-        main_page.topJLabel.setPreferredSize(new Dimension(100, h/20));
-        main_page.topJLabel.setFont(new Font(Font.SERIF, 0, 18));
+        test_main_page.topJLabel = topJLabel;
+        test_main_page.topJLabel.setForeground(new Color(32,41,107));
+        test_main_page.topJLabel.setPreferredSize(new Dimension(100, h/20));
+        test_main_page.topJLabel.setFont(new Font(Font.SERIF, 0, 18));
         // main_page.topJLabel.setSize(10, h/20);
         // main_page.topJLabel.setBackground(new Color(255,220,53,150));
         // main_page.topJLabel.setOpaque(true);
@@ -134,8 +134,8 @@ public class main_page{
         //將圖片切成圓形
         myheadIcon= RoundImageIconObject.getRoundImageIcon("dog.png");
         myheadIcon.setImage(myheadIcon.getImage().getScaledInstance(50, 40, Image.SCALE_DEFAULT));
-        main_page.topMyHeadIconJLabel=new JLabel(myheadIcon);
-        main_page.topMyHeadIconJLabel.setPreferredSize(new Dimension(50, 40));
+        test_main_page.topMyHeadIconJLabel=new JLabel(myheadIcon);
+        test_main_page.topMyHeadIconJLabel.setPreferredSize(new Dimension(50, 40));
     }
 
     public static void setFiveButton(ImageIcon homeIcon,ImageIcon lockIcon,ImageIcon bellIcon,ImageIcon sparklesIcon,ImageIcon interrogationIcon){
@@ -145,11 +145,11 @@ public class main_page{
         sparklesIcon=new ImageIcon("demo\\src\\picture\\sparkles.png");
         interrogationIcon=new ImageIcon("demo\\src\\picture\\interrogation.png");
         
-        main_page.homeLabel=new JLabel(homeIcon);
-        main_page.passwordLabel=new JLabel(lockIcon);
-        main_page.alertLabel=new JLabel(bellIcon);
-        main_page.themeLabel=new JLabel(sparklesIcon);
-        main_page.QALabel=new JLabel(interrogationIcon);
+        test_main_page.homeLabel=new JLabel(homeIcon);
+        test_main_page.passwordLabel=new JLabel(lockIcon);
+        test_main_page.alertLabel=new JLabel(bellIcon);
+        test_main_page.themeLabel=new JLabel(sparklesIcon);
+        test_main_page.QALabel=new JLabel(interrogationIcon);
     }
     public static void setBackground(ImageIcon backGround){
         if(backGround==null){
