@@ -6,7 +6,8 @@ import javax.swing.*;
 import javax.imageio.*;
 import java.io.File; 
 
-public class MouseTest extends JFrame{
+//複製MouseTest試用 怕用壞原本的QQ
+public class test extends JFrame{
     public JFrame jFrame;
     public Home home;
     public Reminder reminder;
@@ -19,7 +20,7 @@ public class MouseTest extends JFrame{
     private JLabel testJLabel1=new JLabel("");
     public JLabel smallLabel=new JLabel();
     public JLabel rightJLabel=new JLabel();
-    public MouseTest(JPanel leftPanel,JLabel mainLabel){
+    public test(JPanel leftPanel,JLabel mainLabel){
         super("看門狗系統");
 
         MouseHandler handler=new MouseHandler();
