@@ -248,8 +248,9 @@ public class MouseTest extends JFrame{
         this.mainLabel = mainLabel;
         // this.mainLabel.setLayout(BorderLayout());
         // passwardJPanel.setOpaque(true);
-        passwardJPanel.setBackground(Color.BLACK);
-        passwardJPanel.add(testJLabel,BorderLayout.CENTER);
+        passwardJPanel.setBackground(Color.WHITE);
+        passwardJPanel.setOpaque(true);
+        // passwardJPanel.add(testJLabel,BorderLayout.CENTER);
         addJPanel.setVisible(false);
         this.mainLabel.add(passwardJPanel,BorderLayout.CENTER);
         this.mainLabel.add(addJPanel,BorderLayout.EAST);
