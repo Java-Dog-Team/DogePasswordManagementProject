@@ -26,6 +26,7 @@ public class MouseTest extends JFrame{
     //其他功能
     public Home home;
     public Reminder remider;
+    public generatePassword generate;
 
     public MouseTest(JPanel leftPanel,JLabel mainLabel){
         super("看門狗系統");
@@ -242,6 +243,9 @@ public class MouseTest extends JFrame{
     }
     public void setReminder(Reminder reminder) {
         this.remider = reminder;
+    }
+    public void setGenerate(generatePassword generate) {
+        this.generate = generate;
     }
     public void setMainLabel(JLabel mainLabel) {
         JLabel testJLabel=new JLabel("test!!!!");
