@@ -48,8 +48,16 @@ public class Reminder extends main_page{
     public Reminder(JLabel mainLabel){
         this.mainLabel=mainLabel;
     }
+<<<<<<< HEAD
     public void createReminder(JLabel rJLabel){
         rJLabel.setBackground(Color.ORANGE);
+=======
+    public void createReminder(JPanel passwardJPanel){
+        //移除當前 Panel 內的所有物件
+        passwardJPanel.removeAll();
+
+        passwardJPanel.setBackground(Color.ORANGE);
+>>>>>>> c7ee0d4d2e60efd3f3543f23a3301c6f0cf2dedc
 
         //字型大小設定
         alarmLabel.setFont((new Font("",Font.ITALIC,35)));
