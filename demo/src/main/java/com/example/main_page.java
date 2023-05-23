@@ -114,6 +114,7 @@ public class main_page{
         home=new Home(mainLabel);
         reminder = new Reminder(mainLabel); 
         jFrame.setHome(home);
+        jFrame.setReminder(reminder);
         jFrame.setMainLabel(mainLabel);
         // jFrame.setReminder(reminder);
     }

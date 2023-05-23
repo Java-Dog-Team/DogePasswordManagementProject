@@ -295,7 +295,6 @@ public class Home extends main_page{
         }
     }
     public void passwardUpdate(){
-<<<<<<< Updated upstream
         JLabel testJLabel=new JLabel("testRRRRRRRRRRR");
         passwordPanel.add(testJLabel,BorderLayout.CENTER);
         // JLabel label=new JLabel(passwardimg);
@@ -322,7 +321,6 @@ public class Home extends main_page{
         //     passwordPanel.add(imgJLabel,BorderLayout.WEST);
         //     passwordPanel.add(apJPanel,BorderLayout.CENTER);
         // }
-=======
         passwordPanel=new JPanel();
         for(MouseTestHome i:passward){
             JLabel newPasswardJLabel=new JLabel(passwardimg);
@@ -346,6 +344,5 @@ public class Home extends main_page{
             passwordPanel.add(imgJLabel,BorderLayout.WEST);
             passwordPanel.add(apJPanel,BorderLayout.CENTER);
         }
->>>>>>> Stashed changes
     }
 }

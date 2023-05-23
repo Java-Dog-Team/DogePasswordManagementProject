@@ -8,8 +8,6 @@ import java.io.File;
 
 public class MouseTest extends JFrame{
     public JFrame jFrame;
-    public Home home;
-    public Reminder remider;
     public JPanel addJPanel=new JPanel();
     public JButton addPasswardButton =new JButton(new ImageIcon("demo\\src\\picture\\addPassward.png"));
 
@@ -17,6 +15,10 @@ public class MouseTest extends JFrame{
     private JPanel passwardJPanel=new JPanel();
     public JLabel smallLabel=new JLabel();
     public JLabel rightJLabel=new JLabel();
+    //其他功能
+    public Home home;
+    public Reminder remider;
+
     public MouseTest(JPanel leftPanel,JLabel mainLabel){
         super("看門狗系統");
 
@@ -52,10 +54,7 @@ public class MouseTest extends JFrame{
             Graphics g = getGraphics();
             int x = e.getX();
             int y = e.getY();
-<<<<<<< Updated upstream
-=======
             // System.out.printf("%d %d%n",x,y);
->>>>>>> Stashed changes
             if(y>=27 && y<=73 && x<=150){//主頁面
                 home.creatPasswordPanel(passwardJPanel);
                 home.creatAddPasswardButton(addJPanel);
@@ -156,18 +155,18 @@ public class MouseTest extends JFrame{
             // }
         }
    }
-   public void setHome(Home home) {
-       this.home = home;
-   }
-   public void setReminder(Reminder reminder) {
-    this.remider = reminder;
-}
-   public void setMainLabel(JLabel mainLabel) {
-       this.mainLabel = mainLabel;
-       passwardJPanel.setOpaque(true);
-       passwardJPanel.setBackground(Color.WHITE);
-       addJPanel.setVisible(false);
-       this.mainLabel.add(passwardJPanel,BorderLayout.CENTER);
-       this.mainLabel.add(addJPanel,BorderLayout.EAST);
-   }
+    public void setHome(Home home) {
+        this.home = home;
+    }
+    public void setReminder(Reminder reminder) {
+        this.remider = reminder;
+    }
+    public void setMainLabel(JLabel mainLabel) {
+        this.mainLabel = mainLabel;
+        passwardJPanel.setOpaque(true);
+        passwardJPanel.setBackground(Color.WHITE);
+        addJPanel.setVisible(false);
+        this.mainLabel.add(passwardJPanel,BorderLayout.CENTER);
+        this.mainLabel.add(addJPanel,BorderLayout.EAST);
+    }
 }
