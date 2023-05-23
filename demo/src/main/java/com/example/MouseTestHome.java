@@ -8,10 +8,12 @@ import java.io.File;
 
 public class MouseTestHome extends JPanel{
    public JPanel jPanel;
+   public String app;
    public String account;
    public String passward;
    public Icon img;
-   public MouseTestHome(String account,String passward,Icon img){
+   public MouseTestHome(String app,String account,String passward,Icon img){
+         this.app=app;
          this.account=account;
          this.passward=passward;
          this.img=img;
@@ -68,6 +70,8 @@ public class MouseTestHome extends JPanel{
    public String getPassward() {
        return passward;
    }
-   
+   public String getApp() {
+       return app;
+   }
    
 }

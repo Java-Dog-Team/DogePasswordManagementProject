@@ -22,6 +22,7 @@ import java.awt.Dimension;
 import java.awt.FlowLayout;
 import java.awt.Font;
 import java.awt.Image;
+import java.awt.JobAttributes;
 import java.awt.Label;
 
 import javax.swing.JFrame;
@@ -51,8 +52,10 @@ public class Home extends main_page{
     public JLabel picturelabel;
     public JButton addPictureButton=new JButton("+add picture");
     public JFrame addNewPasswardFrame;
+    public JTextField appJTextField;
     public JTextField accountJTextField;
     public JPasswordField passwardJTextField;
+    public JPasswordField password;
     public Home(JLabel mainLabel){
         this.mainLabel=mainLabel;
     }
@@ -83,7 +86,7 @@ public class Home extends main_page{
             
             //彈出加入新密碼的視窗
             addNewPasswardFrame=new JFrame("加入新密碼");
-            addNewPasswardFrame.setSize(600, 300);
+            addNewPasswardFrame.setSize(600, 335);
             //視窗出現在中間
             addNewPasswardFrame.setLocationRelativeTo(null);
             //不可調整視窗大小
@@ -113,6 +116,26 @@ public class Home extends main_page{
             picturelabel.setBackground(Color.WHITE);
             picturelabel.setOpaque(true);
             addNewPasswardFrame.add(picturelabel,BorderLayout.WEST);
+            
+            //APP名稱
+            JLabel appJLabel=new JLabel("App's name:");
+            appJTextField=new JTextField();
+            JPanel appJPanel=new JPanel();
+            JPanel apptxJPanel=new JPanel();
+            
+            appJLabel.setBackground(Color.WHITE);
+            appJLabel.setOpaque(true);
+            appJPanel.setPreferredSize(new Dimension(100, 20));
+            appJPanel.setLayout(new BorderLayout());
+            appJPanel.add(appJLabel,BorderLayout.NORTH);
+            appJTextField.setPreferredSize(new Dimension(250, 23));
+            apptxJPanel.add(appJTextField,BorderLayout.WEST);
+            apptxJPanel.setPreferredSize(new Dimension(250, 25));
+            apptxJPanel.setBackground(Color.WHITE);
+            apptxJPanel.setOpaque(true);
+            appJPanel.setBackground(Color.WHITE);
+            appJPanel.setOpaque(true);
+            appJPanel.add(apptxJPanel,BorderLayout.WEST);
 
             //帳號
             JLabel accountJLabel=new JLabel("Account:");
@@ -135,7 +158,7 @@ public class Home extends main_page{
             accountJPanel.add(txJPanel,BorderLayout.WEST);
 
             //密碼
-            JLabel passwardJLabel=new JLabel("passward:");
+            JLabel passwardJLabel=new JLabel("password:");
             passwardJTextField=new JPasswordField();
             JPanel psJPanel=new JPanel();
             JPanel passwardJPanel=new JPanel();
@@ -180,22 +203,27 @@ public class Home extends main_page{
             JButton cancelButton=new JButton("cancel");
             JPanel confirmOrCancelJPanel=new JPanel();
             JPanel ccPanel=new JPanel();
-
+            
             confirmOrCancelJPanel.setLayout(new GridLayout(2,1));
             confirmOrCancelJPanel.setBackground(Color.WHITE);
             confirmOrCancelJPanel.setOpaque(true);
             confirmOrCancelJPanel.setPreferredSize(new Dimension(160, 15));
+            //設置調整button位置的panel
             ccPanel.setLayout(new GridLayout(1,3));
             ccPanel.setBackground(Color.WHITE);
             ccPanel.setOpaque(true);
             ccPanel.setPreferredSize(new Dimension(160, 25));
+            //設置button大小
             confirmButton.setPreferredSize(new Dimension(80, 25));
             cancelButton.setPreferredSize(new Dimension(80, 25));
+            //調整button位置
             ccPanel.add(new Label());
             ccPanel.add(confirmButton);
             ccPanel.add(cancelButton);
+
             confirmOrCancelJPanel.add(new Label());
             confirmOrCancelJPanel.add(ccPanel,BorderLayout.EAST);
+            
             cancelButton.addMouseListener(new MouseAdapter() {
                 @Override
                 public void mouseClicked(MouseEvent e){
@@ -209,8 +237,9 @@ public class Home extends main_page{
                         char[] passwordChars = passwardJTextField.getPassword();
                         String password = new String(passwordChars);
                         String account=accountJTextField.getText();
-                        if(account.isEmpty() && password.isEmpty()){
-                            throw new Exception("Please enter your account and password!");
+                        String app=appJTextField.getText();
+                        if(account.isEmpty() && password.isEmpty() && app.isEmpty()){
+                            throw new Exception("Please enter your account's information!");
                         }
                         else if (account.isEmpty()){
                             throw new Exception("Please enter your account!");
@@ -218,9 +247,12 @@ public class Home extends main_page{
                         else if(password.isEmpty()){
                             throw new Exception("Please enter your password!");
                         }
-                        passward.add(new MouseTestHome(accountJTextField.getText(),password,picturelabel.getIcon()));
-                        addNewPasswardFrame.dispose();
+                        else if(app.isEmpty()){
+                            throw new Exception("Please enter your App's name!");
+                        }
+                        passward.add(new MouseTestHome(app,account,password,picturelabel.getIcon()));
                         passwardUpdate();
+                        addNewPasswardFrame.dispose();
                     }
                     catch(Exception ex){
                         JOptionPane.showMessageDialog(null, ex.getMessage(), "錯誤", JOptionPane.ERROR_MESSAGE);
@@ -232,9 +264,10 @@ public class Home extends main_page{
             rightJPanel.setPreferredSize(new Dimension(300, 300));
             rightJPanel.setBackground(Color.WHITE);
             rightJPanel.setOpaque(true);
-            rightJPanel.setLayout(new GridLayout(5,1));
+            rightJPanel.setLayout(new GridLayout(6,1));
             
             rightJPanel.add(label1);
+            rightJPanel.add(appJPanel);
             rightJPanel.add(accountJPanel);
             rightJPanel.add(passwardJPanel);
             rightJPanel.add(addPictureJPanel,BorderLayout.WEST);
@@ -330,10 +363,136 @@ public class Home extends main_page{
         apPanel.setBackground(Color.WHITE);
         apPanel.setOpaque(true);
 
-        for(int i=0;i<1000;i++)
-            apPanel.add(new JLabel(passwardimg));
-        //設定不顯示滾輪
+        // for(int i=0;i<1000;i++)
+        //     apPanel.add(new JLabel(passwardimg));
+        
+        for(MouseTestHome i:passward){
+            BackgroundPanel newPasswardJPanel=new BackgroundPanel(passwardimg.getImage());
+            ImageIcon img=RoundImageIconObject.getRoundImageIcon(i.getImg());//app的圖片
+            JLabel imgJLabel;//放app圖片的label
+            // JLabel app=new JLabel(i.getApp());//app名稱
+            JLabel accountWithApp=new JLabel(i.getApp() + "'s account:");//帳號部分的開頭
+            JTextField account=new JTextField(i.getAccount());//帳號
+            JLabel passwardWithApp=new JLabel(i.getApp() + "'s password:");//密碼部分的開頭
+            password=new JPasswordField(i.getPassward());//密碼
+            JPanel passwordJPanel=new JPanel();
+            JLabel passwardLabel=new JLabel();//放密碼的label
+            JLabel accountLabel=new JLabel();//放帳號的label
+            ImageIcon setapImageIcon=new ImageIcon("demo\\src\\picture\\settings_color.png");
+            ImageIcon deleteImageIcon=new ImageIcon("demo\\src\\picture\\trash_color.png");
+            ImageIcon eyeImageIcon=new ImageIcon("demo\\src\\picture\\eye-crossed_23.png");
+            JButton setapButton=new JButton();
+            JButton deleteButton=new JButton();
+            JButton eyeButton=new JButton();
+            setapButton.setBorder(null);
+            deleteButton.setBorder(null);
+            setapButton.setBackground(Color.WHITE);
+            setapButton=new JButton(setapImageIcon);
+            deleteButton=new JButton(deleteImageIcon);
+            eyeButton=new JButton(eyeImageIcon);
+            // setapButton.setPreferredSize(new Dimension(25,25));
+            // deleteButton.setPreferredSize(new Dimension(25, 25));
+            setapButton.setBounds(5, 20, 25, 25);
+            deleteButton.setBounds(5, 77, 25, 25);
+            eyeButton.setPreferredSize(new Dimension(25, 25));
+            eyeButton.addActionListener(new ActionListener() {
+                @Override
+                public void actionPerformed(ActionEvent e){
+                    char echoChar = password.getEchoChar();
+                    if (echoChar == 0) {
+                        password.setEchoChar('*');
+                    } else {
+                        password.setEchoChar((char) 0);
+                    }
+                }
+            });
+            //設定密碼隱藏時用甚麼字元顯示
+            password.setEchoChar('*');
+            //設定文字框不能輸入
+            account.setEditable(false);
+            password.setEditable(false);
+            //設定JLable文字大小
+            accountWithApp.setFont(new Font("Arial", Font.BOLD, 15));
+            passwardWithApp.setFont(new Font("Arial", Font.BOLD, 15));
+
+            account.setBackground(Color.WHITE);
+            password.setBackground(Color.WHITE);
+            accountLabel.setBackground(Color.WHITE);
+            passwardLabel.setBackground(Color.WHITE);
+            //將帳號放入帳號的label
+            accountLabel.setLayout(new GridLayout(2,2));
+            accountLabel.add(new Label());
+            accountLabel.add(new Label());
+            accountLabel.add(accountWithApp);
+            accountLabel.add(account);
+            //將密碼放入密碼的label
+            passwardLabel.setLayout(new GridLayout(2,2));
+            passwordJPanel.setPreferredSize(new Dimension(100, 23));
+            password.setPreferredSize(new Dimension(90, 23));
+            passwordJPanel.setLayout(new BorderLayout());
+            passwardLabel.add(passwardWithApp);
+            passwordJPanel.add(password,BorderLayout.CENTER);
+            passwordJPanel.add(eyeButton,BorderLayout.EAST);
+            passwardLabel.add(passwordJPanel);
+            passwardLabel.add(new Label());
+            passwardLabel.add(new Label());
+            // //設定一個 passward panel 大小
+            // newPasswardJPanel.setPreferredSize(new Dimension(500, 10));
+            //設定圖片大小
+            img.setImage(img.getImage().getScaledInstance(135, 125, Image.SCALE_DEFAULT));
+            imgJLabel=new JLabel(img);
+            //放帳密的 panel
+            JPanel apJPanel=new JPanel();
+            apJPanel.setPreferredSize(new Dimension(150, 70));
+            apJPanel.setLayout(new GridLayout(2,1));
+            apJPanel.add(accountLabel);
+            apJPanel.add(passwardLabel);
+            apJPanel.setBackground(Color.WHITE);
+            newPasswardJPanel.setLayout(new BorderLayout());
+            JLabel[] label1=new JLabel[7];
+            for(int j=0;j<2;j++){
+                label1[j]=new JLabel();
+                label1[j].setVisible(true);
+                label1[j].setPreferredSize(new Dimension(100,162));
+            }
+            for(int j=2;j<4;j++){
+                label1[j]=new JLabel();
+                label1[j].setVisible(true);
+                label1[j].setPreferredSize(new Dimension(500,23));
+            }
+            //加入功能按鈕
+            // label1[0].setLayout(new GridLayout(5,5));
+            // for(int j=0;j<5;j++)
+            //     label1[0].add(label1[2]);
+
+            label1[0].add(setapButton);
+
+            // for(int j=0;j<9;j++)
+            //     label1[0].add(label1[2]);
+
+            label1[0].add(deleteButton);
+
+            // for(int j=0;j<9;j++)
+            //     label1[0].add(label1[2]);
+            newPasswardJPanel.add(label1[2],BorderLayout.NORTH);
+            newPasswardJPanel.add(imgJLabel,BorderLayout.WEST);
+            newPasswardJPanel.add(apJPanel,BorderLayout.CENTER);
+            newPasswardJPanel.add(label1[0],BorderLayout.EAST);
+            newPasswardJPanel.add(label1[3],BorderLayout.SOUTH);
+            newPasswardJPanel.setBackground(Color.WHITE);
+            apPanel.add(newPasswardJPanel);
+        }
+        // 調整中間顯示帳密的地方
+        for(int k=0;k<3-passward.size();k++){
+            JPanel newPasswardJPanel=new JPanel();
+            //設定中間卡位Panel的大小
+            newPasswardJPanel.setPreferredSize(new Dimension(500,162));
+            newPasswardJPanel.setBackground(Color.WHITE);
+            apPanel.add(newPasswardJPanel);
+        }
+        //將帳密放入中間
         JScrollPane scrollPane = new JScrollPane(apPanel);
+        //設定沒有編框
         scrollPane.setBorder(null);
         JScrollBar scrollBar = new JScrollBar(JScrollBar.VERTICAL) {
             @Override
@@ -341,6 +500,7 @@ public class Home extends main_page{
                 return true;
             }
         };
+        //設定不顯示滾輪
         scrollPane.setVerticalScrollBar(scrollBar);
         scrollPane.setVerticalScrollBarPolicy(JScrollPane.VERTICAL_SCROLLBAR_NEVER);
         //設定滾動速度
@@ -348,51 +508,7 @@ public class Home extends main_page{
         //設定大小
         scrollPane.setPreferredSize(new Dimension(550, 470));
         passwordPanel.add(scrollPane,BorderLayout.CENTER);
-        // for(MouseTestHome i:passward){
-        //     JLabel newPasswardJLabel=new JLabel(passwardimg);
-        //     JPanel newPasswardJPanel=new JPanel();
-        //     ImageIcon img=RoundImageIconObject.getRoundImageIcon(i.getImg());
-        //     JLabel imgJLabel;
-        //     JLabel account=new JLabel(i.getAccount());
-        //     JLabel passward=new JLabel(i.getPassward());
-        //     //設定一個 passward panel 大小
-        //     newPasswardJLabel.setPreferredSize(new Dimension(500, 162));
-        //     newPasswardJPanel.setPreferredSize(new Dimension(500, 162));
-        //     //設定圖片大小
-        //     img.setImage(img.getImage().getScaledInstance(50, 40, Image.SCALE_DEFAULT));
-        //     imgJLabel=new JLabel(img);
-        //     //放帳密的 panel
-        //     JPanel apJPanel=new JPanel();
-        //     apJPanel.setPreferredSize(new Dimension(150, 160));
-        //     apJPanel.setLayout(new GridLayout(2,1));
-        //     apJPanel.add(account);
-        //     apJPanel.add(passward);
-        //     passwordPanel.add(imgJLabel,BorderLayout.WEST);
-        //     passwordPanel.add(apJPanel,BorderLayout.CENTER);
-        // }
         passwordPanel.revalidate();
-        // passwordPanel=new JPanel();
-        // for(MouseTestHome i:passward){
-        //     JLabel newPasswardJLabel=new JLabel(passwardimg);
-        //     JPanel newPasswardJPanel=new JPanel();
-        //     ImageIcon img=RoundImageIconObject.getRoundImageIcon(i.getImg());
-        //     JLabel imgJLabel;
-        //     JLabel account=new JLabel(i.getAccount());
-        //     JLabel passward=new JLabel(i.getPassward());
-        //     //設定一個 passward panel 大小
-        //     newPasswardJLabel.setPreferredSize(new Dimension(500, 162));
-        //     newPasswardJPanel.setPreferredSize(new Dimension(500, 162));
-        //     //設定圖片大小
-        //     img.setImage(img.getImage().getScaledInstance(50, 40, Image.SCALE_DEFAULT));
-        //     imgJLabel=new JLabel(img);
-        //     //放帳密的 panel
-        //     JPanel apJPanel=new JPanel();
-        //     apJPanel.setPreferredSize(new Dimension(150, 160));
-        //     apJPanel.setLayout(new GridLayout(2,1));
-        //     apJPanel.add(account);
-        //     apJPanel.add(passward);
-        //     passwordPanel.add(imgJLabel,BorderLayout.WEST);
-        //     passwordPanel.add(apJPanel,BorderLayout.CENTER);
-        // }
     }
+
 }
