@@ -58,11 +58,17 @@ public class Reminder extends main_page{
     }
     public void createReminder(JPanel passwardJPanel){
         //移除當前 Panel 內的所有物件
+        //這放要改panel的函式的最前面
         passwardJPanel.removeAll();
+        passwardJPanel.repaint();
         //passwardJPanel.setBackground(Color.BLACK);
         //passwardJPanel.setLayout(null);
         
-        passwardJPanel.setBackground(Color.WHITE);
+        
+       
+        
+        
+        //passwardJPanel.setBackground(Color.WHITE);
         passwardJPanel.setLayout(null);
         //字型大小設定
         alarmLabel.setFont((new Font("",Font.BOLD,35)));
@@ -110,6 +116,8 @@ public class Reminder extends main_page{
         passwardJPanel.add(email);
         passwardJPanel.add(phone);
         passwardJPanel.add(confirm);
+         //這放要改panel的函式的最後面
+        passwardJPanel.revalidate();
     }
     private static class ButtonActionListener implements ActionListener{
         public void actionPerformed(ActionEvent e){

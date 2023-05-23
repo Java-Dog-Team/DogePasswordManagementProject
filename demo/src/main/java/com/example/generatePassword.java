@@ -39,7 +39,10 @@ public class generatePassword extends main_page{
     }
     public void createGenerate(JPanel passwardJPanel){
         //移除當前 Panel 內的所有物件
+        //這放要改panel的函式的最前面
         passwardJPanel.removeAll();
+        passwardJPanel.repaint();
+        
         passwardJPanel.setBackground(Color.WHITE);
         passwardJPanel.setLayout(null);
 
@@ -59,5 +62,7 @@ public class generatePassword extends main_page{
         passwardJPanel.add(titleLabel);
         passwardJPanel.add(numberLabel);
         passwardJPanel.add(numberslider);
+         //這放要改panel的函式的最後面
+         passwardJPanel.revalidate();
     }
 }
