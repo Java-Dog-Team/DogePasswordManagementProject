@@ -8,22 +8,11 @@ import java.io.File;
 
 public class MouseTest extends JFrame{
     public JFrame jFrame;
-<<<<<<< HEAD
-    public Home home;
-    public Reminder reminder;
-=======
->>>>>>> c7ee0d4d2e60efd3f3543f23a3301c6f0cf2dedc
     public JPanel addJPanel=new JPanel();
-    public JPanel addJPanel1=new JPanel();
     public JButton addPasswardButton =new JButton(new ImageIcon("demo\\src\\picture\\addPassward.png"));
 
     public JLabel mainLabel;
-<<<<<<< HEAD
-    private JLabel testJLabel=new JLabel("");
-    private JLabel testJLabel1=new JLabel("");
-=======
     private JPanel passwardJPanel=new JPanel();
->>>>>>> c7ee0d4d2e60efd3f3543f23a3301c6f0cf2dedc
     public JLabel smallLabel=new JLabel();
     public JLabel rightJLabel=new JLabel();
     public JPanel leftPanel=new JPanel();
@@ -94,14 +83,7 @@ public class MouseTest extends JFrame{
 
             }
             else if(y>=218 && y<=270 && x<=150){//提醒設定
-<<<<<<< HEAD
-                 reminder.createReminder(testJLabel);
-                //  reminder.creatAddPasswardButton(addJPanel);
-                //home.creatPasswordPanel(testJLabel);
-                //home.creatAddPasswardButton(addJPanel);
-=======
                 remider.createReminder(passwardJPanel);
->>>>>>> c7ee0d4d2e60efd3f3543f23a3301c6f0cf2dedc
             }
             else if(y>=315 && y<=365 && x<=150){//主題設定
                 // DesignPage designPage=new DesignPage(jFrame);
@@ -255,22 +237,6 @@ public class MouseTest extends JFrame{
             leftPanel.revalidate();
         }
    }
-<<<<<<< HEAD
-   public void setHome(Home home) {
-       this.home = home;
-   }
-   public void setReminder(Reminder reminder){
-        this.reminder=reminder;
-   }
-   public void setMainLabel(JLabel mainLabel) {
-       this.mainLabel = mainLabel;
-       testJLabel.setOpaque(true);
-       testJLabel.setBackground(Color.WHITE);
-       addJPanel.setVisible(false);
-       this.mainLabel.add(testJLabel,BorderLayout.CENTER);
-       this.mainLabel.add(addJPanel,BorderLayout.EAST);
-   }
-=======
     public void setHome(Home home) {
         this.home = home;
     }
@@ -289,5 +255,4 @@ public class MouseTest extends JFrame{
         this.mainLabel.add(addJPanel,BorderLayout.EAST);
     }
     
->>>>>>> c7ee0d4d2e60efd3f3543f23a3301c6f0cf2dedc
 }

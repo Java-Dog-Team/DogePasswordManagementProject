@@ -121,12 +121,8 @@ public class main_page{
         jFrame.setHome(home);
         jFrame.setReminder(reminder);
         jFrame.setMainLabel(mainLabel);
-<<<<<<< HEAD
-        jFrame.setReminder(reminder);
-=======
         // jFrame.setReminder(reminder);
        
->>>>>>> c7ee0d4d2e60efd3f3543f23a3301c6f0cf2dedc
     }
 
     public static void setTopJLabel(JLabel topJLabel) {
