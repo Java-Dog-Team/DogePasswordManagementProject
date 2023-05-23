@@ -63,11 +63,6 @@ public class Reminder extends main_page{
         passwardJPanel.repaint();
         //passwardJPanel.setBackground(Color.BLACK);
         //passwardJPanel.setLayout(null);
-        
-        
-       
-        
-        
         //passwardJPanel.setBackground(Color.WHITE);
         passwardJPanel.setLayout(null);
         //字型大小設定
