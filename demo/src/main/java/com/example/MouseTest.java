@@ -81,7 +81,7 @@ public class MouseTest extends JFrame{
                 home.creatAddPasswardButton(addJPanel);
             }
             else if (y>=122 && y<=168 && x<=150){//密碼產生器
-
+                generate.createGenerate(passwardJPanel);
             }
             else if(y>=218 && y<=270 && x<=150){//提醒設定
                 remider.createReminder(passwardJPanel);
