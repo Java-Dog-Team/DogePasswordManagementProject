@@ -47,15 +47,25 @@ public class Reminder extends main_page{
     
     public Reminder(JLabel mainLabel){
         this.mainLabel=mainLabel;
+        //事件設定
+        ButtonActionListener Bhandler = new ButtonActionListener();
+        confirm.addActionListener(Bhandler);
+        //圖片設定
+        dogImage=dogImage.getScaledInstance(20, 20, Image.SCALE_DEFAULT);
+        dogIcon.setImage(dogImage);
+        dog1=new JLabel(dogIcon);
+        dog2=new JLabel(dogIcon);
     }
     public void createReminder(JPanel passwardJPanel){
         //移除當前 Panel 內的所有物件
         passwardJPanel.removeAll();
-
-        passwardJPanel.setBackground(Color.ORANGE);
-
+        //passwardJPanel.setBackground(Color.BLACK);
+        //passwardJPanel.setLayout(null);
+        
+        passwardJPanel.setBackground(Color.WHITE);
+        passwardJPanel.setLayout(null);
         //字型大小設定
-        alarmLabel.setFont((new Font("",Font.ITALIC,35)));
+        alarmLabel.setFont((new Font("",Font.BOLD,35)));
         directionsLabel.setFont((new Font("",Font.ITALIC,15)));
         informLabel.setFont((new Font("",Font.ITALIC,15)));
         oneMonth.setFont((new Font("",Font.ITALIC,15)));
@@ -65,17 +75,17 @@ public class Reminder extends main_page{
         phone.setFont((new Font("",Font.ITALIC,15 )));
 
         //位置大小設定
-        alarmLabel.setBounds(150, 0,500,100);
-        directionsLabel.setBounds(150, 80,300,30);
-        dog1.setBounds(116, 83,20,20);
-        oneMonth.setBounds(240, 120, 120, 30);
-        threeMonth.setBounds(240, 160, 130, 30);
-        sixMonth.setBounds(240, 200, 130, 30);
-        informLabel.setBounds(120, 205,500,100);
-        dog2.setBounds(86, 243,20,20);
-        email.setBounds(240, 275, 200, 30);
-        phone.setBounds(240, 310, 200, 30);
-        confirm.setBounds(240, 370, 110, 30);
+        alarmLabel.setBounds(230, 0,500,100);//80
+        directionsLabel.setBounds(230, 80,300,30);
+        dog1.setBounds(196, 83,20,20);
+        oneMonth.setBounds(320, 120, 120, 30);
+        threeMonth.setBounds(320, 160, 130, 30);
+        sixMonth.setBounds(320, 200, 130, 30);
+        informLabel.setBounds(200, 205,500,100);
+        dog2.setBounds(166, 243,20,20);
+        email.setBounds(320, 275, 200, 30);
+        phone.setBounds(320, 310, 200, 30);
+        confirm.setBounds(320, 370, 110, 30);
     
         //背景顏色設定
         oneMonth.setBackground(null);
@@ -89,42 +99,33 @@ public class Reminder extends main_page{
         radioGroup.add(threeMonth);
         radioGroup.add(sixMonth);
 
-        // rPanel.add(alarmLabel);
-        // rPanel.add(dog1);
-        // rPanel.add(directionsLabel);
-        // rPanel.add(oneMonth);
-        // rPanel.add(threeMonth);
-        // rPanel.add(sixMonth);
-        // rPanel.add(informLabel);
-        // rPanel.add(dog2);
-        // rPanel.add(email);
-        // rPanel.add(phone);
-        // rPanel.add(confirm);
+        passwardJPanel.add(alarmLabel);
+        passwardJPanel.add(dog1);
+        passwardJPanel.add(directionsLabel);
+        passwardJPanel.add(oneMonth);
+        passwardJPanel.add(threeMonth);
+        passwardJPanel.add(sixMonth);
+        passwardJPanel.add(informLabel);
+        passwardJPanel.add(dog2);
+        passwardJPanel.add(email);
+        passwardJPanel.add(phone);
+        passwardJPanel.add(confirm);
     }
-    // public void creatAddPasswardButton(JPanel addJPanel){
-    //     ButtonHandler handler=new ButtonHandler();//加入密碼的buttonHandler
-    //     //設定button
-    //     addPasswardButton.setPreferredSize(new Dimension(57, 54));//大小
-    //     addPasswardButton.addActionListener(handler);//ActionListener
-    //     //設定 Button 的 pannel
-    //     addJPanel.setLayout(new BorderLayout());
-    //     addJPanel.setBackground(Color.WHITE);
-    //     addJPanel.add(addPasswardButton,BorderLayout.SOUTH);
-    //     addJPanel.setVisible(true);
-    //     this.mainLabel.add(addJPanel,BorderLayout.EAST);
-    // }
-    // private class ButtonHandler implements ActionListener{
-    //     @Override
-    //     public void actionPerformed(ActionEvent e){
-    //         //彈出加入新密碼的視窗
-    //         JFrame addNewPasswardFrame=new JFrame("加入新密碼");
-    //         addNewPasswardFrame.setSize(300, 300);
-    //         addNewPasswardFrame.setLocationRelativeTo(null);//視窗出現在中間
-    //         addNewPasswardFrame.setResizable(false);
-    //         addNewPasswardFrame.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);//只關閉當前視窗
-    //         JLabel label = new JLabel("新窗口");
-    //         addNewPasswardFrame.add(label);
-    //         addNewPasswardFrame.setVisible(true);
-    //     }
-    // }
+    private static class ButtonActionListener implements ActionListener{
+        public void actionPerformed(ActionEvent e){
+            if(!(oneMonth.isSelected())&&!(threeMonth.isSelected())&&!(sixMonth.isSelected())&&!(email.isSelected())&&!(phone.isSelected())){
+                JOptionPane.showMessageDialog(null,"您沒有選擇任何選項","WARNING",JOptionPane.WARNING_MESSAGE);
+                return;
+            }
+            else if(!(oneMonth.isSelected())&&!(threeMonth.isSelected())&&!(sixMonth.isSelected())){
+                JOptionPane.showMessageDialog(null,"請選擇您想要多久提醒一次更換密碼","WARNING",JOptionPane.WARNING_MESSAGE);
+                return;
+            }
+            else if(!(email.isSelected())&&!(phone.isSelected())){
+                JOptionPane.showMessageDialog(null,"請選擇要以手機簡訊或是電子郵件傳送提醒","WARNING",JOptionPane.WARNING_MESSAGE);
+                return;
+            }
+            
+        }
+    }
 }
