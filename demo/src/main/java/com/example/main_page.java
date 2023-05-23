@@ -119,8 +119,10 @@ public class main_page{
         mainLabel.add(leftPanel,BorderLayout.WEST);   
         home=new Home(mainLabel);
         reminder = new Reminder(mainLabel); 
+        generate=new generatePassword(mainLabel);
         jFrame.setHome(home);
         jFrame.setReminder(reminder);
+        jFrame.setGenerate(generate);
         jFrame.setMainLabel(mainLabel);
         // jFrame.setReminder(reminder);
        
