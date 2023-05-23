@@ -52,6 +52,7 @@ public class main_page{
     //其他功能
     private static Home home;
     private static Reminder reminder;
+    private static generatePassword generate;
     public static void main(String[] args) {
         mainLabel.setLayout(new BorderLayout());
         jFrame=new MouseTest(leftPanel,mainLabel);
