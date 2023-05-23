@@ -1,7 +1,12 @@
 package com.example;
 
+import java.awt.image.BufferedImage;
+import java.io.ByteArrayInputStream;
+import java.io.ByteArrayOutputStream;
 import java.util.ArrayList;
 import java.util.List;
+
+import javax.imageio.ImageIO;
 
 import org.bson.Document;
 import org.bson.types.ObjectId;
@@ -39,10 +44,17 @@ public class UserInterface {
 
             // 迭代拿數據並存在arrayList
             while (result.hasNext()) {
-                Document doc = result.next();
-                finalResult.add(
-                        new RecordData(doc.getString("AppName"), doc.getString("Username"),
-                                AESEncryption.decrypt(doc.getString("Password"))));
+
+                Document doc = result.next();// 抓取當前迭代器位置的資料
+                String AppName = doc.getString("AppName");// 抓取AppName
+                String Username = doc.getString("Username");// 抓取帳號
+                String Password = AESEncryption.decrypt(doc.getString("Password"));// 抓取密碼並解密
+                byte[] imageBytes = doc.get("Image", org.bson.types.Binary.class).getData();// 抓取圖像檔
+                // 將圖像檔轉換為BufferedImage型態
+                ByteArrayInputStream bais = new ByteArrayInputStream(imageBytes);
+                BufferedImage bufferedImage = ImageIO.read(bais);
+                // 加入到List中
+                finalResult.add(new RecordData(AppName, Username, Password, bufferedImage));
             }
             System.out.println("獲取所有資料成功!");
             return finalResult;
@@ -59,13 +71,18 @@ public class UserInterface {
     }
 
     // 使用者新增一筆新資料
-    public void updateOneUserData(String AppName, String Username, String Password) throws Exception {
+    public void updateOneUserData(String AppName, String Username, String Password, BufferedImage image)
+            throws Exception {
         try {
             // 將新資料插入該使用者的資料庫
+            ByteArrayOutputStream baos = new ByteArrayOutputStream();
+            ImageIO.write(image, "png", baos);
+            byte[] imageBytes = baos.toByteArray();
             UserCollection.insertOne(new Document("_id", new ObjectId())
                     .append("AppName", AppName)
                     .append("Username", Username)
-                    .append("Password", AESEncryption.encrypt(Password)));
+                    .append("Password", AESEncryption.encrypt(Password))
+                    .append("Image", imageBytes));
 
             System.out.println("資料新增成功!");
         } catch (Exception err) {
