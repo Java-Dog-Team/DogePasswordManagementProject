@@ -7,6 +7,7 @@ import java.awt.Toolkit;
 import java.awt.Dimension;
 import java.awt.Font;
 import java.awt.Image;
+import java.awt.Panel;
 
 import javax.swing.JFrame;
 import javax.swing.JLabel;
@@ -15,6 +16,8 @@ import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JButton;
 import javax.swing.Icon;
+import javax.swing.JScrollPane;
+import javax.swing.BoxLayout;
 
 public class main_page{
     //上方的Panel
@@ -22,7 +25,7 @@ public class main_page{
     //左方放按鈕的Panel
     private static JPanel leftPanel=new JPanel();
     public static JLabel mainLabel=new JLabel();
-    private static MouseTest jFrame=new MouseTest(leftPanel,mainLabel);
+    private static MouseTest jFrame;
     private static JLabel topJLabel=new JLabel("WatchDog");
     //取得螢幕大小
     private static Dimension dimension=Toolkit.getDefaultToolkit().getScreenSize();
@@ -50,6 +53,8 @@ public class main_page{
     private static Home home;
     private static Reminder reminder;
     public static void main(String[] args) {
+        mainLabel.setLayout(new BorderLayout());
+        jFrame=new MouseTest(leftPanel,mainLabel);
         createWindow();
     }
     
@@ -117,6 +122,7 @@ public class main_page{
         jFrame.setReminder(reminder);
         jFrame.setMainLabel(mainLabel);
         // jFrame.setReminder(reminder);
+       
     }
 
     public static void setTopJLabel(JLabel topJLabel) {
@@ -163,6 +169,9 @@ public class main_page{
     }
     public static void setAddPasswardButton(JFrame frame){
         // home.creatAddPasswardButton(main_page.jFrame);
+    }
+    public static JLabel getMainLabel() {
+        return mainLabel;
     }
     
 }

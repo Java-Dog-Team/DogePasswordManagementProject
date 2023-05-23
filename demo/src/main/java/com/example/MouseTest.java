@@ -162,9 +162,12 @@ public class MouseTest extends JFrame{
         this.remider = reminder;
     }
     public void setMainLabel(JLabel mainLabel) {
+        JLabel testJLabel=new JLabel("test!!!!");
         this.mainLabel = mainLabel;
-        passwardJPanel.setOpaque(true);
+        // this.mainLabel.setLayout(BorderLayout());
+        // passwardJPanel.setOpaque(true);
         passwardJPanel.setBackground(Color.WHITE);
+        passwardJPanel.add(testJLabel,BorderLayout.CENTER);
         addJPanel.setVisible(false);
         this.mainLabel.add(passwardJPanel,BorderLayout.CENTER);
         this.mainLabel.add(addJPanel,BorderLayout.EAST);

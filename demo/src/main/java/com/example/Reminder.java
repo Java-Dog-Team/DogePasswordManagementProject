@@ -49,6 +49,9 @@ public class Reminder extends main_page{
         this.mainLabel=mainLabel;
     }
     public void createReminder(JPanel passwardJPanel){
+        //移除當前 Panel 內的所有物件
+        passwardJPanel.removeAll();
+
         passwardJPanel.setBackground(Color.ORANGE);
 
         //字型大小設定
