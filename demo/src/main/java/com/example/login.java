@@ -26,7 +26,7 @@ public class login {
     // 登入的背景圖片
     private static ImageIcon dogPicture = new ImageIcon("demo\\src\\picture\\white_dog2.png");
     private static JLabel dog = new JLabel(dogPicture);
-    private static JButton showPwd = new JButton("Show");
+    private static JButton showPwd = new JButton(dogIcon);
     // private static Container container = windowFrame.getContentPane();
     
     
@@ -114,13 +114,14 @@ public class login {
         // 驗證碼提示語
         verificationText.addFocusListener(new JTextFieldHintListener(verificationText, "Enter verification code:"));
 
+        showPwd.setToolTipText("Show password");
         // 各位置設定
         loginLabel.setBounds(610, 90, 200, 100);
         emailLabel.setBounds(440, 150, 90, 90);
         emailText.setBounds(530, 180, 319, 30);
         passwordLabel.setBounds(440, 200, 200, 100);
         passWord.setBounds(540, 235, 310, 30);
-        showPwd.setBounds(860, 240, 50, 25);
+        showPwd.setBounds(860, 238, 26, 25);
         vJLabel.setBounds(438, 260, 200, 100);
         verificationText.setBounds(600, 295, 135, 30);
         sendVerButton.setBounds(745, 300, 163, 20);
