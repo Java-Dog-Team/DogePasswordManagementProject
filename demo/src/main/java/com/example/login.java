@@ -21,10 +21,15 @@ import javax.swing.JTextField;
 
 public class login {
     private static JFrame windowFrame = new JFrame("更改Swing視窗的預設圖示");
+    private static Image dogImage=new ImageIcon("demo\\src\\picture\\dogdogdog.png").getImage();
+    private static ImageIcon dogIcon=new ImageIcon();
     // 登入的背景圖片
     private static ImageIcon dogPicture = new ImageIcon("demo\\src\\picture\\white_dog2.png");
     private static JLabel dog = new JLabel(dogPicture);
+    private static JButton showPwd = new JButton("Show");
     // private static Container container = windowFrame.getContentPane();
+    
+    
     // 取得螢幕大小
     private static Dimension dimension = Toolkit.getDefaultToolkit().getScreenSize();
     private static JLabel frame_up = new JLabel(" ");
@@ -49,7 +54,7 @@ public class login {
     private static SMSController smsController = new SMSController();
 
     // public static void main(String[] args) {
-    // createWindow();
+    //     createWindow();
     // }
 
     public void createWindow() {
@@ -72,6 +77,9 @@ public class login {
         } else {
             JOptionPane.showMessageDialog(windowFrame, "Icon image not found.");
         }
+        //圖片設定
+        dogImage=dogImage.getScaledInstance(20, 20, Image.SCALE_DEFAULT);
+        dogIcon.setImage(dogImage);
 
         putdog(windowFrame);
         createUI(windowFrame);
@@ -112,6 +120,7 @@ public class login {
         emailText.setBounds(530, 180, 319, 30);
         passwordLabel.setBounds(440, 200, 200, 100);
         passWord.setBounds(540, 235, 310, 30);
+        showPwd.setBounds(860, 240, 50, 25);
         vJLabel.setBounds(438, 260, 200, 100);
         verificationText.setBounds(600, 295, 135, 30);
         sendVerButton.setBounds(745, 300, 163, 20);
@@ -136,6 +145,7 @@ public class login {
         ButtonActionListener Bhandler = new ButtonActionListener();
         confirm.addActionListener(Bhandler);
         sendVerButton.addActionListener(Bhandler);
+        showPwd.addActionListener(Bhandler);
 
         // 加入windowFrame
         windowFrame.add(loginLabel);
@@ -143,6 +153,7 @@ public class login {
         windowFrame.add(emailText);
         windowFrame.add(passwordLabel);
         windowFrame.add(passWord);
+        windowFrame.add(showPwd);
         windowFrame.add(vJLabel);
         windowFrame.add(verificationText);
         windowFrame.add(sendVerButton);
@@ -295,7 +306,8 @@ public class login {
 
                 }
 
-            } else if (e.getSource() == sendVerButton) {// 傳送驗證碼button事件
+            } 
+            else if (e.getSource() == sendVerButton) {// 傳送驗證碼button事件
                 // 檢查是否輸入帳號欄位
                 if ("Enter your email/phone number:".equals(ACCOUNT)) {
                     JOptionPane.showMessageDialog(null, "Please enter your account!!", "WARNING",
@@ -343,6 +355,15 @@ public class login {
                                 JOptionPane.WARNING_MESSAGE);
                         return;
                     }
+                }
+            }
+            else if(e.getSource()==showPwd){
+                char echoChar = passWord.getEchoChar();
+                if (echoChar != 0) {
+                    passWord.setEchoChar((char) 0);
+                } 
+                else {
+                    passWord.setEchoChar('\u2022');
                 }
             }
         }
