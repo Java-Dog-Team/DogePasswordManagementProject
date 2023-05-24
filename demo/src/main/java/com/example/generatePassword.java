@@ -73,7 +73,6 @@ public class generatePassword extends main_page{
             public void stateChanged(ChangeEvent event) {
                 totalDigits=numberslider.getValue();
                 System.out.print(totalDigits);
-
             }
         });
         //事件設定
@@ -92,7 +91,7 @@ public class generatePassword extends main_page{
         passwardJPanel.removeAll();
         passwardJPanel.repaint();
         //重置
-        numberslider=new JSlider(8, 20,10);
+        numberslider.setValue(10);
         engLowBox=new JCheckBox("Lowercase English Letters");
         engUpperBox=new JCheckBox("Upper Case English Letters");
         numberBox=new JCheckBox("Number symbol");
@@ -106,11 +105,9 @@ public class generatePassword extends main_page{
         numberslider.setPaintTicks(true);// 顯示slider
         numberslider.setMinorTickSpacing(1);// 5一小格
         numberslider.setBackground(Color.WHITE);
-        //numberslider.setPaintTrack(true);//顯示數軸
         numberslider.setPaintLabels(true);//添加數字標籤
-        //numberslider.setPaintTicks(true);
         numberslider.setPaintLabels(true);
-        //slider.setPaintLabels(true);
+    
         //slider下的數字
         Dictionary<Integer, Component> labelTable = new Hashtable<Integer, Component>();
         // labelTable.put(6, new JLabel("6"));
@@ -179,103 +176,94 @@ public class generatePassword extends main_page{
         passwardJPanel.revalidate();
     }
     
-    // public void assign(int mode){
-    //     switch(mode){
-    //         englowDigits=0;
-    //         engUpperDigits=0;
-    //         numDigits=0;
-    //         speDigits=0;
-    //         case 1://只有英文小寫
-    //             englowDigits=totalDigits;
-            
-    //         case 2://只有英文大寫
-    //             engUpperDigits=totalDigits;
-
-    //         case 3://只有數字
-    //             numDigits=totalDigits;
-
-    //         case 4://只有特殊字元
-    //             speDigits=totalDigits;
-
-    //         case 5://英文小寫+大寫
-    //             for(;englowDigits!=0&&englowDigits!=totalDigits;){
-    //                 englowDigits=random.nextInt(totalDigits);  
-    //             }
-    //             engUpperDigits=totalDigits-englowDigits;
-    //         case 6://英文小寫+數字
-    //         for(;englowDigits!=0&&englowDigits!=totalDigits;){
-    //             englowDigits=random.nextInt(totalDigits);
-    //         }
-    //         numDigits=totalDigits-englowDigits;
-
-    //         case 7://英文小寫+特殊字元
-    //             for(;englowDigits!=0&&englowDigits!=totalDigits;){
-    //                 englowDigits=random.nextInt(totalDigits);
-    //             }
-    //             speDigits=totalDigits-englowDigits;
-
-    //         case 8://英文大寫+數字
-    //             for(;engUpperDigits!=0&&engUpperDigits!=totalDigits;){
-    //                 engUpperDigits=random.nextInt(totalDigits);
-    //             }
-    //             numDigits=totalDigits-engUpperDigits;
-
-    //         case 9://英文大寫+特殊字元
-    //             for(;engUpperDigits!=0&&engUpperDigits!=totalDigits;){
-    //                 engUpperDigits=random.nextInt(totalDigits);
-    //             }
-    //             speDigits=totalDigits-engUpperDigits;
-
-    //         case 10://數字+特殊字元
-    //             for(;numDigits!=0&&numDigits!=totalDigits;){
-    //                 numDigits=random.nextInt(totalDigits);
-    //             }
-    //             speDigits=totalDigits-numDigits;
-
-    //         case 11://英文小寫+大寫+數字
-    //             for(;englowDigits!=0&&englowDigits<totalDigits-2;){
-    //                 englowDigits=random.nextInt(totalDigits-3)+1;
-    //             }
-    //             for(;(engUpperBox!=0) && (engUpperBox<totalDigits-2);){
-    //                 engUpperBox=random.nextInt(totalDigits-3)+1;
-                    
-    //             }
-
-    //         case 12://英文小寫+大寫+特殊字元
-
-    //         case 13://英文小寫+大寫+數字+特殊字元
-    //     }
-
-    // }
-    
-    
     private static class ButtonActionListener implements ActionListener{
         public void actionPerformed(ActionEvent e){
+            RandomPasswordGenerator generator=new RandomPasswordGenerator();
             if(!(engLowBox.isSelected())&&!(engUpperBox.isSelected())&&!(numberBox.isSelected())&&!(specialBox.isSelected())){
                 JOptionPane.showMessageDialog(null,"您沒有選擇任何選項","WARNING",JOptionPane.WARNING_MESSAGE);
                 return;
             }
             else if(engLowBox.isSelected()){
-                if(!(numberBox.isSelected())&&!(specialBox.isSelected())){//只要英文
-                    // SecureRandom random= new SecureRandom();
-                    // outputString="";
-                    // outPut.setText(outputString);
-                    // for(int i=0;i<passWord;i++){
-                    //     outputString=outputString+english[random.nextInt(52)];
-                    // }
-                    // outPut.setText(outputString);
+                if(!(engUpperBox.isSelected())&&!(numberBox.isSelected())&&!(specialBox.isSelected())){//英文小寫
+                    outputString="";
+                    outputString=generator.PasswordGenerate(totalDigits,RandomPasswordGenerator.LowerCase);
+                    outPut.setText(outputString);
                     
                 }
-                else if(numberBox.isSelected()&&!(specialBox.isSelected())){//要英文跟數字
-                    // SecureRandom random= new SecureRandom();
-                    // outputString="";
-                    // outPut.setText(outputString);
-                    // int howmanyE=random.nextInt(passWord)+1;
-                    // for(int i=0;i<passWord;i++){
-                    //     outputString=outputString+english[random.nextInt(52)];
-                    // }
-                    // outPut.setText(outputString);
+                else if(engUpperBox.isSelected()&&!(numberBox.isSelected())&&!(specialBox.isSelected())){//英文小寫+大寫
+                    outputString="";
+                    outputString=generator.PasswordGenerate(totalDigits,RandomPasswordGenerator.LowerCase,RandomPasswordGenerator.UpperCase);
+                    outPut.setText(outputString);
                 }
+                else if(!(engUpperBox.isSelected())&&numberBox.isSelected()&&!(specialBox.isSelected())){//英文小寫+數字
+                    outputString="";
+                    outputString=generator.PasswordGenerate(totalDigits,RandomPasswordGenerator.LowerCase,RandomPasswordGenerator.Digits);
+                    outPut.setText(outputString);
+                }
+                else if(!(engUpperBox.isSelected())&&!(numberBox.isSelected())&&specialBox.isSelected()){//英文小寫+特殊字元
+                    outputString="";
+                    outputString=generator.PasswordGenerate(totalDigits,RandomPasswordGenerator.LowerCase,RandomPasswordGenerator.Special);
+                    outPut.setText(outputString);
+                }
+                else if(engUpperBox.isSelected()&&!(numberBox.isSelected())&&specialBox.isSelected()){//英文小寫+大寫+特殊字元
+                    outputString="";
+                    outputString=generator.PasswordGenerate(totalDigits,RandomPasswordGenerator.LowerCase,RandomPasswordGenerator.UpperCase,RandomPasswordGenerator.Special);
+                    outPut.setText(outputString);
+                }
+                else if(engUpperBox.isSelected()&&numberBox.isSelected()&&!(specialBox.isSelected())){//英文小寫+大寫+數字
+                    outputString="";
+                    outputString=generator.PasswordGenerate(totalDigits,RandomPasswordGenerator.LowerCase,RandomPasswordGenerator.UpperCase,RandomPasswordGenerator.Digits);
+                    outPut.setText(outputString);
+                }
+                else if(!(engUpperBox.isSelected())&&numberBox.isSelected()&&specialBox.isSelected()){//英文小寫+特殊字元+數字
+                    outputString="";
+                    outputString=generator.PasswordGenerate(totalDigits,RandomPasswordGenerator.LowerCase,RandomPasswordGenerator.Special,RandomPasswordGenerator.Digits);
+                    outPut.setText(outputString);
+                }
+                else{//英文小寫+大寫+數字+特殊字元
+                    outputString="";
+                    outputString=generator.PasswordGenerate(totalDigits,RandomPasswordGenerator.LowerCase,RandomPasswordGenerator.UpperCase,RandomPasswordGenerator.Digits,RandomPasswordGenerator.Special);
+                    outPut.setText(outputString);
+                }
+            }
+            else if(engUpperBox.isSelected()){
+                if(!(engLowBox.isSelected())&&!(numberBox.isSelected())&&!(specialBox.isSelected())){//英文大寫
+                    outputString="";
+                    outputString=generator.PasswordGenerate(totalDigits,RandomPasswordGenerator.UpperCase);
+                    outPut.setText(outputString);
+                }
+                else if(!(engLowBox.isSelected())&&numberBox.isSelected()&&!(specialBox.isSelected())){//英文大寫+數字
+                    outputString="";
+                    outputString=generator.PasswordGenerate(totalDigits,RandomPasswordGenerator.UpperCase,RandomPasswordGenerator.Digits);
+                    outPut.setText(outputString);
+                }
+                else if(!(engLowBox.isSelected())&&!(numberBox.isSelected())&&specialBox.isSelected()){//英文大寫+特殊字元
+                    outputString="";
+                    outputString=generator.PasswordGenerate(totalDigits,RandomPasswordGenerator.UpperCase,RandomPasswordGenerator.Special);
+                    outPut.setText(outputString);
+                }
+                else if(!(engLowBox.isSelected())&&numberBox.isSelected()&&specialBox.isSelected()){//英文大寫+特殊字元+數字
+                    outputString="";
+                    outputString=generator.PasswordGenerate(totalDigits,RandomPasswordGenerator.UpperCase,RandomPasswordGenerator.Special,RandomPasswordGenerator.Digits);
+                    outPut.setText(outputString);
+                }
+            }
+            else if(numberBox.isSelected()){
+                if(!(engLowBox.isSelected())&&!(engUpperBox.isSelected())&&!(specialBox.isSelected())){//數字
+                    outputString="";
+                    outputString=generator.PasswordGenerate(totalDigits,RandomPasswordGenerator.Digits);
+                    outPut.setText(outputString);
+                }
+                else if(!(engLowBox.isSelected())&&!(engUpperBox.isSelected())&&specialBox.isSelected()){//數字+特殊字元
+                    outputString="";
+                    outputString=generator.PasswordGenerate(totalDigits,RandomPasswordGenerator.Digits,RandomPasswordGenerator.Special);
+                    outPut.setText(outputString);
+                }
+            }
+            else{
+                outputString="";
+                outputString=generator.PasswordGenerate(totalDigits,RandomPasswordGenerator.Special);
+                outPut.setText(outputString);
             }
             
         }
