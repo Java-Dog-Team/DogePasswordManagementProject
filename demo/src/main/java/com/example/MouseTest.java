@@ -27,6 +27,7 @@ public class MouseTest extends JFrame{
     public Home home;
     public Reminder remider;
     public generatePassword generate;
+    public DesignPage designPage;
 
     public MouseTest(JPanel leftPanel,JLabel mainLabel){
         super("看門狗系統");
@@ -83,9 +84,7 @@ public class MouseTest extends JFrame{
                 remider.createReminder(passwardJPanel);
             }
             else if(y>=315 && y<=365 && x<=150){//主題設定
-                // DesignPage designPage=new DesignPage(jFrame);
-                // MainPage.jFrame.getContentPane().setBackground(Color.BLACK);
-                // System.out.printf("%d %d%n",x,y);
+                designPage.createBackground(passwardJPanel);
             }
             else if(y>=411 && y<=461 && x<=50){//使用教學
 
@@ -235,6 +234,9 @@ public class MouseTest extends JFrame{
     }
     public void setGenerate(generatePassword generate) {
         this.generate = generate;
+    }
+    public void setDesignPage(DesignPage designPage) {
+        this.designPage = designPage;
     }
     public void setMainLabel(JLabel mainLabel) {
         JLabel testJLabel=new JLabel("test!!!!");

@@ -52,6 +52,7 @@ public class main_page{
     private static Home home;
     private static Reminder reminder;
     private static generatePassword generate;
+    private static DesignPage designPage;
     public static void main(String[] args) {
         mainLabel.setLayout(new BorderLayout());
         jFrame=new MouseTest(leftPanel,mainLabel);
@@ -119,12 +120,12 @@ public class main_page{
         home=new Home(mainLabel);
         reminder = new Reminder(mainLabel); 
         generate=new generatePassword(mainLabel);
+        designPage=new DesignPage(mainLabel);
         jFrame.setHome(home);
         jFrame.setReminder(reminder);
         jFrame.setGenerate(generate);
         jFrame.setMainLabel(mainLabel);
-        // jFrame.setReminder(reminder);
-       
+        jFrame.setDesignPage(designPage);   
     }
 
     public static void setTopJLabel(JLabel topJLabel) {

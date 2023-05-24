@@ -321,11 +321,7 @@ public class Home extends main_page{
                     for(File file:fs){
                         set.add(file.getName());
                     }
-                    //判斷是否已有該文件
-                    if(set.contains(f.getName())){
-                        JOptionPane.showMessageDialog(new JDialog(),f.getName() + "This file already exists.");
-                        return;
-                    }
+                    
                     //取得選擇文件的絕對路徑
                     String absolutePath=chooser.getSelectedFile().getAbsolutePath();
                     //選擇的圖片
@@ -358,10 +354,10 @@ public class Home extends main_page{
     public void passwardUpdate(){
         passwordPanel.removeAll();
         passwordPanel.repaint();
-        passwordPanel.add(testJLabel,BorderLayout.SOUTH);
+        // passwordPanel.setLayout(new B);
+        // passwordPanel.add(testJLabel,BorderLayout.SOUTH);
         //放一組帳密的Panel
         JLabel label=new JLabel();
-        
         //放所有帳密的Panel
         JPanel apPanel=new JPanel();
         //設定為垂直滾動
@@ -401,7 +397,9 @@ public class Home extends main_page{
         scrollPane.getVerticalScrollBar().setUnitIncrement(30);
         //設定大小
         scrollPane.setPreferredSize(new Dimension(550, 470));
-        passwordPanel.add(scrollPane,BorderLayout.CENTER);
+        passwordPanel.setLayout(new FlowLayout());
+        // passwordPanel.setPreferredSize(new Dimension(100, 500));
+        passwordPanel.add(scrollPane);
         passwordPanel.revalidate();
     }
 
