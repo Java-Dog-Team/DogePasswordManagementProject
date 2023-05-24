@@ -36,12 +36,13 @@ public class Reminder extends main_page{
     private static JLabel alarmLabel = new JLabel("Set reminder time");
     private static JLabel directionsLabel = new JLabel("Choose how often you want to be reminded.");
     private static JLabel informLabel = new JLabel("Choose to be notified by phone message or email or both.");
-    private static JRadioButton oneMonth=new JRadioButton("One month");
-    private static JRadioButton threeMonth=new JRadioButton("Three month");
-    private static JRadioButton sixMonth=new JRadioButton("Six month");
+    
+    private static JRadioButton oneMonth;
+    private static JRadioButton threeMonth;
+    private static JRadioButton sixMonth;
     private static ButtonGroup radioGroup=new ButtonGroup();
-    private static JRadioButton email=new JRadioButton("By email");
-    private static JRadioButton phone=new JRadioButton("By phone message");
+    private static JRadioButton email;
+    private static JRadioButton phone;
     private static JButton confirm=new JButton("confirm", dogIcon);
     public JButton addPasswardButton =new JButton(new ImageIcon("demo\\src\\picture\\addPassward.png"));
     
@@ -62,6 +63,15 @@ public class Reminder extends main_page{
         //這放要改panel的函式的最前面
         passwardJPanel.removeAll();
         passwardJPanel.repaint();
+        //重置選擇
+        oneMonth=new JRadioButton("One month");
+        threeMonth=new JRadioButton("Three month");
+        sixMonth=new JRadioButton("Six month");
+        email=new JRadioButton("By email");
+        phone=new JRadioButton("By phone message");
+        
+        
+       
         //passwardJPanel.setBackground(Color.BLACK);
         //passwardJPanel.setLayout(null);
         //passwardJPanel.setBackground(Color.WHITE);
