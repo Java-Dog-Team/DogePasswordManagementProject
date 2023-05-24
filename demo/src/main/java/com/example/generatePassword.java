@@ -52,10 +52,10 @@ public class generatePassword extends main_page{
     private static JLabel symbolsLabel=new JLabel("Tick the symbols you need");
     private static JTextField outPut=new JTextField("");
     private static JSlider numberslider=new JSlider(8, 20,10);
-    private static JCheckBox engLowBox=new JCheckBox("Lowercase English Letters");
-    private static JCheckBox engUpperBox=new JCheckBox("Upper Case English Letters");
-    private static JCheckBox numberBox=new JCheckBox("Number symbol");
-    private static JCheckBox specialBox=new JCheckBox("Special symbol");
+    private static JCheckBox engLowBox;
+    private static JCheckBox engUpperBox;
+    private static JCheckBox numberBox;
+    private static JCheckBox specialBox;
     private static JButton confirm=new JButton("confirm", dogIcon);
     private static String outputString="";
     private static int totalDigits=10;
@@ -91,7 +91,14 @@ public class generatePassword extends main_page{
         //這放要改panel的函式的最前面
         passwardJPanel.removeAll();
         passwardJPanel.repaint();
-        
+        //重置
+        numberslider=new JSlider(8, 20,10);
+        engLowBox=new JCheckBox("Lowercase English Letters");
+        engUpperBox=new JCheckBox("Upper Case English Letters");
+        numberBox=new JCheckBox("Number symbol");
+        specialBox=new JCheckBox("Special symbol");
+        outPut.setText("");
+
         passwardJPanel.setBackground(Color.WHITE);
         passwardJPanel.setLayout(null);
 
@@ -172,74 +179,74 @@ public class generatePassword extends main_page{
         passwardJPanel.revalidate();
     }
     
-    public void assign(int mode){
-        switch(mode){
-            englowDigits=0;
-            engUpperDigits=0;
-            numDigits=0;
-            speDigits=0;
-            case 1://只有英文小寫
-                englowDigits=totalDigits;
+    // public void assign(int mode){
+    //     switch(mode){
+    //         englowDigits=0;
+    //         engUpperDigits=0;
+    //         numDigits=0;
+    //         speDigits=0;
+    //         case 1://只有英文小寫
+    //             englowDigits=totalDigits;
             
-            case 2://只有英文大寫
-                engUpperDigits=totalDigits;
+    //         case 2://只有英文大寫
+    //             engUpperDigits=totalDigits;
 
-            case 3://只有數字
-                numDigits=totalDigits;
+    //         case 3://只有數字
+    //             numDigits=totalDigits;
 
-            case 4://只有特殊字元
-                speDigits=totalDigits;
+    //         case 4://只有特殊字元
+    //             speDigits=totalDigits;
 
-            case 5://英文小寫+大寫
-                for(;englowDigits!=0&&englowDigits!=totalDigits;){
-                    englowDigits=random.nextInt(totalDigits);  
-                }
-                engUpperDigits=totalDigits-englowDigits;
-            case 6://英文小寫+數字
-            for(;englowDigits!=0&&englowDigits!=totalDigits;){
-                englowDigits=random.nextInt(totalDigits);
-            }
-            numDigits=totalDigits-englowDigits;
+    //         case 5://英文小寫+大寫
+    //             for(;englowDigits!=0&&englowDigits!=totalDigits;){
+    //                 englowDigits=random.nextInt(totalDigits);  
+    //             }
+    //             engUpperDigits=totalDigits-englowDigits;
+    //         case 6://英文小寫+數字
+    //         for(;englowDigits!=0&&englowDigits!=totalDigits;){
+    //             englowDigits=random.nextInt(totalDigits);
+    //         }
+    //         numDigits=totalDigits-englowDigits;
 
-            case 7://英文小寫+特殊字元
-                for(;englowDigits!=0&&englowDigits!=totalDigits;){
-                    englowDigits=random.nextInt(totalDigits);
-                }
-                speDigits=totalDigits-englowDigits;
+    //         case 7://英文小寫+特殊字元
+    //             for(;englowDigits!=0&&englowDigits!=totalDigits;){
+    //                 englowDigits=random.nextInt(totalDigits);
+    //             }
+    //             speDigits=totalDigits-englowDigits;
 
-            case 8://英文大寫+數字
-                for(;engUpperDigits!=0&&engUpperDigits!=totalDigits;){
-                    engUpperDigits=random.nextInt(totalDigits);
-                }
-                numDigits=totalDigits-engUpperDigits;
+    //         case 8://英文大寫+數字
+    //             for(;engUpperDigits!=0&&engUpperDigits!=totalDigits;){
+    //                 engUpperDigits=random.nextInt(totalDigits);
+    //             }
+    //             numDigits=totalDigits-engUpperDigits;
 
-            case 9://英文大寫+特殊字元
-                for(;engUpperDigits!=0&&engUpperDigits!=totalDigits;){
-                    engUpperDigits=random.nextInt(totalDigits);
-                }
-                speDigits=totalDigits-engUpperDigits;
+    //         case 9://英文大寫+特殊字元
+    //             for(;engUpperDigits!=0&&engUpperDigits!=totalDigits;){
+    //                 engUpperDigits=random.nextInt(totalDigits);
+    //             }
+    //             speDigits=totalDigits-engUpperDigits;
 
-            case 10://數字+特殊字元
-                for(;numDigits!=0&&numDigits!=totalDigits;){
-                    numDigits=random.nextInt(totalDigits);
-                }
-                speDigits=totalDigits-numDigits;
+    //         case 10://數字+特殊字元
+    //             for(;numDigits!=0&&numDigits!=totalDigits;){
+    //                 numDigits=random.nextInt(totalDigits);
+    //             }
+    //             speDigits=totalDigits-numDigits;
 
-            case 11://英文小寫+大寫+數字
-                for(;englowDigits!=0&&englowDigits<totalDigits-2;){
-                    englowDigits=random.nextInt(totalDigits-3)+1;
-                }
-                for(;(engUpperBox!=0) && (engUpperBox<totalDigits-2);){
-                    engUpperBox=random.nextInt(totalDigits-3)+1;
+    //         case 11://英文小寫+大寫+數字
+    //             for(;englowDigits!=0&&englowDigits<totalDigits-2;){
+    //                 englowDigits=random.nextInt(totalDigits-3)+1;
+    //             }
+    //             for(;(engUpperBox!=0) && (engUpperBox<totalDigits-2);){
+    //                 engUpperBox=random.nextInt(totalDigits-3)+1;
                     
-                }
+    //             }
 
-            case 12://英文小寫+大寫+特殊字元
+    //         case 12://英文小寫+大寫+特殊字元
 
-            case 13://英文小寫+大寫+數字+特殊字元
-        }
+    //         case 13://英文小寫+大寫+數字+特殊字元
+    //     }
 
-    }
+    // }
     
     
     private static class ButtonActionListener implements ActionListener{
