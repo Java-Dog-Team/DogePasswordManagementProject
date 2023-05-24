@@ -34,7 +34,6 @@ public class main_page{
     //大頭貼
     private static JLabel topMyHeadIconJLabel=new JLabel();
     private static ImageIcon myheadIcon=new ImageIcon();
-    
     //左方五個選單按鈕圖片
     private static ImageIcon homeIcon=new ImageIcon();
     private static ImageIcon lockIcon=new ImageIcon();

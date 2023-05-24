@@ -75,9 +75,11 @@ public class MouseTest extends JFrame{
                 home.creatAddPasswardButton(addJPanel);
             }
             else if (y>=122 && y<=168 && x<=150){//密碼產生器
+                addJPanel.setVisible(false);
                 generate.createGenerate(passwardJPanel);
             }
             else if(y>=218 && y<=270 && x<=150){//提醒設定
+                addJPanel.setVisible(false);
                 remider.createReminder(passwardJPanel);
             }
             else if(y>=315 && y<=365 && x<=150){//主題設定
@@ -93,27 +95,27 @@ public class MouseTest extends JFrame{
         public void mouseClicked(MouseEvent e){  //實做滑鼠的點擊事件
             int x = e.getX();
             int y = e.getY();
-            // System.out.printf("%d %d%n",x,y);
-            if(y>=27 && y<=73 && x<=150){//主頁面
-                home.creatPasswordPanel(passwardJPanel);
-                home.creatAddPasswardButton(addJPanel);
-            }
-            else if (y>=122 && y<=168 && x<=150){//密碼產生器
-                addJPanel.setVisible(false);
-                generate.createGenerate(passwardJPanel);
-            }
-            else if(y>=218 && y<=270 && x<=150){//提醒設定
-                addJPanel.setVisible(false);
-                remider.createReminder(passwardJPanel);
-            }
-            else if(y>=315 && y<=365 && x<=150){//主題設定
-                // DesignPage designPage=new DesignPage(jFrame);
-                // MainPage.jFrame.getContentPane().setBackground(Color.BLACK);
-                // System.out.printf("%d %d%n",x,y);
-            }
-            else if(y>=411 && y<=461 && x<=50){//使用教學
+            // // System.out.printf("%d %d%n",x,y);
+            // if(y>=27 && y<=73 && x<=150){//主頁面
+            //     home.creatPasswordPanel(passwardJPanel);
+            //     home.creatAddPasswardButton(addJPanel);
+            // }
+            // else if (y>=122 && y<=168 && x<=150){//密碼產生器
+            //     addJPanel.setVisible(false);
+            //     generate.createGenerate(passwardJPanel);
+            // }
+            // else if(y>=218 && y<=270 && x<=150){//提醒設定
+            //     addJPanel.setVisible(false);
+            //     remider.createReminder(passwardJPanel);
+            // }
+            // else if(y>=315 && y<=365 && x<=150){//主題設定
+            //     // DesignPage designPage=new DesignPage(jFrame);
+            //     // MainPage.jFrame.getContentPane().setBackground(Color.BLACK);
+            //     // System.out.printf("%d %d%n",x,y);
+            // }
+            // else if(y>=411 && y<=461 && x<=50){//使用教學
 
-            }
+            // }
             
         }
         @Override
