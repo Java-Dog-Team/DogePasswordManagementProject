@@ -47,6 +47,7 @@ public class Reminder extends main_page{
     
     public Reminder(JLabel mainLabel){
         this.mainLabel=mainLabel;
+        
         //事件設定
         ButtonActionListener Bhandler = new ButtonActionListener();
         confirm.addActionListener(Bhandler);

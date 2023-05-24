@@ -52,12 +52,18 @@ public class generatePassword extends main_page{
     private static JLabel symbolsLabel=new JLabel("Tick the symbols you need");
     private static JTextField outPut=new JTextField("");
     private static JSlider numberslider=new JSlider(8, 20,10);
-    private static JCheckBox englishBox=new JCheckBox("English alphabet");
+    private static JCheckBox engLowBox=new JCheckBox("Lowercase English Letters");
+    private static JCheckBox engUpperBox=new JCheckBox("Upper Case English Letters");
     private static JCheckBox numberBox=new JCheckBox("Number symbol");
     private static JCheckBox specialBox=new JCheckBox("Special symbol");
     private static JButton confirm=new JButton("confirm", dogIcon);
     private static String outputString="";
-    private static int passWord=10;
+    private static int totalDigits=10;
+    private static int englowDigits=0;
+    private static int engUpperDigits=0;
+    private static int numDigits=0;
+    private static int speDigits=0;
+    private static SecureRandom random= new SecureRandom();
     //private ChangeListener changeListener;// 監聽器
     
     public generatePassword(JLabel mainLabel){
@@ -65,8 +71,8 @@ public class generatePassword extends main_page{
         //事件設定 拿slider的數字
         numberslider.addChangeListener(new ChangeListener(){
             public void stateChanged(ChangeEvent event) {
-                passWord=numberslider.getValue();
-                System.out.print(passWord);
+                totalDigits=numberslider.getValue();
+                System.out.print(totalDigits);
 
             }
         });
@@ -119,7 +125,8 @@ public class generatePassword extends main_page{
         numberslider.setLabelTable(labelTable);
 
         //checkbox設定
-        englishBox.setBackground(Color.WHITE);
+        engLowBox.setBackground(Color.WHITE);
+        engUpperBox.setBackground(Color.WHITE);
         numberBox.setBackground(Color.WHITE);
         specialBox.setBackground(Color.WHITE);
         
@@ -130,7 +137,8 @@ public class generatePassword extends main_page{
         titleLabel.setFont((new Font("",Font.BOLD,30)));
         numberLabel.setFont((new Font("",Font.ITALIC,20)));
         symbolsLabel.setFont((new Font("",Font.ITALIC,20)));
-        englishBox.setFont((new Font("",Font.BOLD,15)));
+        engLowBox.setFont((new Font("",Font.BOLD,15)));
+        engUpperBox.setFont((new Font("",Font.BOLD,15)));
         numberBox.setFont((new Font("",Font.BOLD,15)));
         specialBox.setFont((new Font("",Font.BOLD,15)));
 
@@ -140,11 +148,12 @@ public class generatePassword extends main_page{
         numberslider.setBounds(205, 115,350,65);
         symbolsLabel.setBounds(260, 185,350,30);
         dog2.setBounds(230, 185,20,20);
-        englishBox.setBounds(300, 220,350,30);
-        numberBox.setBounds(300, 250,350,30);
-        specialBox.setBounds(300, 280,350,30);
-        confirm.setBounds(320, 320, 110, 30);
-        outPut.setBounds(185, 360, 380, 30);
+        engLowBox.setBounds(300, 220,350,30);
+        engUpperBox.setBounds(300, 250,350,30);
+        numberBox.setBounds(300, 280,350,30);
+        specialBox.setBounds(300, 310,350,30);
+        confirm.setBounds(320, 350, 110, 30);
+        outPut.setBounds(185, 400, 380, 30);
     
 
         passwardJPanel.add(titleLabel);
@@ -153,7 +162,8 @@ public class generatePassword extends main_page{
         passwardJPanel.add(numberslider);
         passwardJPanel.add(symbolsLabel);
         passwardJPanel.add(dog2);
-        passwardJPanel.add(englishBox);
+        passwardJPanel.add(engLowBox);
+        passwardJPanel.add(engUpperBox);
         passwardJPanel.add(numberBox);
         passwardJPanel.add(specialBox);
         passwardJPanel.add(confirm);
@@ -161,31 +171,103 @@ public class generatePassword extends main_page{
         //這放要改panel的函式的最後面
         passwardJPanel.revalidate();
     }
+    
+    public void assign(int mode){
+        switch(mode){
+            englowDigits=0;
+            engUpperDigits=0;
+            numDigits=0;
+            speDigits=0;
+            case 1://只有英文小寫
+                englowDigits=totalDigits;
+            
+            case 2://只有英文大寫
+                engUpperDigits=totalDigits;
+
+            case 3://只有數字
+                numDigits=totalDigits;
+
+            case 4://只有特殊字元
+                speDigits=totalDigits;
+
+            case 5://英文小寫+大寫
+                for(;englowDigits!=0&&englowDigits!=totalDigits;){
+                    englowDigits=random.nextInt(totalDigits);  
+                }
+                engUpperDigits=totalDigits-englowDigits;
+            case 6://英文小寫+數字
+            for(;englowDigits!=0&&englowDigits!=totalDigits;){
+                englowDigits=random.nextInt(totalDigits);
+            }
+            numDigits=totalDigits-englowDigits;
+
+            case 7://英文小寫+特殊字元
+                for(;englowDigits!=0&&englowDigits!=totalDigits;){
+                    englowDigits=random.nextInt(totalDigits);
+                }
+                speDigits=totalDigits-englowDigits;
+
+            case 8://英文大寫+數字
+                for(;engUpperDigits!=0&&engUpperDigits!=totalDigits;){
+                    engUpperDigits=random.nextInt(totalDigits);
+                }
+                numDigits=totalDigits-engUpperDigits;
+
+            case 9://英文大寫+特殊字元
+                for(;engUpperDigits!=0&&engUpperDigits!=totalDigits;){
+                    engUpperDigits=random.nextInt(totalDigits);
+                }
+                speDigits=totalDigits-engUpperDigits;
+
+            case 10://數字+特殊字元
+                for(;numDigits!=0&&numDigits!=totalDigits;){
+                    numDigits=random.nextInt(totalDigits);
+                }
+                speDigits=totalDigits-numDigits;
+
+            case 11://英文小寫+大寫+數字
+                for(;englowDigits!=0&&englowDigits<totalDigits-2;){
+                    englowDigits=random.nextInt(totalDigits-3)+1;
+                }
+                for(;(engUpperBox!=0) && (engUpperBox<totalDigits-2);){
+                    engUpperBox=random.nextInt(totalDigits-3)+1;
+                    
+                }
+
+            case 12://英文小寫+大寫+特殊字元
+
+            case 13://英文小寫+大寫+數字+特殊字元
+        }
+
+    }
+    
+    
     private static class ButtonActionListener implements ActionListener{
         public void actionPerformed(ActionEvent e){
-            if(!(englishBox.isSelected())&&!(numberBox.isSelected())&&!(specialBox.isSelected())){
+            if(!(engLowBox.isSelected())&&!(engUpperBox.isSelected())&&!(numberBox.isSelected())&&!(specialBox.isSelected())){
                 JOptionPane.showMessageDialog(null,"您沒有選擇任何選項","WARNING",JOptionPane.WARNING_MESSAGE);
                 return;
             }
-            else if(englishBox.isSelected()){
+            else if(engLowBox.isSelected()){
                 if(!(numberBox.isSelected())&&!(specialBox.isSelected())){//只要英文
-                    SecureRandom random= new SecureRandom();
-                    outputString="";
-                    outPut.setText(outputString);
-                    for(int i=0;i<passWord;i++){
-                        outputString=outputString+english[random.nextInt(52)];
-                    }
-                    outPut.setText(outputString);
+                    // SecureRandom random= new SecureRandom();
+                    // outputString="";
+                    // outPut.setText(outputString);
+                    // for(int i=0;i<passWord;i++){
+                    //     outputString=outputString+english[random.nextInt(52)];
+                    // }
+                    // outPut.setText(outputString);
+                    
                 }
                 else if(numberBox.isSelected()&&!(specialBox.isSelected())){//要英文跟數字
-                    SecureRandom random= new SecureRandom();
-                    outputString="";
-                    outPut.setText(outputString);
-                    int howmanyE=random.nextInt(passWord)+1;
-                    for(int i=0;i<passWord;i++){
-                        outputString=outputString+english[random.nextInt(52)];
-                    }
-                    outPut.setText(outputString);
+                    // SecureRandom random= new SecureRandom();
+                    // outputString="";
+                    // outPut.setText(outputString);
+                    // int howmanyE=random.nextInt(passWord)+1;
+                    // for(int i=0;i<passWord;i++){
+                    //     outputString=outputString+english[random.nextInt(52)];
+                    // }
+                    // outPut.setText(outputString);
                 }
             }
             
