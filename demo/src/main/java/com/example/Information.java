@@ -119,7 +119,8 @@ public class Information{
    public void setDeleteButton(JButton deleteButton) {
       ActionListener listener=new ActionListener() {
          public void actionPerformed(ActionEvent e){
-            delete=true;
+            home.passward.remove(getIndex());
+            home.passwardUpdate();
          }
       };
       deleteButton.addActionListener(listener);
@@ -296,15 +297,16 @@ public class Information{
                      if(account.isEmpty() && password.isEmpty() && app.isEmpty()){
                         throw new Exception("Please enter your account's information!");
                      }
+                     else if(app.isEmpty()){
+                        throw new Exception("Please enter your App's name!");
+                     }
                      else if (account.isEmpty()){
                         throw new Exception("Please enter your account!");
                      }
                      else if(password.isEmpty()){
                         throw new Exception("Please enter your password!");
                      }
-                     else if(app.isEmpty()){
-                        throw new Exception("Please enter your App's name!");
-                     }
+                     
                      //更新要儲存的值
                      setApp(app);
                      setAccount(account);

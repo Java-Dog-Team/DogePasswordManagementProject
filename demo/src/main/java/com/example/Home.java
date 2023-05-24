@@ -47,7 +47,7 @@ public class Home extends main_page{
     public JPanel passwordPanel;
     public ImageIcon passwardimg=new ImageIcon("demo\\src\\picture\\home_passward_panel_1.png");
     public  JScrollPane scrollPane=new JScrollPane(passwordPanel);
-    public static ArrayList<Information> passward=new ArrayList<Information>();
+    public ArrayList<Information> passward=new ArrayList<Information>();
     public JButton addPasswardButton =new JButton(new ImageIcon("demo\\src\\picture\\addPassward.png"));
     public JLabel picturelabel;
     public JButton addPictureButton=new JButton("+add picture");
@@ -258,13 +258,7 @@ public class Home extends main_page{
                             throw new Exception("Please enter your App's name!");
                         }
                         passward.add(new Information(home,index,delete,app,account,password,settingButton,deleteButton,picturelabel.getIcon()));
-                        ActionListener listener=new ActionListener() {
-                            @Override
-                            public void actionPerformed(ActionEvent e){
-                                passwardUpdate();
-                            }
-                        };
-                        deleteButton.addActionListener(listener);
+                        
                         passwardUpdate();
                         addNewPasswardFrame.dispose();
                     }
@@ -376,12 +370,6 @@ public class Home extends main_page{
         apPanel.setBackground(Color.WHITE);
         apPanel.setOpaque(true);
         for(Information i:passward){
-            
-            if(i.delete){
-                System.out.printf("%d%n",i.getIndex());
-                passward.remove(i.getIndex());
-                continue;
-            }
             BackgroundPanel newPasswardJPanel=i.setAPPanel();
             System.out.print(newPasswardJPanel);
             System.out.println();
