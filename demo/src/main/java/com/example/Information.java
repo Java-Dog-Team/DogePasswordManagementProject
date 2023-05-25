@@ -140,6 +140,7 @@ public class Information {
     public class ButtonHandler implements ActionListener {
         @Override
         public void actionPerformed(ActionEvent e) {
+            recordData1=new RecordData(getApp(), getAccount(), getPassward(), getImg(), getIndex());
             // 彈出加入新密碼的視窗
             settingFrame = new JFrame("設定新密碼");
             settingFrame.setSize(600, 335);
@@ -317,6 +318,7 @@ public class Information {
                         setDeleteButton(deleteButton);
                         setSettingButton(settingButton);
                         recordData2=new RecordData(app, account, password, img, getIndex());
+                        userInterface.updateOneUserData(recordData1, recordData2);
                         // 重新畫中間panel
                         home.passwardUpdate();
                         settingFrame.dispose();
@@ -395,7 +397,6 @@ public class Information {
         settingButton.setBounds(5, 20, 25, 25);
         deleteButton.setBounds(5, 77, 25, 25);
         eyeButton.setPreferredSize(new Dimension(25, 25));
-        System.out.printf("%s%n", getAccount());
         eyeButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
