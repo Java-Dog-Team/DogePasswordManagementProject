@@ -365,10 +365,10 @@ public class Home extends main_page{
         
         apPanel.setBackground(Color.WHITE);
         apPanel.setOpaque(true);
+        int cou=0;
         for(Information i:passward){
             BackgroundPanel newPasswardJPanel=i.setAPPanel();
-            System.out.print(newPasswardJPanel);
-            System.out.println();
+            i.setIndex(cou++);
             apPanel.add(newPasswardJPanel);
         }
 
