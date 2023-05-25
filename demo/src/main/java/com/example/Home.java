@@ -3,21 +3,35 @@ package com.example;
 import java.awt.BorderLayout;
 import java.awt.GridLayout;
 import java.awt.Color;
+import java.awt.Toolkit;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.ItemEvent;
+import java.awt.event.ItemListener;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
+import java.io.IOException;
 import java.util.ArrayList;
+import java.util.HashSet;
+import java.util.jar.JarFile;
 import java.awt.Dimension;
 import java.awt.FlowLayout;
+import java.awt.Font;
+import java.awt.Image;
+import java.awt.JobAttributes;
 import java.awt.Label;
 
 import javax.swing.JFrame;
 import javax.swing.JLabel;
+import javax.sound.midi.Track;
 import javax.swing.BoxLayout;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
+import javax.swing.JComboBox;
 import javax.swing.JDialog;
 import javax.swing.JFileChooser;
 import javax.swing.JOptionPane;
@@ -42,6 +56,7 @@ public class Home extends main_page{
     public JTextField accountJTextField;
     public JPasswordField passwardJTextField;
     public JPasswordField password;
+    public JLabel testJLabel=new JLabel("RRRRRRRRRRR");
     public Home home=this;
     public Home(JLabel mainLabel){
         this.mainLabel=mainLabel;
@@ -61,10 +76,12 @@ public class Home extends main_page{
         addJPanel.setBackground(Color.WHITE);
         addJPanel.add(addPasswardButton,BorderLayout.SOUTH);
         addJPanel.setVisible(true);
+        // this.mainLabel.add(addJPanel,BorderLayout.EAST);
     }
     public class ButtonHandler implements ActionListener{
         @Override
         public void actionPerformed(ActionEvent e){
+            
             //彈出加入新密碼的視窗
             addNewPasswardFrame=new JFrame("加入新密碼");
             addNewPasswardFrame.setSize(600, 335);
@@ -290,19 +307,57 @@ public class Home extends main_page{
             if(!(prefix.equals("jpg")) && !(prefix.equals("png"))){
                 JOptionPane.showMessageDialog(new JDialog(),"Please select an image file type of jpg or png!");
                 return;
-            }       
-            //取得選擇文件的絕對路徑
-            String absolutePath=chooser.getSelectedFile().getAbsolutePath();
-            //選擇的圖片
-            ImageIcon img=new ImageIcon(absolutePath);
-            picturelabel.setIcon(img);
-            JOptionPane.showMessageDialog(null, "upload success!","Hint",JOptionPane.INFORMATION_MESSAGE);
+            }
+            FileInputStream input=null;
+            FileOutputStream output=null;
+            //放上傳檔案的路徑
+            String path="C:\\Users\\user\\OneDrive\\桌面\\DogePasswordManagementProject\\DogePasswordManagementProject\\demo\\src\\picture";
+            try{
+                for(File f:files){
+                    File dir=new File(path);
+                    //目標資料夾
+                    File[] fs=dir.listFiles();
+                    HashSet<String> set = new HashSet<String>();
+                    for(File file:fs){
+                        set.add(file.getName());
+                    }
+                    
+                    //取得選擇文件的絕對路徑
+                    String absolutePath=chooser.getSelectedFile().getAbsolutePath();
+                    //選擇的圖片
+                    ImageIcon img=new ImageIcon(absolutePath);
+                    picturelabel.setIcon(img);
+                    picturelabel.getIcon();
+                    input=new FileInputStream(f);
+                    byte[] buffer=new byte[1024];
+                    File des = new File(path,f.getName());
+                    output=new FileOutputStream(des);
+                    int len=0;
+                    while(-1 != (len = input.read(buffer))){
+                        output.write(buffer,0,len);
+                    }
+                    output.close();
+                    input.close();
+                }
+                JOptionPane.showMessageDialog(null, "upload success!","Hint",JOptionPane.INFORMATION_MESSAGE);
+            }
+            catch(FileNotFoundException e){
+                JOptionPane.showMessageDialog(null, "upload failed QAQ", "Hint", JOptionPane.ERROR_MESSAGE);
+                e.printStackTrace();
+            }
+            catch(IOException e){
+                JOptionPane.showMessageDialog(null, "upload failed QAQ", "Hint", JOptionPane.ERROR_MESSAGE);
+                e.printStackTrace();
+            }
         }
     }
     public void passwardUpdate(){
         passwordPanel.removeAll();
         passwordPanel.repaint();
+        // passwordPanel.setLayout(new B);
+        // passwordPanel.add(testJLabel,BorderLayout.SOUTH);
         //放一組帳密的Panel
+        JLabel label=new JLabel();
         //放所有帳密的Panel
         JPanel apPanel=new JPanel();
         //設定為垂直滾動
@@ -343,6 +398,7 @@ public class Home extends main_page{
         //設定大小
         scrollPane.setPreferredSize(new Dimension(550, 470));
         passwordPanel.setLayout(new FlowLayout());
+        // passwordPanel.setPreferredSize(new Dimension(100, 500));
         passwordPanel.add(scrollPane);
         passwordPanel.revalidate();
     }
