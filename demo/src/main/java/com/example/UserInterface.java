@@ -108,20 +108,36 @@ public class UserInterface {
 
     public void updateOneUserData(RecordData OldData, RecordData NewData) {
         try {
+            Icon oldIcon=OldData.getImage();
+            Icon newIcon=NewData.getImage();
+            BufferedImage bufferedImage = new BufferedImage(oldIcon.getIconWidth() ,oldIcon.getIconHeight(),BufferedImage.TYPE_INT_ARGB);
+            oldIcon.paintIcon(null, bufferedImage.getGraphics(), 0, 0);
+            ByteArrayOutputStream byteArrayOutputStream=new ByteArrayOutputStream();
+            ImageIO.write(bufferedImage, "png", byteArrayOutputStream);
+            byteArrayOutputStream.flush();
+
             Document filter = new Document();
             filter.append("AppName", OldData.getAppName());
             filter.append("Username", OldData.getUsername());
-            filter.append("Password", OldData.getPassword());
-            filter.append("Image", OldData.getImage());
+            filter.append("Password", AESEncryption.encrypt(OldData.getPassword()));
+            filter.append("Image", byteArrayOutputStream.toByteArray());
             filter.append("Index", OldData.getIndex());
 
-            Document update = new Document("$set", new Document("AppName", NewData.getAppName())
+             bufferedImage = new BufferedImage(newIcon.getIconWidth() ,newIcon.getIconHeight(),BufferedImage.TYPE_INT_ARGB);
+             newIcon.paintIcon(null, bufferedImage.getGraphics(), 0, 0);
+             byteArrayOutputStream=new ByteArrayOutputStream();
+            ImageIO.write(bufferedImage, "png", byteArrayOutputStream);
+            byteArrayOutputStream.flush();
+
+            Document update = new Document("$set", new Document()
+                    .append("AppName", NewData.getAppName())
                     .append("Username", NewData.getUsername())
-                    .append("Password", NewData.getPassword())
-                    .append("Image", NewData.getImage())
+                    .append("Password", AESEncryption.encrypt(NewData.getPassword()))
+                    .append("Image", byteArrayOutputStream.toByteArray())
                     .append("Index", NewData.getIndex()));
 
             UserCollection.updateOne(filter, update);
+            
             System.out.println("資料更新成功");
         } catch (Exception err) {
             System.out.println("資料更新失敗");
