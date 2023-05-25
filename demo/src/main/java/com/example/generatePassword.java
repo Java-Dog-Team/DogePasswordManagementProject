@@ -62,10 +62,7 @@ public class generatePassword extends main_page{
     private static JButton copy=new JButton("copy", dogIcon);
     private static String outputString="";
     private static int totalDigits=10;
-    private static int englowDigits=0;
-    private static int engUpperDigits=0;
-    private static int numDigits=0;
-    private static int speDigits=0;
+    
     private static SecureRandom random= new SecureRandom();
     //private ChangeListener changeListener;// 監聽器
     

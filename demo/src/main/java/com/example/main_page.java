@@ -180,6 +180,8 @@ public class main_page{
         main_page.themeLabel=new JLabel(sparklesIcon);
         main_page.QALabel=new JLabel(interrogationIcon);
     }
+
+    
     public static void setBackground(ImageIcon backGround){
         if(backGround==null){
             //設定背景顏色
