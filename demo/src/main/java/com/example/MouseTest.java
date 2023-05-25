@@ -84,7 +84,8 @@ public class MouseTest extends JFrame{
                 remider.createReminder(passwardJPanel);
             }
             else if(y>=315 && y<=365 && x<=150){//主題設定
-                designPage.createBackground(passwardJPanel);
+                addJPanel.setVisible(false);
+                designPage.createBackground(passwardJPanel,leftPanel);
             }
             else if(y>=411 && y<=461 && x<=50){//使用教學
 

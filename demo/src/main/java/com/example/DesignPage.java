@@ -27,9 +27,15 @@ public class DesignPage extends main_page{
     public DesignPage(JLabel mainLabel){
         this.mainLabel=mainLabel;
     }
-    public void createBackground(JPanel passwardJPanel){
+    public void createBackground(JPanel passwardJPanel,JPanel leftJPanel){
         passwardJPanel.removeAll();
         passwardJPanel.repaint();
+        JPanel newPanel=new JPanel();
+
+        passwardJPanel.setBackground(Color.BLACK);
+        passwardJPanel.setOpaque(true);
+        leftJPanel.setBackground(Color.BLACK);
+        leftJPanel.setOpaque(true);
         passwardJPanel.revalidate();
     }
 }
