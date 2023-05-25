@@ -5,6 +5,7 @@ import java.util.Properties;
 import java.util.Timer;
 import java.util.TimerTask;
 
+//java mail api
 import javax.mail.Authenticator;
 import javax.mail.Message;
 import javax.mail.MessagingException;
@@ -105,7 +106,7 @@ public class MailController {
 
     // 驗證驗證碼是否正確
     public int ValidCodeVerify(String userInput) {
-        //System.out.println(ValidCode);
+        // System.out.println(ValidCode);
         try {
             if (ValidCode.equals(userInput)) {
                 ValidCode = null;
