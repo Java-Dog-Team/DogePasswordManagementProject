@@ -7,6 +7,7 @@ import java.awt.Toolkit;
 import java.awt.Dimension;
 import java.awt.Font;
 import java.awt.Image;
+import java.util.List;
 import java.awt.Panel;
 
 import javax.swing.JFrame;
@@ -53,10 +54,22 @@ public class main_page{
     private static Reminder reminder;
     private static generatePassword generate;
     private static DesignPage designPage;
+    private static UserInterface userInterface=new UserInterface("sw710407@gmail.com");
     public static void main(String[] args) {
         mainLabel.setLayout(new BorderLayout());
         jFrame=new MouseTest(leftPanel,mainLabel);
         createWindow();
+    }
+    public static void load() throws Exception{
+        List<RecordData> list=userInterface.fetchAllUserData();
+        for(RecordData i:list){
+            ImageIcon deleteImageIcon = new ImageIcon("demo\\src\\picture\\trash_color.png");
+            ImageIcon settingImageIcon = new ImageIcon("demo\\src\\picture\\settings_color.png");
+            JButton settingButton=new JButton(settingImageIcon);
+            JButton deleteButton= new JButton(deleteImageIcon);
+            home.passward.add(new Information(userInterface,home, i.getIndex(), false, i.getAppName(), i.getUsername(), i.getPassword(), settingButton,
+            deleteButton, i.getImage()));
+        }
     }
     
     public static void createWindow(){
@@ -117,7 +130,7 @@ public class main_page{
         topPanel.setPreferredSize(new Dimension(w, h/15));
         mainLabel.add(topPanel, BorderLayout.NORTH); 
         mainLabel.add(leftPanel,BorderLayout.WEST);   
-        home=new Home(mainLabel);
+        home=new Home(userInterface);
         reminder = new Reminder(mainLabel); 
         generate=new generatePassword(mainLabel);
         designPage=new DesignPage(mainLabel);
@@ -125,7 +138,13 @@ public class main_page{
         jFrame.setReminder(reminder);
         jFrame.setGenerate(generate);
         jFrame.setMainLabel(mainLabel);
-        jFrame.setDesignPage(designPage);   
+        jFrame.setDesignPage(designPage);
+        try{
+            load();
+        }
+        catch(Exception e){
+            System.out.print(e);
+        }
     }
 
     public static void setTopJLabel(JLabel topJLabel) {

@@ -29,7 +29,7 @@ import javax.swing.JPasswordField;
 import javax.swing.JScrollBar;
 
 public class Home extends main_page {
-    public JLabel mainLabel = new JLabel();
+    public UserInterface userInterface;
     public JPanel passwordPanel;
     public ImageIcon passwardimg = new ImageIcon("demo\\src\\picture\\home_passward_panel_1.png");
     public JScrollPane scrollPane = new JScrollPane(passwordPanel);
@@ -44,8 +44,8 @@ public class Home extends main_page {
     public JPasswordField password;
     public Home home = this;
 
-    public Home(JLabel mainLabel) {
-        this.mainLabel = mainLabel;
+    public Home(UserInterface userInterface) {
+        this.userInterface = userInterface;
     }
 
     public void creatPasswordPanel(JPanel passwardJPanel) {
@@ -243,7 +243,7 @@ public class Home extends main_page {
                         }
                         passward.add(new Information(home, index, delete, app, account, password, settingButton,
                                 deleteButton, picturelabel.getIcon()));
-
+                        userInterface.insertOneUserData(app,account,password,picturelabel.getIcon(),index);
                         passwardUpdate();
                         addNewPasswardFrame.dispose();
                     } catch (Exception ex) {

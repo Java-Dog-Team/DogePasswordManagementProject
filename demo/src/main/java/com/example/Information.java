@@ -24,6 +24,9 @@ import javax.swing.JDialog;
 import javax.swing.JFileChooser;
 import javax.swing.JPanel;
 import javax.swing.filechooser.FileNameExtensionFilter;
+
+import org.passay.UsernameRule;
+
 import javax.swing.JPasswordField;
 
 public class Information {
@@ -40,9 +43,13 @@ public class Information {
     public JPasswordField password;
     public JLabel picturelabel;
     public upLoadData upLoadData;
+    public UserInterface userInterface;
+    public RecordData recordData1;
+    public RecordData recordData2;
 
-    public Information(Home home, int index, boolean delete, String app, String account, String passward,
+    public Information(UserInterface userInterface, Home home, int index, boolean delete, String app, String account, String passward,
             JButton settingButton, JButton deleteButton, Icon img) {
+        this.userInterface=userInterface;
         this.home = home;
         this.settingButton = settingButton;
         this.deleteButton = deleteButton;
@@ -106,8 +113,18 @@ public class Information {
 
     public void setDeleteButton(JButton deleteButton) {
         ActionListener listener = new ActionListener() {
+            String app=getApp();
+            String name=getAccount();
+            String pass=getPassward();
+            int index=getIndex();
             public void actionPerformed(ActionEvent e) {
-                home.passward.remove(getIndex());
+                home.passward.remove(index);
+                try{
+                    userInterface.deleteOneUserData(app,name,pass,index);
+                }
+                catch(Exception ex){
+                    System.out.print(ex);
+                }
                 home.passwardUpdate();
             }
         };
@@ -299,7 +316,7 @@ public class Information {
                         setImg(img);
                         setDeleteButton(deleteButton);
                         setSettingButton(settingButton);
-                        System.out.println(getApp() + " " + getAccount() + " " + getPassward() + "\n");
+                        recordData2=new RecordData(app, account, password, img, getIndex());
                         // 重新畫中間panel
                         home.passwardUpdate();
                         settingFrame.dispose();
