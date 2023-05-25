@@ -241,8 +241,7 @@ public class Home extends main_page {
                         } else if (app.isEmpty()) {
                             throw new Exception("Please enter your App's name!");
                         }
-                        passward.add(new Information(home, index, delete, app, account, password, settingButton,
-                                deleteButton, picturelabel.getIcon()));
+                        passward.add(new Information(userInterface,home, index, delete, app, account, password, settingButton,deleteButton, picturelabel.getIcon()));
                         userInterface.insertOneUserData(app,account,password,picturelabel.getIcon(),index);
                         passwardUpdate();
                         addNewPasswardFrame.dispose();
