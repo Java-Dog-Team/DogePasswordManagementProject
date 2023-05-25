@@ -1,9 +1,5 @@
 package com.example;
-import java.awt.event.*;
-import java.awt.*;
-import java.awt.image.BufferedImage;
 import javax.swing.*;
-import javax.imageio.*;
 import java.io.File; 
 import javax.swing.JButton;
 import java.awt.event.ActionListener;
@@ -15,49 +11,23 @@ import javax.swing.JOptionPane;
 import java.awt.BorderLayout;
 import java.awt.GridLayout;
 import java.awt.Color;
-import java.awt.Toolkit;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
-import java.awt.event.ItemEvent;
-import java.awt.event.ItemListener;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
-import java.io.File;
-import java.io.FileInputStream;
-import java.io.FileNotFoundException;
-import java.io.FileOutputStream;
-import java.io.IOException;
-import java.util.ArrayList;
-import java.util.HashSet;
-import java.util.jar.JarFile;
 import java.awt.Dimension;
-import java.awt.FlowLayout;
 import java.awt.Font;
 import java.awt.Image;
-import java.awt.JobAttributes;
 import java.awt.Label;
 
-import javax.sound.midi.Track;
-import javax.swing.BoxLayout;
 import javax.swing.ImageIcon;
-import javax.swing.JComboBox;
 import javax.swing.JDialog;
 import javax.swing.JFileChooser;
 import javax.swing.JPanel;
-import javax.swing.JScrollPane;
 import javax.swing.filechooser.FileNameExtensionFilter;
 import javax.swing.JPasswordField;
-import javax.swing.JScrollBar;
-
 
 public class Information{
-   public int index;
-   public String app;
-   public String account;
-   public String passward;
    public JButton settingButton;
    public JButton deleteButton;
-   public Icon img;
    public boolean delete;
    public ImageIcon passwardimg=new ImageIcon("demo\\src\\picture\\home_passward_panel_1.png");
    public JButton addPictureButton=new JButton("+add picture");
@@ -68,41 +38,40 @@ public class Information{
    public JPasswordField passwardJTextField;
    public JPasswordField password;
    public JLabel picturelabel;
+   public upLoadData upLoadData;
 
    public Information(Home home, int index,boolean delete,String app,String account,String passward,JButton settingButton,JButton deleteButton,Icon img){
       this.home=home;
-      this.index=index;
-      this.app=app;
-      this.account=account;
-      this.passward=passward;
       this.settingButton=settingButton;
       this.deleteButton=deleteButton;
-      this.img=img;
       this.delete=delete;
+      this.upLoadData=new upLoadData(index,app,account,passward,img);
       setDeleteButton(this.deleteButton);
       setSettingButton(this.settingButton);
    }
-
    public Icon getImg() {
-      return img;
+      return upLoadData.getImg();
+   }
+   public void setImg(Icon img) {
+       upLoadData.setImg(img);
    }
    public String getAccount() {
-      return account;
+      return upLoadData.getAccount();
    }
    public void setAccount(String account) {
-       this.account = account;
+       upLoadData.setAccount(account);
    }
    public String getPassward() {
-      return passward;
+      return upLoadData.getPassword();
    }
    public void setPassward(String passward) {
-       this.passward = passward;
+       upLoadData.setPassword(passward);
    }
    public String getApp() {
-      return app;
+      return upLoadData.getApp();
    }
    public void setApp(String app) {
-       this.app = app;
+       upLoadData.setApp(app);
    }
    public JButton getSettingButton() {
       return settingButton;
@@ -111,10 +80,10 @@ public class Information{
       return deleteButton;
    }
    public int getIndex() {
-      return index;
+      return upLoadData.getIndex();
    }
    public void setIndex(int index) {
-       this.index = index;
+       upLoadData.setIndex(index);
    }
    public void setDelete(boolean delete) {
        this.delete = delete;
@@ -159,7 +128,7 @@ public class Information{
           settingFrame.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 
           //加入密碼照片
-          JLabel picturelabel = new JLabel(img);
+          picturelabel = new JLabel(getImg());
           picturelabel.setVisible(true);
 
           //設定顯示圖片大小
@@ -170,7 +139,7 @@ public class Information{
           
           //APP名稱
           JLabel appJLabel=new JLabel("App's name:");
-          appJTextField=new JTextField(app);
+          appJTextField=new JTextField(getApp());
           JPanel appJPanel=new JPanel();
           JPanel apptxJPanel=new JPanel();
           
@@ -190,7 +159,7 @@ public class Information{
 
           //帳號
           JLabel accountJLabel=new JLabel("Account:");
-          accountJTextField=new JTextField(account);
+          accountJTextField=new JTextField(getAccount());
           JPanel accountJPanel=new JPanel();
           JPanel txJPanel=new JPanel();
           
@@ -210,7 +179,7 @@ public class Information{
 
           //密碼
           JLabel passwardJLabel=new JLabel("password:");
-          passwardJTextField=new JPasswordField(passward);
+          passwardJTextField=new JPasswordField(getPassward());
           JPanel psJPanel=new JPanel();
           JPanel passwardJPanel=new JPanel();
 
@@ -289,11 +258,9 @@ public class Information{
                      String password = new String(passwordChars);
                      String account=accountJTextField.getText();
                      String app=appJTextField.getText();
-                     JButton settingButton=new JButton();
-                     JButton deleteButton=new JButton();
-                     boolean delete=false;
                      ImageIcon settingImageIcon=new ImageIcon("demo\\src\\picture\\settings_color.png");
                      ImageIcon deleteImageIcon=new ImageIcon("demo\\src\\picture\\trash_color.png");            
+                     Icon img=picturelabel.getIcon();
                      settingButton=new JButton(settingImageIcon);
                      deleteButton=new JButton(deleteImageIcon);
                      
@@ -314,6 +281,10 @@ public class Information{
                      setApp(app);
                      setAccount(account);
                      setPassward(password);
+                     setImg(img);
+                     setDeleteButton(deleteButton);
+                     setSettingButton(settingButton);
+                     System.out.println(getApp() + " " + getAccount() + " " + getPassward() + "\n");
                      //重新畫中間panel
                      home.passwardUpdate();
                      settingFrame.dispose();
@@ -364,58 +335,18 @@ public class Information{
               JOptionPane.showMessageDialog(new JDialog(),"Please select an image file type of jpg or png!");
               return;
           }
-          FileInputStream input=null;
-          FileOutputStream output=null;
-          //放上傳檔案的路徑
-          String path="C:\\Users\\user\\OneDrive\\桌面\\DogePasswordManagementProject\\DogePasswordManagementProject\\demo\\src\\picture";
-          try{
-              for(File f:files){
-                  File dir=new File(path);
-                  //目標資料夾
-                  File[] fs=dir.listFiles();
-                  HashSet<String> set = new HashSet<String>();
-                  for(File file:fs){
-                      set.add(file.getName());
-                  }
-                  //判斷是否已有該文件
-                  if(set.contains(f.getName())){
-                      JOptionPane.showMessageDialog(new JDialog(),f.getName() + "This file already exists.");
-                      return;
-                  }
-                  //取得選擇文件的絕對路徑
-                  String absolutePath=chooser.getSelectedFile().getAbsolutePath();
-                  //選擇的圖片
-                  ImageIcon img=new ImageIcon(absolutePath);
-                  picturelabel.setIcon(img);
-                  picturelabel.getIcon();
-                  input=new FileInputStream(f);
-                  byte[] buffer=new byte[1024];
-                  File des = new File(path,f.getName());
-                  output=new FileOutputStream(des);
-                  int len=0;
-                  while(-1 != (len = input.read(buffer))){
-                      output.write(buffer,0,len);
-                  }
-                  output.close();
-                  input.close();
-              }
-              JOptionPane.showMessageDialog(null, "upload success!","Hint",JOptionPane.INFORMATION_MESSAGE);
-          }
-          catch(FileNotFoundException e){
-              JOptionPane.showMessageDialog(null, "upload failed QAQ", "Hint", JOptionPane.ERROR_MESSAGE);
-              e.printStackTrace();
-          }
-          catch(IOException e){
-              JOptionPane.showMessageDialog(null, "upload failed QAQ", "Hint", JOptionPane.ERROR_MESSAGE);
-              e.printStackTrace();
-          }
+        //取得選擇文件的絕對路徑
+        String absolutePath=chooser.getSelectedFile().getAbsolutePath();
+        //選擇的圖片
+        ImageIcon img=new ImageIcon(absolutePath);
+        picturelabel.setIcon(img);
+        JOptionPane.showMessageDialog(null, "upload success!","Hint",JOptionPane.INFORMATION_MESSAGE);
       }
   }
    public BackgroundPanel setAPPanel(){
       BackgroundPanel newPasswardJPanel=new BackgroundPanel(passwardimg.getImage());
       ImageIcon img=RoundImageIconObject.getRoundImageIcon(getImg());//app的圖片
       JLabel imgJLabel;//放app圖片的label
-      // JLabel app=new JLabel(i.getApp());//app名稱
       JLabel accountWithApp=new JLabel(getApp() + "'s account:");//帳號部分的開頭
       JTextField account=new JTextField(getAccount());//帳號
       JLabel passwardWithApp=new JLabel(getApp() + "'s password:");//密碼部分的開頭
@@ -431,7 +362,7 @@ public class Information{
       settingButton.setBounds(5, 20, 25, 25);
       deleteButton.setBounds(5, 77, 25, 25);
       eyeButton.setPreferredSize(new Dimension(25, 25));
-      
+      System.out.printf("%s%n",getAccount());
       eyeButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e){
@@ -473,8 +404,6 @@ public class Information{
       passwardLabel.add(passwordJPanel);
       passwardLabel.add(new Label());
       passwardLabel.add(new Label());
-      // //設定一個 passward panel 大小
-      // newPasswardJPanel.setPreferredSize(new Dimension(500, 10));
       //設定圖片大小
       img.setImage(img.getImage().getScaledInstance(135, 125, Image.SCALE_DEFAULT));
       imgJLabel=new JLabel(img);
