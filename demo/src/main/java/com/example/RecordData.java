@@ -1,6 +1,6 @@
 package com.example;
 
-import java.awt.image.BufferedImage;
+import javax.swing.Icon;
 
 //紀錄資料格式
 public class RecordData {
@@ -8,20 +8,23 @@ public class RecordData {
     private String AppName;
     private String Username;
     private String Password;
-    private BufferedImage image;
+    private Icon Image;
+    private int Index;
 
     public RecordData() {
         AppName = "";
         Username = "";
         Password = "";
-        image = null;
+        Image = null;
+        Index = 0;
     }
 
-    public RecordData(String AppName, String Username, String Password, BufferedImage image) {
+    public RecordData(String AppName, String Username, String Password, Icon Image, int index) {
         this.AppName = AppName;
         this.Username = Username;
         this.Password = Password;
-        this.image = image;
+        this.Image = Image;
+        this.Index = index;
     }
 
     public String getAppName() {
@@ -36,11 +39,15 @@ public class RecordData {
         return this.Password;
     }
 
-    public BufferedImage getImage() {
-        return this.image;
+    public Icon getImage() {
+        return this.Image;
     }
-    
+
+    public int getIndex() {
+        return this.Index;
+    }
+
     public String toString() {
-        return String.format("%s %s %s", AppName, Username, Password);
+        return String.format("[Index:%d] [AppName:%s] [Username:%s] [Password:%s]", AppName, Username, Password);
     }
 }

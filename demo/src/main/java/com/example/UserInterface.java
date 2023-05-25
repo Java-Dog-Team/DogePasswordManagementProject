@@ -1,5 +1,6 @@
 package com.example;
 
+import java.awt.Image;
 import java.awt.image.BufferedImage;
 import java.io.ByteArrayInputStream;
 import java.io.ByteArrayOutputStream;
@@ -7,6 +8,8 @@ import java.util.ArrayList;
 import java.util.List;
 
 import javax.imageio.ImageIO;
+import javax.swing.Icon;
+import javax.swing.ImageIcon;
 
 import org.bson.Document;
 import org.bson.types.ObjectId;
@@ -50,11 +53,14 @@ public class UserInterface {
                 String Username = doc.getString("Username");// 抓取帳號
                 String Password = AESEncryption.decrypt(doc.getString("Password"));// 抓取密碼並解密
                 byte[] imageBytes = doc.get("Image", org.bson.types.Binary.class).getData();// 抓取圖像檔
-                // 將圖像檔轉換為BufferedImage型態
-                ByteArrayInputStream bais = new ByteArrayInputStream(imageBytes);
-                BufferedImage bufferedImage = ImageIO.read(bais);
+                int Index = doc.getInteger("Index");
+
+                // 將圖像檔轉換為Icon型態
+                ByteArrayInputStream inputStream = new ByteArrayInputStream(imageBytes);
+                Image image = ImageIO.read(inputStream);
+                Icon icon = new ImageIcon(image);
                 // 加入到List中
-                finalResult.add(new RecordData(AppName, Username, Password, bufferedImage));
+                finalResult.add(new RecordData(AppName, Username, Password, icon, Index));
             }
             System.out.println("獲取所有資料成功!");
             return finalResult;
@@ -71,20 +77,30 @@ public class UserInterface {
     }
 
     // 使用者新增一筆新資料
-    public void updateOneUserData(String AppName, String Username, String Password, BufferedImage image)
+    public void updateOneUserData(String AppName, String Username, String Password, Icon image, int index)
             throws Exception {
         try {
             // 將新資料插入該使用者的資料庫
-            ByteArrayOutputStream baos = new ByteArrayOutputStream();
-            ImageIO.write(image, "png", baos);
-            byte[] imageBytes = baos.toByteArray();
+            BufferedImage bufferedImage = new BufferedImage(image.getIconWidth(), image.getIconHeight(),
+                    BufferedImage.TYPE_INT_ARGB);
+            image.paintIcon(null, bufferedImage.getGraphics(), 0, 0);
+
+            ByteArrayOutputStream outputStream = new ByteArrayOutputStream();
+            ImageIO.write(bufferedImage, "png", outputStream);
+            outputStream.flush();
+
+            byte[] imageBytes = outputStream.toByteArray();
+
             UserCollection.insertOne(new Document("_id", new ObjectId())
+                    .append("Index", index)
                     .append("AppName", AppName)
                     .append("Username", Username)
                     .append("Password", AESEncryption.encrypt(Password))
                     .append("Image", imageBytes));
+                    
 
             System.out.println("資料新增成功!");
+
         } catch (Exception err) {
             System.out.println("資料新增失敗!");
 
