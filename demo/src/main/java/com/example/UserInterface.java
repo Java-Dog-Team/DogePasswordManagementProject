@@ -77,7 +77,7 @@ public class UserInterface {
     }
 
     // 使用者新增一筆新資料
-    public void updateOneUserData(String AppName, String Username, String Password, Icon image, int index)
+    public void insertOneUserData(String AppName, String Username, String Password, Icon image, int index)
             throws Exception {
         try {
             // 將新資料插入該使用者的資料庫
@@ -97,7 +97,6 @@ public class UserInterface {
                     .append("Username", Username)
                     .append("Password", AESEncryption.encrypt(Password))
                     .append("Image", imageBytes));
-                    
 
             System.out.println("資料新增成功!");
 
@@ -107,10 +106,34 @@ public class UserInterface {
         }
     }
 
+    public void updateOneUserData(RecordData OldData, RecordData NewData) {
+        try {
+            Document filter = new Document();
+            filter.append("AppName", OldData.getAppName());
+            filter.append("Username", OldData.getUsername());
+            filter.append("Password", OldData.getPassword());
+            filter.append("Image", OldData.getImage());
+            filter.append("Index", OldData.getIndex());
+
+            Document update = new Document("$set", new Document("AppName", NewData.getAppName())
+                    .append("Username", NewData.getUsername())
+                    .append("Password", NewData.getPassword())
+                    .append("Image", NewData.getImage())
+                    .append("Index", NewData.getIndex()));
+
+            UserCollection.updateOne(filter, update);
+            System.out.println("資料更新成功");
+        } catch (Exception err) {
+            System.out.println("資料更新失敗");
+        }
+
+    }
+
     // 刪除一筆資料
-    public void deleteOneUserData(String AppName, String Username, String Password) throws Exception {
+    public void deleteOneUserData(String AppName, String Username, String Password, int index) throws Exception {
         try {
             UserCollection.deleteOne(new Document("AppName", AppName)
+                    .append("Index", index)
                     .append("Username", Username)
                     .append("Password", AESEncryption.encrypt(Password)));
             System.out.println("刪除資料成功!");
