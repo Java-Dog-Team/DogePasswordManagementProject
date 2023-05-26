@@ -15,10 +15,10 @@ import javax.swing.JTextField;
 public class registerFrame extends JFrame {
     private static JButton confirm = new JButton("Confirm");
     private static JButton send = new JButton("Send Code");
-    private static JLabel email = new JLabel("Enter your account(email):");
+    private static JLabel email = new JLabel("Enter your account(Email):");
     private static JLabel passWord = new JLabel("Enter your password:");
     private static JLabel passWord2 = new JLabel("Enter your password again:");
-    private static JLabel phoneLabel = new JLabel("Phone number:");
+    private static JLabel phoneLabel = new JLabel("Enter your account(Phone number):");
     private static JTextField phoneText = new JTextField(null, "", 0);// 手機號碼輸入
     private static JTextField emailText = new JTextField(null, "", 0);// mail輸入
     private static JPasswordField passWordText = new JPasswordField(null, "", 0);// 第一次輸入密碼
@@ -62,7 +62,7 @@ public class registerFrame extends JFrame {
         // 各位置設定
         email.setBounds(100, 0, 180, 50);
         emailText.setBounds(100, 40, 300, 30);
-        phoneLabel.setBounds(100, 65, 180, 50);
+        phoneLabel.setBounds(100, 65, 250, 50);
         phoneText.setBounds(100, 105, 300, 30);
         passWord.setBounds(100, 135, 180, 50);
         passWordText.setBounds(100, 170, 300, 30);
