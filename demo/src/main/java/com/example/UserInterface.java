@@ -108,11 +108,12 @@ public class UserInterface {
 
     public void updateOneUserData(RecordData OldData, RecordData NewData) {
         try {
-            Icon oldIcon=OldData.getImage();
-            Icon newIcon=NewData.getImage();
-            BufferedImage bufferedImage = new BufferedImage(oldIcon.getIconWidth() ,oldIcon.getIconHeight(),BufferedImage.TYPE_INT_ARGB);
+            Icon oldIcon = OldData.getImage();
+            Icon newIcon = NewData.getImage();
+            BufferedImage bufferedImage = new BufferedImage(oldIcon.getIconWidth(), oldIcon.getIconHeight(),
+                    BufferedImage.TYPE_INT_ARGB);
             oldIcon.paintIcon(null, bufferedImage.getGraphics(), 0, 0);
-            ByteArrayOutputStream byteArrayOutputStream=new ByteArrayOutputStream();
+            ByteArrayOutputStream byteArrayOutputStream = new ByteArrayOutputStream();
             ImageIO.write(bufferedImage, "png", byteArrayOutputStream);
             byteArrayOutputStream.flush();
 
@@ -123,9 +124,10 @@ public class UserInterface {
             filter.append("Image", byteArrayOutputStream.toByteArray());
             filter.append("Index", OldData.getIndex());
 
-             bufferedImage = new BufferedImage(newIcon.getIconWidth() ,newIcon.getIconHeight(),BufferedImage.TYPE_INT_ARGB);
-             newIcon.paintIcon(null, bufferedImage.getGraphics(), 0, 0);
-             byteArrayOutputStream=new ByteArrayOutputStream();
+            bufferedImage = new BufferedImage(newIcon.getIconWidth(), newIcon.getIconHeight(),
+                    BufferedImage.TYPE_INT_ARGB);
+            newIcon.paintIcon(null, bufferedImage.getGraphics(), 0, 0);
+            byteArrayOutputStream = new ByteArrayOutputStream();
             ImageIO.write(bufferedImage, "png", byteArrayOutputStream);
             byteArrayOutputStream.flush();
 
@@ -137,7 +139,7 @@ public class UserInterface {
                     .append("Index", NewData.getIndex()));
 
             UserCollection.updateOne(filter, update);
-            
+
             System.out.println("資料更新成功");
         } catch (Exception err) {
             System.out.println("資料更新失敗");

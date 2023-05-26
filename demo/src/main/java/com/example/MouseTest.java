@@ -49,6 +49,7 @@ public class MouseTest extends JFrame{
 
         addJPanel.setPreferredSize(new Dimension(60, 500));
    }
+   
    private class MouseHandler implements MouseListener,MouseMotionListener{
         @Override
         public void mouseDragged(MouseEvent e){
