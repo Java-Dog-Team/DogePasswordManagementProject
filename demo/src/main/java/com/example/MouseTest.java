@@ -31,6 +31,14 @@ public class MouseTest extends JFrame{
 
     //主題的顏色
     public String color="yellow";
+    public String homePath;
+    public String lockPath;
+    public String bellPath;
+    public String sparklesPath;
+    public String interrogationPath;
+
+    public MouseTest mouseTest=this;
+
     public MouseTest(JPanel leftPanel,JLabel mainLabel){
         super("看門狗系統");
 
@@ -87,7 +95,7 @@ public class MouseTest extends JFrame{
             }
             else if(y>=315 && y<=365 && x<=150){//主題設定
                 addJPanel.setVisible(false);
-                designPage.createBackground(passwardJPanel,leftPanel);
+                designPage.createBackground(mouseTest,passwardJPanel,leftPanel);
             }
             else if(y>=411 && y<=461 && x<=50){//使用教學
 
@@ -111,10 +119,10 @@ public class MouseTest extends JFrame{
             if(y>=27 && y<=73 && x<=50){//主畫面
                 try{
                     homeIcon=new ImageIcon("demo\\src\\picture\\調好的圖片\\home_end_"+color+".png");
-                    // lockIcon=new ImageIcon("demo\\src\\picture\\lock.png");
-                    // bellIcon=new ImageIcon("demo\\src\\picture\\bell.png");
-                    // sparklesIcon=new ImageIcon("demo\\src\\picture\\sparkles.png");
-                    // interrogationIcon=new ImageIcon("demo\\src\\picture\\interrogation.png");
+                    lockIcon=new ImageIcon("demo\\src\\picture\\調好的圖片\\lock_"+color+".png");
+                    bellIcon=new ImageIcon("demo\\src\\picture\\調好的圖片\\bell_"+color+".png");
+                    sparklesIcon=new ImageIcon("demo\\src\\picture\\調好的圖片\\sparkles_"+color+".png");
+                    interrogationIcon=new ImageIcon("demo\\src\\picture\\調好的圖片\\interrogation_"+color+".png");
                     setleftPanel();
                 }
                 catch(Exception ex){
@@ -123,11 +131,11 @@ public class MouseTest extends JFrame{
             }
             else if (y>=122 && y<=168 && x<=50){//密碼產生器
                     try{
-                        // homeIcon=new ImageIcon("demo\\src\\picture\\home.png");
+                        homeIcon=new ImageIcon("demo\\src\\picture\\調好的圖片\\home_"+color+".png");
                         lockIcon=new ImageIcon("demo\\src\\picture\\調好的圖片\\lock_end_"+color+".png");
-                        // bellIcon=new ImageIcon("demo\\src\\picture\\bell.png");
-                        // sparklesIcon=new ImageIcon("demo\\src\\picture\\sparkles.png");
-                        // interrogationIcon=new ImageIcon("demo\\src\\picture\\interrogation.png");
+                        bellIcon=new ImageIcon("demo\\src\\picture\\調好的圖片\\bell_"+color+".png");
+                        sparklesIcon=new ImageIcon("demo\\src\\picture\\調好的圖片\\sparkles_"+color+".png");
+                        interrogationIcon=new ImageIcon("demo\\src\\picture\\調好的圖片\\interrogation_"+color+".png");
 
                         setleftPanel();
                     }
@@ -137,11 +145,11 @@ public class MouseTest extends JFrame{
             }
             else if(y>=218 && y<=270 && x<=50){//提醒設定
                     try{
-                        // homeIcon=new ImageIcon("demo\\src\\picture\\home.png");
-                        // lockIcon=new ImageIcon("demo\\src\\picture\\lock.png");
+                        homeIcon=new ImageIcon("demo\\src\\picture\\調好的圖片\\home_"+color+".png");
+                        lockIcon=new ImageIcon("demo\\src\\picture\\調好的圖片\\lock_"+color+".png");
                         bellIcon=new ImageIcon("demo\\src\\picture\\調好的圖片\\bell_end_"+color+".png");
-                        // sparklesIcon=new ImageIcon("demo\\src\\picture\\sparkles.png");
-                        // interrogationIcon=new ImageIcon("demo\\src\\picture\\interrogation.png");
+                        sparklesIcon=new ImageIcon("demo\\src\\picture\\調好的圖片\\sparkles_"+color+".png");
+                        interrogationIcon=new ImageIcon("demo\\src\\picture\\調好的圖片\\interrogation_"+color+".png");
 
                         setleftPanel();
                     }
@@ -151,12 +159,11 @@ public class MouseTest extends JFrame{
             }
             else if(y>=315 && y<=365 && x<=50){//主題設定
                     try{
-                        // homeIcon=new ImageIcon("demo\\src\\picture\\home.png");
-                        // lockIcon=new ImageIcon("demo\\src\\picture\\lock.png");
-                        // bellIcon=new ImageIcon("demo\\src\\picture\\bell.png");
+                        homeIcon=new ImageIcon("demo\\src\\picture\\調好的圖片\\home_"+color+".png");
+                        lockIcon=new ImageIcon("demo\\src\\picture\\調好的圖片\\lock_"+color+".png");
+                        bellIcon=new ImageIcon("demo\\src\\picture\\調好的圖片\\bell_"+color+".png");                        
                         sparklesIcon=new ImageIcon("demo\\src\\picture\\調好的圖片\\sparkles_end_"+color+".png");
-                        // interrogationIcon=new ImageIcon("demo\\src\\picture\\interrogation.png");
-
+                        interrogationIcon=new ImageIcon("demo\\src\\picture\\調好的圖片\\interrogation_"+color+".png");
                         setleftPanel();
                     }
                     catch(Exception ex){
@@ -165,10 +172,10 @@ public class MouseTest extends JFrame{
             }
             else if(y>=411 && y<=461 && x<=50){//使用教學
                     try{
-                        // homeIcon=new ImageIcon("demo\\src\\picture\\home.png");
-                        // lockIcon=new ImageIcon("demo\\src\\picture\\lock.png");
-                        // bellIcon=new ImageIcon("demo\\src\\picture\\bell.png");
-                        // sparklesIcon=new ImageIcon("demo\\src\\picture\\sparkles.png");
+                        homeIcon=new ImageIcon("demo\\src\\picture\\調好的圖片\\home_"+color+".png");
+                        lockIcon=new ImageIcon("demo\\src\\picture\\調好的圖片\\lock_"+color+".png");
+                        bellIcon=new ImageIcon("demo\\src\\picture\\調好的圖片\\bell_"+color+".png");
+                        sparklesIcon=new ImageIcon("demo\\src\\picture\\調好的圖片\\sparkles_"+color+".png");
                         interrogationIcon=new ImageIcon("demo\\src\\picture\\調好的圖片\\interrogation_end_"+color+".png");
 
                         setleftPanel();
@@ -219,6 +226,12 @@ public class MouseTest extends JFrame{
     }
     public void setDesignPage(DesignPage designPage) {
         this.designPage = designPage;
+    }
+    public void setColor(String color) {
+        this.color = color;
+    }
+    public String getColor() {
+        return color;
     }
     public void setMainLabel(JLabel mainLabel) {
         JLabel testJLabel=new JLabel("test!!!!");

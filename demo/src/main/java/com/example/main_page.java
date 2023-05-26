@@ -162,12 +162,13 @@ public class main_page{
     }
 
     public static void setFiveButton(ImageIcon homeIcon,ImageIcon lockIcon,ImageIcon bellIcon,ImageIcon sparklesIcon,ImageIcon interrogationIcon){
-        homeIcon=new ImageIcon("demo\\src\\picture\\home.png");
-        lockIcon=new ImageIcon("demo\\src\\picture\\lock.png");
-        bellIcon=new ImageIcon("demo\\src\\picture\\bell.png");
-        sparklesIcon=new ImageIcon("demo\\src\\picture\\sparkles.png");
-        interrogationIcon=new ImageIcon("demo\\src\\picture\\interrogation.png");
-        
+        String color="yellow";
+        homeIcon=new ImageIcon("demo\\src\\picture\\調好的圖片\\home_"+color+".png");
+        lockIcon=new ImageIcon("demo\\src\\picture\\調好的圖片\\lock_"+color+".png");
+        bellIcon=new ImageIcon("demo\\src\\picture\\調好的圖片\\bell_"+color+".png");
+        sparklesIcon=new ImageIcon("demo\\src\\picture\\調好的圖片\\sparkles_"+color+".png");
+        interrogationIcon=new ImageIcon("demo\\src\\picture\\調好的圖片\\interrogation_"+color+".png");
+
         main_page.homeLabel=new JLabel(homeIcon);
         main_page.passwordLabel=new JLabel(lockIcon);
         main_page.alertLabel=new JLabel(bellIcon);

@@ -58,6 +58,9 @@ public class DesignPage extends main_page{
     public ImageIcon sparklesIcon=new ImageIcon("demo\\src\\picture\\sparkles.png");
     public ImageIcon interrogationIcon=new ImageIcon("demo\\src\\picture\\interrogation.png");
 
+    public MouseTest mouseTest;
+    public String color;
+
     public DesignPage(JLabel mainLabel){
         this.mainLabel=mainLabel;
         //事件設定
@@ -81,11 +84,13 @@ public class DesignPage extends main_page{
         yellowIcon.setImage(yellowImage);
         yellow=new JLabel(yellowIcon);
     }
-    public void createBackground(JPanel passwardJPanel,JPanel leftJPanel){
+    public void createBackground(MouseTest mouseTest,JPanel passwardJPanel,JPanel leftJPanel){
         passwardJPanel.removeAll();
         passwardJPanel.repaint();
         JPanel newPanel=new JPanel();
         passwardJPanel.setLayout(null);
+        this.mouseTest=mouseTest;
+        this.color=mouseTest.getColor();
 
         pinkButton=new JRadioButton("PINK");
         blackButton=new JRadioButton("BLACK");
@@ -148,13 +153,8 @@ public class DesignPage extends main_page{
         public void actionPerformed(ActionEvent e){
             if(blackButton.isSelected()){
                 System.out.print("null");
-                
-                homeIcon=new ImageIcon("demo\\src\\picture\\長方形(無字)\\home_black.png");
-                lockIcon=new ImageIcon("demo\\src\\picture\\長方形(無字)\\lock_black.png");
-                bellIcon=new ImageIcon("demo\\src\\picture\\長方形(無字)\\bell_black.png");
-                sparklesIcon=new ImageIcon("demo\\src\\picture\\長方形(無字)\\sparkles_black.png");
-                interrogationIcon=new ImageIcon("demo\\src\\picture\\長方形(無字)\\interrogation_black.png");
-                
+                color="black";
+                mouseTest.setColor(color);                    
                 setleftPanel();
                 // ImageIcon pink_bell=new ImageIcon("demo\\src\\picture\\pink_bell.png");
                 
@@ -165,13 +165,17 @@ public class DesignPage extends main_page{
                 // passwardJPanel.setBackground(Color.PINK);
                 // leftJPanel.setBackground(Color.PINK);
                 // this.createBackground(passwardJPanel,leftJPanel);
-                
-                
             }
         }
         public void setleftPanel(){
             changeLeftJPanel.removeAll();
             changeLeftJPanel.repaint();
+
+            homeIcon=new ImageIcon("demo\\src\\picture\\調好的圖片\\home_"+color+".png");
+            lockIcon=new ImageIcon("demo\\src\\picture\\調好的圖片\\lock_"+color+".png");
+            bellIcon=new ImageIcon("demo\\src\\picture\\調好的圖片\\bell_"+color+".png");
+            sparklesIcon=new ImageIcon("demo\\src\\picture\\調好的圖片\\sparkles_"+color+".png");
+            interrogationIcon=new ImageIcon("demo\\src\\picture\\調好的圖片\\interrogation_"+color+".png");
 
             JLabel homeLabel=new JLabel(homeIcon);
             JLabel passwordLabel=new JLabel(lockIcon);
