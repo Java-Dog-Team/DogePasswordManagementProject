@@ -152,19 +152,29 @@ public class DesignPage extends main_page{
     private class ButtonActionListener implements ActionListener{
         public void actionPerformed(ActionEvent e){
             if(blackButton.isSelected()){
-                System.out.print("null");
                 color="black";
                 mouseTest.setColor(color);                    
                 setleftPanel();
-                // ImageIcon pink_bell=new ImageIcon("demo\\src\\picture\\pink_bell.png");
-                
-                // main_page mainPage=new main_page();
-                // mainPage.changeFiveButton(pink_bell,pink_bell,pink_bell,pink_bell,pink_bell);
-                // JPanel passwardJPanel=new JPanel();
-                // JPanel leftJPanel=new JPanel();
-                // passwardJPanel.setBackground(Color.PINK);
-                // leftJPanel.setBackground(Color.PINK);
-                // this.createBackground(passwardJPanel,leftJPanel);
+            }
+            else if(pinkButton.isSelected()){
+                color="pink";
+                mouseTest.setColor(color);                    
+                setleftPanel();
+            }
+            else if(blueButton.isSelected()){
+                color="blue";
+                mouseTest.setColor(color);                    
+                setleftPanel();
+            }
+            else if(greenButton.isSelected()){
+                color="green";
+                mouseTest.setColor(color);                    
+                setleftPanel();
+            }
+            else if(yellowButton.isSelected()){
+                color="yellow";
+                mouseTest.setColor(color);                    
+                setleftPanel();
             }
         }
         public void setleftPanel(){
