@@ -63,9 +63,9 @@ public class Reminder extends main_page {
         passwardJPanel.removeAll();
         passwardJPanel.repaint();
         // 重置選擇
-        oneMonth = new JRadioButton("One month");
-        threeMonth = new JRadioButton("Three month");
-        sixMonth = new JRadioButton("Six month");
+        oneMonth = new JRadioButton("One week");
+        threeMonth = new JRadioButton("Two week");
+        sixMonth = new JRadioButton("Three week");
 
         oneMonth.setActionCommand("1");
         threeMonth.setActionCommand("3");
@@ -143,7 +143,7 @@ public class Reminder extends main_page {
                 return;
             }
 
-            long duration = Integer.valueOf(radioGroup.getSelection().getActionCommand()) * 2592000;
+            long duration = Integer.valueOf(radioGroup.getSelection().getActionCommand()) * 604800;
 
             Post(String.valueOf(duration), username, phoneNum);
 
@@ -152,7 +152,7 @@ public class Reminder extends main_page {
 
     // 將資訊上傳給雲端計時器開始計時
     private static void Post(String duration, String username, String phone) {
-        String serverUrl = "https://cute-blue-caiman-robe.cyclic.app/schedule";
+        String serverUrl = "https://dark-pink-cougar-sari.cyclic.app/schedule";
         try {
             String encodedUrl = serverUrl + "?duration=" + URLEncoder.encode(duration, "UTF-8")
                     + "&username=" + URLEncoder.encode(username, "UTF-8")
