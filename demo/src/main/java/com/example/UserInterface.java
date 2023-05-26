@@ -19,6 +19,7 @@ import com.mongodb.client.MongoClients;
 import com.mongodb.client.MongoCollection;
 import com.mongodb.client.MongoCursor;
 import com.mongodb.client.MongoDatabase;
+import com.mongodb.client.model.UpdateOptions;
 
 //與使用者資料庫做互動
 public class UserInterface {
@@ -30,12 +31,14 @@ public class UserInterface {
     private final String DatabaseName = "JavaProject";
     private MongoClient mongoClient = MongoClients.create(url);
     private MongoDatabase database = mongoClient.getDatabase(DatabaseName);
+    private MongoCollection<Document> colorCollection;
     private final MongoCollection<Document> UserCollection;
 
     // 物件Constructor 帳號作為參數 抓取該使用者資料
     public UserInterface(String Username) {
         this.Username = Username;
         this.UserCollection = database.getCollection(Username);// 與儲存該使用者資料的資料庫做連線
+        this.colorCollection = database.getCollection("Color");
     }
 
     // 獲取所有使用者儲存的資料
@@ -71,9 +74,38 @@ public class UserInterface {
 
     }
 
-    // 獲取使用者特定資料 (還不知道須不須要)
-    public RecordData fetchOneUserData(String AppName) {
-        return null;
+    // 新增一筆使用者使用的主題顏色
+    public void updateOneUserColor( String Color) {
+        try {
+
+            Document query = new Document("Username", Username);
+
+            Document update = new Document("$set", new Document("Color", Color));
+
+            colorCollection.updateOne(query, update, new UpdateOptions().upsert(true));
+
+            System.out.println("顏色資料上傳成功");
+
+        } catch (Exception err) {
+            System.out.println("顏色資料上傳失敗");
+        }
+    }
+
+    // 獲取使用者使用主題顏色
+    public String fetchOneUserColor() {
+        try {
+            Document query = new Document("Username", Username)
+            MongoCursor<Document> cursor = colorCollection.find(query).iterator();
+            System.out.println("抓取使用者顏色成功");
+            if (cursor.hasNext()) {
+                return cursor.next().getString("Color");
+            } else
+                return "yellow";
+
+        } catch (Exception err) {
+            System.out.println("抓取使用者顏色失敗");
+        }
+        return "yellow";
     }
 
     // 使用者新增一筆新資料
