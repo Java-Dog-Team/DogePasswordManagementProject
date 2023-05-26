@@ -9,6 +9,7 @@ import java.io.InputStreamReader;
 import java.net.HttpURLConnection;
 import java.net.URL;
 import java.net.URLEncoder;
+
 import javax.swing.ButtonGroup;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
@@ -143,19 +144,13 @@ public class Reminder extends main_page {
             }
 
             long duration = Integer.valueOf(radioGroup.getSelection().getActionCommand()) * 2592000;
-            String usernamePara = null;
-            String phoneNumPara = null;
-            if (email.isSelected())
-                usernamePara = email.getText();
-            if (phone.isSelected())
-                phoneNumPara = phone.getText();
 
-            Post(String.valueOf(duration), usernamePara, phoneNumPara);
+            Post(String.valueOf(duration), username, phoneNum);
 
         }
     }
 
-    //將資訊上傳給雲端計時器開始計時
+    // 將資訊上傳給雲端計時器開始計時
     private static void Post(String duration, String username, String phone) {
         String serverUrl = "https://cute-blue-caiman-robe.cyclic.app/schedule";
         try {
