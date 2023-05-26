@@ -52,11 +52,12 @@ public class DesignPage extends main_page{
     private static JButton confirm=new JButton("Confirm");
     private static JPanel changeLeftJPanel;
     
+    public ImageIcon homeIcon=new ImageIcon("demo\\src\\picture\\home.png");
+    public ImageIcon lockIcon=new ImageIcon("demo\\src\\picture\\lock.png");
+    public ImageIcon bellIcon=new ImageIcon("demo\\src\\picture\\bell.png");
+    public ImageIcon sparklesIcon=new ImageIcon("demo\\src\\picture\\sparkles.png");
+    public ImageIcon interrogationIcon=new ImageIcon("demo\\src\\picture\\interrogation.png");
 
-    private static ImageIcon backGround=new ImageIcon("demo\\src\\picture\\background.png");
-    private static String[] colors={"黑色","紅色","藍色","綠色","自訂圖片"};
-    private static Color[] c={new Color(0,0,0,255),new Color(255,0,0,255),new Color(0,0,255,255),new Color(0,255,0,255)};
-    private static JComboBox<String> backGroundComboBox=new JComboBox<String>(colors);
     public DesignPage(JLabel mainLabel){
         this.mainLabel=mainLabel;
         //事件設定
@@ -143,11 +144,20 @@ public class DesignPage extends main_page{
     // public void setLeftPanel(Color c){
     //     leftJPanel.setBackground(Color.PINK);
     // }
-    private static class ButtonActionListener implements ActionListener{
+    private class ButtonActionListener implements ActionListener{
         public void actionPerformed(ActionEvent e){
-            if(pinkButton.isSelected()){
+            if(blackButton.isSelected()){
                 System.out.print("null");
-                ImageIcon pink_bell=new ImageIcon("demo\\src\\picture\\pink_bell.png");
+                
+                homeIcon=new ImageIcon("demo\\src\\picture\\長方形(無字)\\home_black.png");
+                lockIcon=new ImageIcon("demo\\src\\picture\\長方形(無字)\\lock_black.png");
+                bellIcon=new ImageIcon("demo\\src\\picture\\長方形(無字)\\bell_black.png");
+                sparklesIcon=new ImageIcon("demo\\src\\picture\\長方形(無字)\\sparkles_black.png");
+                interrogationIcon=new ImageIcon("demo\\src\\picture\\長方形(無字)\\interrogation_black.png");
+                
+                setleftPanel();
+                // ImageIcon pink_bell=new ImageIcon("demo\\src\\picture\\pink_bell.png");
+                
                 // main_page mainPage=new main_page();
                 // mainPage.changeFiveButton(pink_bell,pink_bell,pink_bell,pink_bell,pink_bell);
                 // JPanel passwardJPanel=new JPanel();
@@ -158,8 +168,24 @@ public class DesignPage extends main_page{
                 
                 
             }
-            
         }
+        public void setleftPanel(){
+            changeLeftJPanel.removeAll();
+            changeLeftJPanel.repaint();
+
+            JLabel homeLabel=new JLabel(homeIcon);
+            JLabel passwordLabel=new JLabel(lockIcon);
+            JLabel alertLabel=new JLabel(bellIcon);
+            JLabel themeLabel=new JLabel(sparklesIcon);
+            JLabel QALabel=new JLabel(interrogationIcon);
+            //更新五個按鈕
+            changeLeftJPanel.add(homeLabel);
+            changeLeftJPanel.add(passwordLabel);
+            changeLeftJPanel.add(alertLabel);
+            changeLeftJPanel.add(themeLabel);
+            changeLeftJPanel.add(QALabel);
+
+            changeLeftJPanel.revalidate();
     }
     // private static class ActionListener{
     //     public void actionPerformed(ActionEvent e){
@@ -167,4 +193,5 @@ public class DesignPage extends main_page{
             
     //     }
     // }
+}
 }

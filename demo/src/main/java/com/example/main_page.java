@@ -100,7 +100,6 @@ public class main_page{
         setTopJLabelPicture(myheadIcon);//設定大頭貼
         setFiveButton(homeIcon,lockIcon,bellIcon,sparklesIcon,interrogationIcon);//設定左邊5個按鈕
         createUI(jFrame);//放入物件
-        setAddPasswardButton(jFrame); //放入 Home 的加 passward buttom
         // JFrame.setDefaultLookAndFeelDecorated(true);
         jFrame.setLocationRelativeTo(null);  
         jFrame.setVisible(true);
@@ -152,11 +151,6 @@ public class main_page{
         main_page.topJLabel.setForeground(new Color(32,41,107));
         main_page.topJLabel.setPreferredSize(new Dimension(100, h/20));
         main_page.topJLabel.setFont(new Font(Font.SERIF, 0, 18));
-        // main_page.topJLabel.setSize(10, h/20);
-        // main_page.topJLabel.setBackground(new Color(255,220,53,150));
-        // main_page.topJLabel.setOpaque(true);
-        
-        // main_page.jFrame.getContentPane().add(main_page.topJLabel,BorderLayout.NORTH);
     }
     public static void setTopJLabelPicture(ImageIcon myheadIcon){
         //將圖片切成圓形
@@ -190,9 +184,6 @@ public class main_page{
     }
     public static JFrame getjFrame() {
         return jFrame;
-    }
-    public static void setAddPasswardButton(JFrame frame){
-        // home.creatAddPasswardButton(main_page.jFrame);
     }
     public static JLabel getMainLabel() {
         return mainLabel;

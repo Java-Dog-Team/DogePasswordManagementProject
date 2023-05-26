@@ -29,6 +29,8 @@ public class MouseTest extends JFrame{
     public generatePassword generate;
     public DesignPage designPage;
 
+    //主題的顏色
+    public String color="yellow";
     public MouseTest(JPanel leftPanel,JLabel mainLabel){
         super("看門狗系統");
 
@@ -56,11 +58,11 @@ public class MouseTest extends JFrame{
             leftPanel.removeAll();
             leftPanel.repaint();
 
-            homeIcon=new ImageIcon("demo\\src\\picture\\home.png");
-            lockIcon=new ImageIcon("demo\\src\\picture\\lock.png");
-            bellIcon=new ImageIcon("demo\\src\\picture\\bell.png");
-            sparklesIcon=new ImageIcon("demo\\src\\picture\\sparkles.png");
-            interrogationIcon=new ImageIcon("demo\\src\\picture\\interrogation.png");
+            homeIcon=new ImageIcon("demo\\src\\picture\\調好的圖片\\home_"+color+".png");
+            lockIcon=new ImageIcon("demo\\src\\picture\\調好的圖片\\lock_"+color+".png");
+            bellIcon=new ImageIcon("demo\\src\\picture\\調好的圖片\\bell_"+color+".png");
+            sparklesIcon=new ImageIcon("demo\\src\\picture\\調好的圖片\\sparkles_"+color+".png");
+            interrogationIcon=new ImageIcon("demo\\src\\picture\\調好的圖片\\interrogation_"+color+".png");
 
             setleftPanel();
             
@@ -95,27 +97,6 @@ public class MouseTest extends JFrame{
         public void mouseClicked(MouseEvent e){  //實做滑鼠的點擊事件
             int x = e.getX();
             int y = e.getY();
-            // // System.out.printf("%d %d%n",x,y);
-            // if(y>=27 && y<=73 && x<=150){//主頁面
-            //     home.creatPasswordPanel(passwardJPanel);
-            //     home.creatAddPasswardButton(addJPanel);
-            // }
-            // else if (y>=122 && y<=168 && x<=150){//密碼產生器
-            //     addJPanel.setVisible(false);
-            //     generate.createGenerate(passwardJPanel);
-            // }
-            // else if(y>=218 && y<=270 && x<=150){//提醒設定
-            //     addJPanel.setVisible(false);
-            //     remider.createReminder(passwardJPanel);
-            // }
-            // else if(y>=315 && y<=365 && x<=150){//主題設定
-            //     // DesignPage designPage=new DesignPage(jFrame);
-            //     // MainPage.jFrame.getContentPane().setBackground(Color.BLACK);
-            //     // System.out.printf("%d %d%n",x,y);
-            // }
-            // else if(y>=411 && y<=461 && x<=50){//使用教學
-
-            // }
             
         }
         @Override
@@ -129,11 +110,11 @@ public class MouseTest extends JFrame{
            //偵測滑鼠到左側選單按鈕，讓選單彈出
             if(y>=27 && y<=73 && x<=50){//主畫面
                 try{
-                    homeIcon=new ImageIcon("demo\\src\\picture\\home_end.jpg");
-                    lockIcon=new ImageIcon("demo\\src\\picture\\lock.png");
-                    bellIcon=new ImageIcon("demo\\src\\picture\\bell.png");
-                    sparklesIcon=new ImageIcon("demo\\src\\picture\\sparkles.png");
-                    interrogationIcon=new ImageIcon("demo\\src\\picture\\interrogation.png");
+                    homeIcon=new ImageIcon("demo\\src\\picture\\調好的圖片\\home_end_"+color+".png");
+                    // lockIcon=new ImageIcon("demo\\src\\picture\\lock.png");
+                    // bellIcon=new ImageIcon("demo\\src\\picture\\bell.png");
+                    // sparklesIcon=new ImageIcon("demo\\src\\picture\\sparkles.png");
+                    // interrogationIcon=new ImageIcon("demo\\src\\picture\\interrogation.png");
                     setleftPanel();
                 }
                 catch(Exception ex){
@@ -142,11 +123,11 @@ public class MouseTest extends JFrame{
             }
             else if (y>=122 && y<=168 && x<=50){//密碼產生器
                     try{
-                        homeIcon=new ImageIcon("demo\\src\\picture\\home.png");
-                        lockIcon=new ImageIcon("demo\\src\\picture\\lock_end.jpg");
-                        bellIcon=new ImageIcon("demo\\src\\picture\\bell.png");
-                        sparklesIcon=new ImageIcon("demo\\src\\picture\\sparkles.png");
-                        interrogationIcon=new ImageIcon("demo\\src\\picture\\interrogation.png");
+                        // homeIcon=new ImageIcon("demo\\src\\picture\\home.png");
+                        lockIcon=new ImageIcon("demo\\src\\picture\\調好的圖片\\lock_end_"+color+".png");
+                        // bellIcon=new ImageIcon("demo\\src\\picture\\bell.png");
+                        // sparklesIcon=new ImageIcon("demo\\src\\picture\\sparkles.png");
+                        // interrogationIcon=new ImageIcon("demo\\src\\picture\\interrogation.png");
 
                         setleftPanel();
                     }
@@ -156,11 +137,11 @@ public class MouseTest extends JFrame{
             }
             else if(y>=218 && y<=270 && x<=50){//提醒設定
                     try{
-                        homeIcon=new ImageIcon("demo\\src\\picture\\home.png");
-                        lockIcon=new ImageIcon("demo\\src\\picture\\lock.png");
-                        bellIcon=new ImageIcon("demo\\src\\picture\\bell_end.jpg");
-                        sparklesIcon=new ImageIcon("demo\\src\\picture\\sparkles.png");
-                        interrogationIcon=new ImageIcon("demo\\src\\picture\\interrogation.png");
+                        // homeIcon=new ImageIcon("demo\\src\\picture\\home.png");
+                        // lockIcon=new ImageIcon("demo\\src\\picture\\lock.png");
+                        bellIcon=new ImageIcon("demo\\src\\picture\\調好的圖片\\bell_end_"+color+".png");
+                        // sparklesIcon=new ImageIcon("demo\\src\\picture\\sparkles.png");
+                        // interrogationIcon=new ImageIcon("demo\\src\\picture\\interrogation.png");
 
                         setleftPanel();
                     }
@@ -170,11 +151,11 @@ public class MouseTest extends JFrame{
             }
             else if(y>=315 && y<=365 && x<=50){//主題設定
                     try{
-                        homeIcon=new ImageIcon("demo\\src\\picture\\home.png");
-                        lockIcon=new ImageIcon("demo\\src\\picture\\lock.png");
-                        bellIcon=new ImageIcon("demo\\src\\picture\\bell.png");
-                        sparklesIcon=new ImageIcon("demo\\src\\picture\\sparkles_end.jpg");
-                        interrogationIcon=new ImageIcon("demo\\src\\picture\\interrogation.png");
+                        // homeIcon=new ImageIcon("demo\\src\\picture\\home.png");
+                        // lockIcon=new ImageIcon("demo\\src\\picture\\lock.png");
+                        // bellIcon=new ImageIcon("demo\\src\\picture\\bell.png");
+                        sparklesIcon=new ImageIcon("demo\\src\\picture\\調好的圖片\\sparkles_end_"+color+".png");
+                        // interrogationIcon=new ImageIcon("demo\\src\\picture\\interrogation.png");
 
                         setleftPanel();
                     }
@@ -184,11 +165,11 @@ public class MouseTest extends JFrame{
             }
             else if(y>=411 && y<=461 && x<=50){//使用教學
                     try{
-                        homeIcon=new ImageIcon("demo\\src\\picture\\home.png");
-                        lockIcon=new ImageIcon("demo\\src\\picture\\lock.png");
-                        bellIcon=new ImageIcon("demo\\src\\picture\\bell.png");
-                        sparklesIcon=new ImageIcon("demo\\src\\picture\\sparkles.png");
-                        interrogationIcon=new ImageIcon("demo\\src\\picture\\interrogation_end.jpg");
+                        // homeIcon=new ImageIcon("demo\\src\\picture\\home.png");
+                        // lockIcon=new ImageIcon("demo\\src\\picture\\lock.png");
+                        // bellIcon=new ImageIcon("demo\\src\\picture\\bell.png");
+                        // sparklesIcon=new ImageIcon("demo\\src\\picture\\sparkles.png");
+                        interrogationIcon=new ImageIcon("demo\\src\\picture\\調好的圖片\\interrogation_end_"+color+".png");
 
                         setleftPanel();
                     }
@@ -199,11 +180,11 @@ public class MouseTest extends JFrame{
             else if(((y<=27 || y>=73) || (y<=122 || y>=168) || (y<=218 || y>=270) || (y<=315 || y>=365) || (y<=411 || y>=461)) && x>=143){
                 leftPanel.removeAll();
                 leftPanel.repaint();
-                homeIcon=new ImageIcon("demo\\src\\picture\\home.png");
-                lockIcon=new ImageIcon("demo\\src\\picture\\lock.png");
-                bellIcon=new ImageIcon("demo\\src\\picture\\bell.png");
-                sparklesIcon=new ImageIcon("demo\\src\\picture\\sparkles.png");
-                interrogationIcon=new ImageIcon("demo\\src\\picture\\interrogation.png");
+                homeIcon=new ImageIcon("demo\\src\\picture\\調好的圖片\\home_"+color+".png");
+                lockIcon=new ImageIcon("demo\\src\\picture\\調好的圖片\\lock_"+color+".png");
+                bellIcon=new ImageIcon("demo\\src\\picture\\調好的圖片\\bell_"+color+".png");
+                sparklesIcon=new ImageIcon("demo\\src\\picture\\調好的圖片\\sparkles_"+color+".png");
+                interrogationIcon=new ImageIcon("demo\\src\\picture\\調好的圖片\\interrogation_"+color+".png");
                 setleftPanel();
                 leftPanel.revalidate();
             }
