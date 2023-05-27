@@ -34,7 +34,7 @@ public class Reminder extends main_page {
     private static ButtonGroup radioGroup = new ButtonGroup();
     private static JRadioButton email;
     private static JRadioButton phone;
-    private static JButton confirm = new JButton("confirm", dogIcon);
+    private static JButton confirm = new JButton("Confirm");
     public JButton addPasswardButton = new JButton(new ImageIcon("demo\\src\\picture\\addPassward.png"));
 
     private String username;
@@ -99,7 +99,7 @@ public class Reminder extends main_page {
         dog2.setBounds(166, 243, 20, 20);
         email.setBounds(320, 275, 200, 30);
         phone.setBounds(320, 310, 200, 30);
-        confirm.setBounds(320, 370, 110, 30);
+        confirm.setBounds(340, 370, 80, 25);
 
         // 背景顏色設定
         oneMonth.setBackground(null);
@@ -133,13 +133,13 @@ public class Reminder extends main_page {
         public void actionPerformed(ActionEvent e) {
             if (!(oneMonth.isSelected()) && !(threeMonth.isSelected()) && !(sixMonth.isSelected())
                     && !(email.isSelected()) && !(phone.isSelected())) {
-                JOptionPane.showMessageDialog(null, "您沒有選擇任何選項", "WARNING", JOptionPane.WARNING_MESSAGE);
+                JOptionPane.showMessageDialog(null, "You have not selected any options.", "WARNING", JOptionPane.WARNING_MESSAGE);
                 return;
             } else if (!(oneMonth.isSelected()) && !(threeMonth.isSelected()) && !(sixMonth.isSelected())) {
-                JOptionPane.showMessageDialog(null, "請選擇您想要多久提醒一次更換密碼", "WARNING", JOptionPane.WARNING_MESSAGE);
+                JOptionPane.showMessageDialog(null, "Please select how often you want to be reminded to change your password.", "WARNING", JOptionPane.WARNING_MESSAGE);
                 return;
             } else if (!(email.isSelected()) && !(phone.isSelected())) {
-                JOptionPane.showMessageDialog(null, "請選擇要以手機簡訊或是電子郵件傳送提醒", "WARNING", JOptionPane.WARNING_MESSAGE);
+                JOptionPane.showMessageDialog(null, "Please choose to send reminders by cellphone message or email.", "WARNING", JOptionPane.WARNING_MESSAGE);
                 return;
             }
 

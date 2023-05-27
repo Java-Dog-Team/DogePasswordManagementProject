@@ -115,7 +115,7 @@ public class DesignPage extends main_page{
         blueButton.setBackground(Color.WHITE);
         greenButton.setBackground(Color.WHITE);
         yellowButton.setBackground(Color.WHITE);
-        yellowButton.setSelected(true);
+        // yellowButton.setSelected(true);
 
         
         pink.setBounds(80, 80,130,110);
@@ -128,7 +128,7 @@ public class DesignPage extends main_page{
         greenButton.setBounds(110, 390,80,20);
         yellow.setBounds(320, 270,130,110);
         yellowButton.setBounds(350, 390,80,20);
-        confirm.setBounds(345,420,90,30);
+        confirm.setBounds(355,430,80,25);
 
         passwardJPanel.add(pink);
         passwardJPanel.add(pinkButton);
