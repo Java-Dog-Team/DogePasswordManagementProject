@@ -58,8 +58,8 @@ public class generatePassword extends main_page{
     private static JCheckBox engUpperBox;
     private static JCheckBox numberBox;
     private static JCheckBox specialBox;
-    private static JButton confirm=new JButton("confirm", dogIcon);
-    private static JButton copy=new JButton("copy", dogIcon);
+    private static JButton confirm=new JButton("Confirm");
+    private static JButton copy=new JButton("Copy");
     private static String outputString="";
     private static int totalDigits=10;
     
@@ -159,9 +159,9 @@ public class generatePassword extends main_page{
         engUpperBox.setBounds(300, 250,350,30);
         numberBox.setBounds(300, 280,350,30);
         specialBox.setBounds(300, 310,350,30);
-        confirm.setBounds(320, 350, 110, 30);
+        confirm.setBounds(336, 355, 80, 25);
         outPut.setBounds(185, 400, 380, 30);
-        copy.setBounds(580, 400, 100, 30);
+        copy.setBounds(580, 403, 65, 25);
         
     
 
@@ -191,7 +191,7 @@ public class generatePassword extends main_page{
             if(e.getSource()==confirm){
                 RandomPasswordGenerator generator=new RandomPasswordGenerator();
                 if(!(engLowBox.isSelected())&&!(engUpperBox.isSelected())&&!(numberBox.isSelected())&&!(specialBox.isSelected())){
-                    JOptionPane.showMessageDialog(null,"您沒有選擇任何選項","WARNING",JOptionPane.WARNING_MESSAGE);
+                    JOptionPane.showMessageDialog(null,"Please choose at least one symbol.","WARNING",JOptionPane.WARNING_MESSAGE);
                     return;
                 }
                 else if(engLowBox.isSelected()){
@@ -278,8 +278,15 @@ public class generatePassword extends main_page{
                 }
             }
             else{
-                String text = outPut.getText();
-                copyToClipboard(text);
+                if(outPut.getText().equals("")){
+                    JOptionPane.showMessageDialog(null,"There is no output.","WARNING",JOptionPane.WARNING_MESSAGE);
+                    return;
+                }
+                else{
+                    String text = outPut.getText();
+                    copyToClipboard(text);
+                }
+                
             }
         }
     }
