@@ -75,7 +75,7 @@ public class UserInterface {
     }
 
     // 新增一筆使用者使用的主題顏色
-    public void updateOneUserColor( String Color) {
+    public void updateOneUserColor(String Color) {
         try {
 
             Document query = new Document("Username", Username);

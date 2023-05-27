@@ -60,13 +60,10 @@ public class main_page {
     public static JPanel addJPanel = new JPanel();
     public static JPanel passwardJPanel = new JPanel();
 
-    public main_page(String username, String phone) {
-        this.username = username;
-        this.phone = phone;
-        this.userInterface = new UserInterface(username);
-    }
-
-    public static void main(String[] args) {
+    public static void run(String InputUsername, String inputPhone) {
+        username = InputUsername;
+        phone = inputPhone;
+        userInterface = new UserInterface(username);
         mainLabel.setLayout(new BorderLayout());
         jFrame = new MouseTest(leftPanel, topPanel, mainLabel, addJPanel, passwardJPanel);
         createWindow();

@@ -330,9 +330,13 @@ public class Home extends main_page {
         apPanel.setOpaque(true);
         int cou = 0;
         for (Information i : passward) {
+            RecordData OldData = new RecordData(i.getApp(), i.getAccount(), i.getPassward(), i.getImg(), i.getIndex());
+            RecordData NewData = new RecordData(i.getApp(), i.getAccount(), i.getPassward(), i.getImg(), cou);
+            userInterface.updateOneUserData(OldData, NewData);
+            i.setIndex(cou);
             BackgroundPanel newPasswardJPanel = i.setAPPanel();
-            i.setIndex(cou++);
             apPanel.add(newPasswardJPanel);
+            cou++;
         }
 
         // 調整中間顯示帳密的地方

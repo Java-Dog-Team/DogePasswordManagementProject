@@ -85,8 +85,6 @@ public class MailController {
 
             message.setText("歡迎使用Doge密碼管理系統，這是您的驗證碼:" + validCode + "，請在5分鐘內使用");
             ValidCode = validCode;
-            message.setSubject("Doge pswd management!!");
-            message.setText("Here is your validation code : 0487");
             Transport.send(message);
 
             flag = false;// 禁止短時間內寄送驗證碼
@@ -94,7 +92,6 @@ public class MailController {
 
             timer.schedule(new Expried(), 5 * 60 * 1000);// 啟動計時器 5分鐘後讓驗證碼失效
 
-            System.out.println("Send success!");
         } catch (MessagingException e) {
             e.printStackTrace();
         }

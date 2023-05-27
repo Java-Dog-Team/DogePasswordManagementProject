@@ -1,33 +1,30 @@
 package com.example;
 
-import javax.swing.*;
-import java.io.File;
-import javax.swing.JButton;
-import java.awt.event.ActionListener;
-import java.awt.event.ActionEvent;
-import javax.swing.JFrame;
-import javax.swing.JLabel;
-import javax.swing.JTextField;
-import javax.swing.JOptionPane;
 import java.awt.BorderLayout;
-import java.awt.GridLayout;
 import java.awt.Color;
-import java.awt.event.MouseAdapter;
-import java.awt.event.MouseEvent;
 import java.awt.Dimension;
 import java.awt.Font;
+import java.awt.GridLayout;
 import java.awt.Image;
 import java.awt.Label;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
+import java.io.File;
 
+import javax.swing.Icon;
 import javax.swing.ImageIcon;
+import javax.swing.JButton;
 import javax.swing.JDialog;
 import javax.swing.JFileChooser;
+import javax.swing.JFrame;
+import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
-import javax.swing.filechooser.FileNameExtensionFilter;
-
-import org.passay.UsernameRule;
-
 import javax.swing.JPasswordField;
+import javax.swing.JTextField;
+import javax.swing.filechooser.FileNameExtensionFilter;
 
 public class Information {
     public JButton settingButton;
@@ -47,9 +44,10 @@ public class Information {
     public RecordData recordData1;
     public RecordData recordData2;
 
-    public Information(UserInterface userInterface, Home home, int index, boolean delete, String app, String account, String passward,
+    public Information(UserInterface userInterface, Home home, int index, boolean delete, String app, String account,
+            String passward,
             JButton settingButton, JButton deleteButton, Icon img) {
-        this.userInterface=userInterface;
+        this.userInterface = userInterface;
         this.home = home;
         this.settingButton = settingButton;
         this.deleteButton = deleteButton;
@@ -113,18 +111,17 @@ public class Information {
 
     public void setDeleteButton(JButton deleteButton) {
         ActionListener listener = new ActionListener() {
-            String app=getApp();
-            String name=getAccount();
-            String pass=getPassward();
-            int index=getIndex();
+            String app = getApp();
+            String name = getAccount();
+            String pass = getPassward();
+            int index = getIndex();
             public void actionPerformed(ActionEvent e) {
-                home.passward.remove(index);
-                try{
-                    userInterface.deleteOneUserData(app,name,pass,index);
-                }
-                catch(Exception ex){
+                try {
+                    userInterface.deleteOneUserData(app, name, pass, index);
+                } catch (Exception ex) {
                     System.out.print(ex);
                 }
+                home.passward.remove(index);
                 home.passwardUpdate();
             }
         };
@@ -140,7 +137,7 @@ public class Information {
     public class ButtonHandler implements ActionListener {
         @Override
         public void actionPerformed(ActionEvent e) {
-            recordData1=new RecordData(getApp(), getAccount(), getPassward(), getImg(), getIndex());
+            recordData1 = new RecordData(getApp(), getAccount(), getPassward(), getImg(), getIndex());
             // 彈出加入新密碼的視窗
             settingFrame = new JFrame("設定新密碼");
             settingFrame.setSize(600, 335);
@@ -317,7 +314,8 @@ public class Information {
                         setImg(img);
                         setDeleteButton(deleteButton);
                         setSettingButton(settingButton);
-                        recordData2=new RecordData(app, account, password, img, getIndex());
+                        recordData2 = new RecordData(app, account, password, img, getIndex());
+                        System.out.println("跑進來了");
                         userInterface.updateOneUserData(recordData1, recordData2);
                         // 重新畫中間panel
                         home.passwardUpdate();

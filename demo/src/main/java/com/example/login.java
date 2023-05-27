@@ -20,37 +20,41 @@ import javax.swing.JPasswordField;
 import javax.swing.JTextField;
 
 public class login {
-    private static JFrame windowFrame = new JFrame("更改Swing視窗的預設圖示");
-    private static Image dogImage = new ImageIcon("demo\\src\\picture\\dogdogdog.png").getImage();
-    private static ImageIcon dogIcon = new ImageIcon();
+    public JFrame windowFrame = new JFrame("更改Swing視窗的預設圖示");
+    private Image dogImage = new ImageIcon("demo\\src\\picture\\dogdogdog.png").getImage();
+    private ImageIcon dogIcon = new ImageIcon();
     // 登入的背景圖片
-    private static ImageIcon dogPicture = new ImageIcon("demo\\src\\picture\\white_dog2.png");
-    private static JLabel dog = new JLabel(dogPicture);
-    private static JButton showPwd = new JButton(dogIcon);
+    private ImageIcon dogPicture = new ImageIcon("demo\\src\\picture\\white_dog2.png");
+    private JLabel dog = new JLabel(dogPicture);
+    private JButton showPwd = new JButton(dogIcon);
     // private static Container container = windowFrame.getContentPane();
 
     // 取得螢幕大小
-    private static Dimension dimension = Toolkit.getDefaultToolkit().getScreenSize();
-    private static JLabel frame_up = new JLabel(" ");
-    private static JLabel frame_left = new JLabel(" ");
-    private static JLabel frame_right = new JLabel(" ");
-    private static JLabel frame_down = new JLabel(" ");
-    private static JButton confirm = new JButton("Confirm");
-    private static JButton sendVerButton = new JButton("Send verification code");
-    private static JLabel loginLabel = new JLabel("Login");
-    private static JLabel emailLabel = new JLabel("Account:");
-    private static JLabel passwordLabel = new JLabel("Password:");
-    private static JLabel vJLabel = new JLabel("Verification code:");
+    private Dimension dimension = Toolkit.getDefaultToolkit().getScreenSize();
+    private JLabel frame_up = new JLabel(" ");
+    private JLabel frame_left = new JLabel(" ");
+    private JLabel frame_right = new JLabel(" ");
+    private JLabel frame_down = new JLabel(" ");
+    private JButton confirm = new JButton("Confirm");
+    private JButton sendVerButton = new JButton("Send verification code");
+    private JLabel loginLabel = new JLabel("Login");
+    private JLabel emailLabel = new JLabel("Account:");
+    private JLabel passwordLabel = new JLabel("Password:");
+    private JLabel vJLabel = new JLabel("Verification code:");
 
-    private static JLabel register = new JLabel("Register Account");
-    private static JLabel forGot = new JLabel("Forget password");
+    private JLabel register = new JLabel("Register Account");
+    private JLabel forGot = new JLabel("Forget password");
 
-    private static JTextField emailText = new JTextField(null, "", 0);// email輸入
-    private static JPasswordField passWord = new JPasswordField(null, "", 0);// 密碼輸入
-    private static JTextField verificationText = new JTextField(null, "", 0);// 驗證碼輸入
-    private static AccountController accountController = new AccountController();
-    private static MailController mailController = new MailController();
-    private static SMSController smsController = new SMSController();
+    private JTextField emailText = new JTextField(null, "", 0);// email輸入
+    private JPasswordField passWord = new JPasswordField(null, "", 0);// 密碼輸入
+    private JTextField verificationText = new JTextField(null, "", 0);// 驗證碼輸入
+    private AccountController accountController = new AccountController();
+    private MailController mailController = new MailController();
+    private SMSController smsController = new SMSController();
+
+    public void run() {
+        createWindow();
+    }
 
     public void createWindow() {
         windowFrame.setTitle("Dog密碼管理系統");
@@ -85,7 +89,7 @@ public class login {
         windowFrame.setVisible(true);
     }
 
-    private static void putdog(JFrame windowFrame) {
+    private void putdog(JFrame windowFrame) {
         int w = dogPicture.getIconWidth();
         int h = dogPicture.getIconHeight();
         // 縮小狗狗
@@ -97,7 +101,7 @@ public class login {
         dog.setHorizontalAlignment(JLabel.LEFT);
     }
 
-    private static void createUI(JFrame windowFrame) {
+    private void createUI(JFrame windowFrame) {
 
         // email提示語
         emailText.addFocusListener(new JTextFieldHintListener(emailText, "Enter your email/phone number:"));
@@ -161,7 +165,7 @@ public class login {
     }
 
     // 加上黃色邊框
-    private static void yellow_frame(JFrame windowFrame) {
+    private void yellow_frame(JFrame windowFrame) {
         // 設定Lebel為不透明
         frame_up.setOpaque(true);
         frame_left.setOpaque(true);
@@ -184,7 +188,7 @@ public class login {
         windowFrame.add(frame_down, BorderLayout.SOUTH);
     }
 
-    private static class MouseHandler extends MouseAdapter {
+    private class MouseHandler extends MouseAdapter {
 
         public void mouseClicked(MouseEvent event) {
             if (event.getSource() == register) {
@@ -232,7 +236,7 @@ public class login {
         }
     }
 
-    private static class ButtonActionListener implements ActionListener {
+    private class ButtonActionListener implements ActionListener {
         public void actionPerformed(ActionEvent e) {
             String ACCOUNT = emailText.getText().trim();
             String PASSWORD = new String(passWord.getPassword());
@@ -271,8 +275,12 @@ public class login {
 
                             JOptionPane.showMessageDialog(null, "Login Success!", "SUCCESS",
                                     JOptionPane.INFORMATION_MESSAGE);
+
                             // 啟動主頁面
-                            new main_page(ACCOUNT, accountController.getPhoneNumber(ACCOUNT));
+                            main_page.run(ACCOUNT, accountController.getPhoneNumber(ACCOUNT));
+
+                            windowFrame.dispose();
+
                             return;
                         } else {// 若驗證碼錯誤
                             JOptionPane.showMessageDialog(null, "Verification code incorrect!", "WARNING",
