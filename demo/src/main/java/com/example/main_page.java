@@ -63,7 +63,7 @@ public class main_page {
     
     public static void main(String[] args) {
         mainLabel.setLayout(new BorderLayout());
-        jFrame = new MouseTest(leftPanel, mainLabel);
+        jFrame = new MouseTest(leftPanel,topPanel, mainLabel);
         createWindow();
     }
 
@@ -81,7 +81,6 @@ public class main_page {
     }
 
     public static void createWindow() {
-
         jFrame.setContentPane(mainLabel);
         mainLabel.setOpaque(true);
 

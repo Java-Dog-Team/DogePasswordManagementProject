@@ -38,11 +38,13 @@ public class MouseTest extends JFrame{
     public String interrogationPath;
 
     public MouseTest mouseTest=this;
+    public JPanel topJPanel;
 
-    public MouseTest(JPanel leftPanel,JLabel mainLabel){
+    public MouseTest(JPanel leftPanel,JPanel topJPanel,JLabel mainLabel){
         super("看門狗系統");
 
         this.leftPanel=leftPanel;
+        this.topJPanel=topJPanel;
         MouseHandler handler=new MouseHandler();
         leftPanel.addMouseListener(handler);
         leftPanel.addMouseMotionListener(handler);
@@ -96,7 +98,7 @@ public class MouseTest extends JFrame{
             }
             else if(y>=315 && y<=365 && x<=150){//主題設定
                 addJPanel.setVisible(false);
-                designPage.createBackground(mouseTest,passwardJPanel,leftPanel);
+                designPage.createBackground(mouseTest,passwardJPanel,leftPanel,topJPanel);
             }
             else if(y>=411 && y<=461 && x<=50){//使用教學
 

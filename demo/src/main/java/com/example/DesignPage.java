@@ -21,6 +21,7 @@ import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JRadioButton;
 import javax.swing.ButtonGroup;
+import javax.swing.Icon;
 
 public class DesignPage extends main_page{
     //背景圖片
@@ -60,6 +61,8 @@ public class DesignPage extends main_page{
 
     public MouseTest mouseTest;
     public String color;
+    public JPanel topPanel;
+    public ImageIcon myheadIcon;
 
     public DesignPage(JLabel mainLabel){
         this.mainLabel=mainLabel;
@@ -84,13 +87,19 @@ public class DesignPage extends main_page{
         yellowIcon.setImage(yellowImage);
         yellow=new JLabel(yellowIcon);
     }
-    public void createBackground(MouseTest mouseTest,JPanel passwardJPanel,JPanel leftJPanel){
+    public void createBackground(MouseTest mouseTest,JPanel passwardJPanel,JPanel leftJPanel,JPanel topPanel){
         passwardJPanel.removeAll();
         passwardJPanel.repaint();
         JPanel newPanel=new JPanel();
         passwardJPanel.setLayout(null);
         this.mouseTest=mouseTest;
         this.color=mouseTest.getColor();
+        this.topPanel=topPanel;
+
+        Icon img = new ImageIcon("demo\\src\\picture\\dog.png");
+        myheadIcon = RoundImageIconObject.getRoundImageIcon(img);
+        myheadIcon.setImage(myheadIcon.getImage().getScaledInstance(50, 40, Image.SCALE_DEFAULT));
+
 
         pinkButton=new JRadioButton("PINK");
         blackButton=new JRadioButton("BLACK");
@@ -139,8 +148,6 @@ public class DesignPage extends main_page{
 
         passwardJPanel.setBackground(Color.WHITE);
         passwardJPanel.setOpaque(true);
-        //leftJPanel.setBackground(Color.BLACK);
-        // changeLeftJPanel=new JPanel();
         changeLeftJPanel=leftJPanel;
         leftJPanel.setOpaque(true);
         passwardJPanel.revalidate();
@@ -151,7 +158,26 @@ public class DesignPage extends main_page{
     // }
     private class ButtonActionListener implements ActionListener{
         public void actionPerformed(ActionEvent e){
+            topPanel.removeAll();
+            topPanel.repaint();
+            JLabel topJLabel = new JLabel("WatchDog");;
+            JLabel topMyHeadIconJLabel;
+            topJLabel.setPreferredSize(new Dimension(100, h / 20));
+            topJLabel.setFont(new Font(Font.SERIF, 0, 18));
             if(blackButton.isSelected()){
+                // 設定上方邊條背景顏色
+                topPanel.setBackground(new Color(0, 0, 0, 255));
+                topPanel.setOpaque(true);
+
+                topJLabel.setForeground(new Color(255, 255, 255));
+
+                topMyHeadIconJLabel = new JLabel(myheadIcon);
+                topMyHeadIconJLabel.setPreferredSize(new Dimension(50, 40));
+                // 加入上面的標題文字
+                topPanel.add(topJLabel, BorderLayout.WEST);
+                // 加入大頭貼
+                topPanel.add(topMyHeadIconJLabel, BorderLayout.EAST);
+
                 color="black";
                 mouseTest.setColor(color);                    
                 setleftPanel();
@@ -176,6 +202,7 @@ public class DesignPage extends main_page{
                 mouseTest.setColor(color);                    
                 setleftPanel();
             }
+            topPanel.revalidate();
         }
         public void setleftPanel(){
             changeLeftJPanel.removeAll();
