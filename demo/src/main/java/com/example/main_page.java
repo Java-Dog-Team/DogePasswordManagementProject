@@ -17,13 +17,6 @@ import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 
-import com.example.Home.ButtonHandler;
-
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
-import java.awt.event.MouseEvent;
-import java.awt.event.MouseListener;
-
 public class main_page {
     // 上方的Panel
     private static JPanel topPanel = new JPanel();
@@ -58,23 +51,24 @@ public class main_page {
     private static Reminder reminder;
     private static generatePassword generate;
     private static DesignPage designPage;
-    private static UserInterface userInterface = new UserInterface("sw710407@gmail.com");
+    private static UserInterface userInterface;
 
-    private final static String username = "sw710407@gmail.com";
-    private final static String phone = "0974002156";
+    private static String username;
+    private static String phone;
 
     private static String color;
-    public static JPanel addJPanel=new JPanel();
-    public static JPanel passwardJPanel=new JPanel();
+    public static JPanel addJPanel = new JPanel();
+    public static JPanel passwardJPanel = new JPanel();
 
-    // public main_page(String username, String phone){
-    // this.username=username;
-    // this.phone=phone;
-    // }
-    
+    public main_page(String username, String phone) {
+        this.username = username;
+        this.phone = phone;
+        this.userInterface = new UserInterface(username);
+    }
+
     public static void main(String[] args) {
         mainLabel.setLayout(new BorderLayout());
-        jFrame = new MouseTest(leftPanel,topPanel, mainLabel,addJPanel,passwardJPanel);
+        jFrame = new MouseTest(leftPanel, topPanel, mainLabel, addJPanel, passwardJPanel);
         createWindow();
     }
 
@@ -89,7 +83,7 @@ public class main_page {
                     i.getPassword(), settingButton,
                     deleteButton, i.getImage()));
         }
-        color=userInterface.fetchOneUserColor();
+        color = userInterface.fetchOneUserColor();
     }
 
     public static void createWindow() {
@@ -156,20 +150,20 @@ public class main_page {
         jFrame.setGenerate(generate);
         jFrame.setMainLabel(mainLabel);
         jFrame.setDesignPage(designPage);
-        
+
         try {
             load();
         } catch (Exception e) {
             System.out.print(e);
         }
         designPage.setColor(color);
-        designPage.setdata(userInterface,jFrame,leftPanel, topPanel);
+        designPage.setdata(userInterface, jFrame, leftPanel, topPanel);
         designPage.setBackGround(color);
         addJPanel.setVisible(true);
-        mainLabel.add(addJPanel,BorderLayout.EAST);
+        mainLabel.add(addJPanel, BorderLayout.EAST);
         jFrame.setup();
     }
-    
+
     public static void setTopJLabel(JLabel topJLabel) {
         main_page.topJLabel = topJLabel;
         main_page.topJLabel.setForeground(new Color(255, 255, 255));

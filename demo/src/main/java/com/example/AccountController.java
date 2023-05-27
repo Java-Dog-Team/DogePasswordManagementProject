@@ -6,6 +6,7 @@ import org.bson.types.ObjectId;
 import com.mongodb.client.MongoClient;
 import com.mongodb.client.MongoClients;
 import com.mongodb.client.MongoCollection;
+import com.mongodb.client.MongoCursor;
 import com.mongodb.client.MongoDatabase;
 import com.mongodb.client.model.Filters;
 import com.mongodb.client.model.Updates;
@@ -195,6 +196,21 @@ public class AccountController {
             System.err.println(err.getStackTrace() + "更新密碼出現錯誤");
         }
 
+    }
+
+    public String getPhoneNumber(String username) {
+        try {
+            Document query = new Document("Username", username);
+            MongoCursor<Document> cursor = UserCollection.find(query).iterator();
+            System.out.println("抓取使用者顏色成功");
+            if (cursor.hasNext()) {
+                return cursor.next().getString("PhoneNumber");
+            }
+
+        } catch (Exception err) {
+            System.out.println("抓取使用者顏色失敗");
+        }
+        return null;
     }
 
     // 中斷與資料庫的連線

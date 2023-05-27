@@ -21,15 +21,14 @@ import javax.swing.JTextField;
 
 public class login {
     private static JFrame windowFrame = new JFrame("更改Swing視窗的預設圖示");
-    private static Image dogImage=new ImageIcon("demo\\src\\picture\\dogdogdog.png").getImage();
-    private static ImageIcon dogIcon=new ImageIcon();
+    private static Image dogImage = new ImageIcon("demo\\src\\picture\\dogdogdog.png").getImage();
+    private static ImageIcon dogIcon = new ImageIcon();
     // 登入的背景圖片
     private static ImageIcon dogPicture = new ImageIcon("demo\\src\\picture\\white_dog2.png");
     private static JLabel dog = new JLabel(dogPicture);
     private static JButton showPwd = new JButton(dogIcon);
     // private static Container container = windowFrame.getContentPane();
-    
-    
+
     // 取得螢幕大小
     private static Dimension dimension = Toolkit.getDefaultToolkit().getScreenSize();
     private static JLabel frame_up = new JLabel(" ");
@@ -53,10 +52,6 @@ public class login {
     private static MailController mailController = new MailController();
     private static SMSController smsController = new SMSController();
 
-    // public static void main(String[] args) {
-    //     createWindow();
-    // }
-
     public void createWindow() {
         windowFrame.setTitle("Dog密碼管理系統");
         // 設定視窗大小為螢幕的2/3
@@ -77,8 +72,8 @@ public class login {
         } else {
             JOptionPane.showMessageDialog(windowFrame, "Icon image not found.");
         }
-        //圖片設定
-        dogImage=dogImage.getScaledInstance(20, 20, Image.SCALE_DEFAULT);
+        // 圖片設定
+        dogImage = dogImage.getScaledInstance(20, 20, Image.SCALE_DEFAULT);
         dogIcon.setImage(dogImage);
 
         putdog(windowFrame);
@@ -273,8 +268,11 @@ public class login {
                     // 檢查帳號密碼是否正確
                     if (accountController.AccountIsCorrect(ACCOUNT, PASSWORD, 1) == AccountController.OK) {// 若帳號密碼正確
                         if (mailController.ValidCodeVerify(VERIFICATION) == MailController.MAIL_VALIDCODE_CORRECT) {// 若驗證碼正確
+
                             JOptionPane.showMessageDialog(null, "Login Success!", "SUCCESS",
                                     JOptionPane.INFORMATION_MESSAGE);
+                            // 啟動主頁面
+                            new main_page(ACCOUNT, accountController.getPhoneNumber(ACCOUNT));
                             return;
                         } else {// 若驗證碼錯誤
                             JOptionPane.showMessageDialog(null, "Verification code incorrect!", "WARNING",
@@ -307,8 +305,7 @@ public class login {
 
                 }
 
-            } 
-            else if (e.getSource() == sendVerButton) {// 傳送驗證碼button事件
+            } else if (e.getSource() == sendVerButton) {// 傳送驗證碼button事件
                 // 檢查是否輸入帳號欄位
                 if ("Enter your email/phone number:".equals(ACCOUNT)) {
                     JOptionPane.showMessageDialog(null, "Please enter your account!!", "WARNING",
@@ -357,13 +354,11 @@ public class login {
                         return;
                     }
                 }
-            }
-            else if(e.getSource()==showPwd){
+            } else if (e.getSource() == showPwd) {
                 char echoChar = passWord.getEchoChar();
                 if (echoChar != 0) {
                     passWord.setEchoChar((char) 0);
-                } 
-                else {
+                } else {
                     passWord.setEchoChar('\u2022');
                 }
             }
