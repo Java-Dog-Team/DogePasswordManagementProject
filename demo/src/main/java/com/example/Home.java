@@ -43,6 +43,7 @@ public class Home extends main_page {
     public JPasswordField passwardJTextField;
     public JPasswordField password;
     public Home home = this;
+    public JFrame jFrame;
 
     public Home(UserInterface userInterface) {
         this.userInterface = userInterface;
@@ -54,7 +55,8 @@ public class Home extends main_page {
         passwardUpdate();
     }
 
-    public void creatAddPasswardButton(JPanel addJPanel) {
+    public void creatAddPasswardButton(JFrame jFrame,JPanel addJPanel) {
+        this.jFrame=jFrame;
         ButtonHandler handler = new ButtonHandler();// 加入密碼的buttonHandler
         // 設定button
         addPasswardButton.setPreferredSize(new Dimension(57, 54));// 大小
@@ -74,7 +76,7 @@ public class Home extends main_page {
         addJPanel.add(logoutJPanel,BorderLayout.NORTH);
         logout.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
-                System.exit(0); // 终止程序
+                new login().createWindow();
             }
         });
     }
@@ -225,6 +227,7 @@ public class Home extends main_page {
             cancelButton.addMouseListener(new MouseAdapter() {
                 @Override
                 public void mouseClicked(MouseEvent e) {
+                    jFrame.dispose();
                     addNewPasswardFrame.dispose();
                 }
             });

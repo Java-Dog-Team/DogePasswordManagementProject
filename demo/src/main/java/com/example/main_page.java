@@ -73,7 +73,6 @@ public class main_page {
     // }
     
     public static void main(String[] args) {
-        System.out.println(w + " " + h);
         mainLabel.setLayout(new BorderLayout());
         jFrame = new MouseTest(leftPanel,topPanel, mainLabel,addJPanel,passwardJPanel);
         createWindow();
@@ -97,8 +96,7 @@ public class main_page {
         jFrame.setContentPane(mainLabel);
         mainLabel.setOpaque(true);
 
-        // mainLabel.setBackground(Color.BLACK);
-        jFrame.getContentPane().setLayout(new BorderLayout());
+        // jFrame.getContentPane().setLayout(new BorderLayout());
         // 設定視窗大小
         jFrame.setSize(1024, 576);
         // 視窗不可調整大小
@@ -169,23 +167,7 @@ public class main_page {
         designPage.setBackGround(color);
         addJPanel.setVisible(true);
         mainLabel.add(addJPanel,BorderLayout.EAST);
-        setAddJPanel();
-        home.creatPasswordPanel(passwardJPanel);
-        home.creatAddPasswardButton(addJPanel);
-    }
-    public static void setAddJPanel(){
-        JButton logout=new JButton(new ImageIcon("demo\\src\\picture\\logout.png"));
-        JPanel logoutJPanel=new JPanel();
-        logoutJPanel.setBackground(Color.WHITE);
-        logoutJPanel.setOpaque(true);
-        logout.setPreferredSize(new Dimension(30, 30));
-        logoutJPanel.add(logout);
-        addJPanel.add(logoutJPanel,BorderLayout.NORTH);
-        logout.addActionListener(new ActionListener() {
-            public void actionPerformed(ActionEvent e) {
-                System.exit(0); // 终止程序
-            }
-        });
+        jFrame.setup();
     }
     
     public static void setTopJLabel(JLabel topJLabel) {

@@ -54,7 +54,7 @@ public class login {
     public static void main(String[] args) {
         createWindow();
     }
-    private static void createWindow() {    
+    public static void createWindow() {    
         //設定視窗大小為螢幕的2/3
         windowFrame.setSize(960,600);
         //設定背景顏色

@@ -4,7 +4,10 @@ import java.awt.*;
 import java.awt.image.BufferedImage;
 import javax.swing.*;
 import javax.imageio.*;
-import java.io.File; 
+import java.io.File;
+import java.io.IOException;
+import java.net.URI;
+import java.net.URISyntaxException; 
 
 public class MouseTest extends JFrame{
     public JFrame jFrame;
@@ -86,31 +89,56 @@ public class MouseTest extends JFrame{
         public void mousePressed(MouseEvent e){
             int x = e.getX();
             int y = e.getY();
-            addJPanel.removeAll();
-            addJPanel.repaint();
             addJPanel.setLayout(new BorderLayout());
             if(y>=27 && y<=73 && x<=150){//主頁面
+                addJPanel.removeAll();
+                addJPanel.repaint();
                 home.creatPasswordPanel(passwardJPanel);
-                home.creatAddPasswardButton(addJPanel);
+                home.creatAddPasswardButton(mouseTest,addJPanel);
                 setAddJPanel();
+                addJPanel.revalidate();
             }
             else if (y>=122 && y<=168 && x<=150){//密碼產生器
+                addJPanel.removeAll();
+                addJPanel.repaint();
                 generate.createGenerate(passwardJPanel);
                 setAddJPanel();
+                addJPanel.revalidate();
             }
             else if(y>=218 && y<=270 && x<=150){//提醒設定
+                addJPanel.removeAll();
+                addJPanel.repaint();
                 setAddJPanel();
                 remider.createReminder(passwardJPanel);
+                addJPanel.revalidate();
             }
             else if(y>=315 && y<=365 && x<=150){//主題設定
+                addJPanel.removeAll();
+                addJPanel.repaint();
                 setAddJPanel();
                 designPage.createBackground(mouseTest,passwardJPanel,leftPanel,topJPanel);
+                addJPanel.revalidate();
             }
-            else if(y>=411 && y<=461 && x<=50){//使用教學
-                setAddJPanel();
-
+            else if(y>=411 && y<=461 && x<=150){//使用教學
+                
+                try {
+                    // 連結至PPT
+                    openURL("https://www.canva.com/design/DAFj_5z_fdA/14naY4Q8aDpyjmiS7ZPoLQ/edit?utm_content=DAFj_5z_fdA&utm_campaign=designshare&utm_medium=link2&utm_source=sharebutt");
+                } 
+                catch (IOException | URISyntaxException ex) {
+                    ex.printStackTrace();
+                }
             }
-            addJPanel.revalidate();
+            
+        }
+        
+        public void openURL(String url) throws IOException, URISyntaxException {
+            if (Desktop.isDesktopSupported()) {
+                Desktop desktop = Desktop.getDesktop();
+                if (desktop.isSupported(Desktop.Action.BROWSE)) {
+                    desktop.browse(new URI(url));
+                }
+            }
         }
         @Override
         public void mouseClicked(MouseEvent e){  //實做滑鼠的點擊事件
@@ -236,9 +264,18 @@ public class MouseTest extends JFrame{
         addJPanel.add(logoutJPanel,BorderLayout.NORTH);
         logout.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
-                System.exit(0); // 终止程序
+                mouseTest.dispose();
+                new login().createWindow();
             }
         });
+    }
+    public void setup(){
+        addJPanel.removeAll();
+        addJPanel.repaint();
+        home.creatPasswordPanel(passwardJPanel);
+        home.creatAddPasswardButton(mouseTest,addJPanel);
+        setAddJPanel();
+        addJPanel.revalidate();
     }
     public void setHome(Home home) {
         this.home = home;
