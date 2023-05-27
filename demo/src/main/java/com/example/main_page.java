@@ -17,6 +17,13 @@ import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 
+import com.example.Home.ButtonHandler;
+
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.awt.event.MouseEvent;
+import java.awt.event.MouseListener;
+
 public class main_page {
     // 上方的Panel
     private static JPanel topPanel = new JPanel();
@@ -27,8 +34,8 @@ public class main_page {
     private static JLabel topJLabel = new JLabel("WatchDog");
     // 取得螢幕大小
     private static Dimension dimension = Toolkit.getDefaultToolkit().getScreenSize();
-    public static int w = dimension.width;
-    public static int h = dimension.height;
+    public static int w = 1536;
+    public static int h = 864;
     // 大頭貼
     private static JLabel topMyHeadIconJLabel = new JLabel();
     private static ImageIcon myheadIcon = new ImageIcon();
@@ -56,14 +63,19 @@ public class main_page {
     private final static String username = "sw710407@gmail.com";
     private final static String phone = "0974002156";
 
+    private static String color;
+    public static JPanel addJPanel=new JPanel();
+    public static JPanel passwardJPanel=new JPanel();
+
     // public main_page(String username, String phone){
     // this.username=username;
     // this.phone=phone;
     // }
     
     public static void main(String[] args) {
+        System.out.println(w + " " + h);
         mainLabel.setLayout(new BorderLayout());
-        jFrame = new MouseTest(leftPanel,topPanel, mainLabel);
+        jFrame = new MouseTest(leftPanel,topPanel, mainLabel,addJPanel,passwardJPanel);
         createWindow();
     }
 
@@ -78,6 +90,7 @@ public class main_page {
                     i.getPassword(), settingButton,
                     deleteButton, i.getImage()));
         }
+        color=userInterface.fetchOneUserColor();
     }
 
     public static void createWindow() {
@@ -145,16 +158,39 @@ public class main_page {
         jFrame.setGenerate(generate);
         jFrame.setMainLabel(mainLabel);
         jFrame.setDesignPage(designPage);
+        
         try {
             load();
         } catch (Exception e) {
             System.out.print(e);
         }
+        designPage.setColor(color);
+        designPage.setdata(userInterface,jFrame,leftPanel, topPanel);
+        designPage.setBackGround(color);
+        addJPanel.setVisible(true);
+        mainLabel.add(addJPanel,BorderLayout.EAST);
+        setAddJPanel();
+        home.creatPasswordPanel(passwardJPanel);
+        home.creatAddPasswardButton(addJPanel);
     }
-
+    public static void setAddJPanel(){
+        JButton logout=new JButton(new ImageIcon("demo\\src\\picture\\logout.png"));
+        JPanel logoutJPanel=new JPanel();
+        logoutJPanel.setBackground(Color.WHITE);
+        logoutJPanel.setOpaque(true);
+        logout.setPreferredSize(new Dimension(30, 30));
+        logoutJPanel.add(logout);
+        addJPanel.add(logoutJPanel,BorderLayout.NORTH);
+        logout.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent e) {
+                System.exit(0); // 终止程序
+            }
+        });
+    }
+    
     public static void setTopJLabel(JLabel topJLabel) {
         main_page.topJLabel = topJLabel;
-        main_page.topJLabel.setForeground(new Color(32, 41, 107));
+        main_page.topJLabel.setForeground(new Color(255, 255, 255));
         main_page.topJLabel.setPreferredSize(new Dimension(100, h / 20));
         main_page.topJLabel.setFont(new Font(Font.SERIF, 0, 18));
     }

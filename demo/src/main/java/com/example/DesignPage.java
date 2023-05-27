@@ -63,6 +63,7 @@ public class DesignPage extends main_page{
     public String color;
     public JPanel topPanel;
     public ImageIcon myheadIcon;
+    public UserInterface userInterface;
 
     public DesignPage(JLabel mainLabel){
         this.mainLabel=mainLabel;
@@ -90,11 +91,7 @@ public class DesignPage extends main_page{
     public void createBackground(MouseTest mouseTest,JPanel passwardJPanel,JPanel leftJPanel,JPanel topPanel){
         passwardJPanel.removeAll();
         passwardJPanel.repaint();
-        JPanel newPanel=new JPanel();
         passwardJPanel.setLayout(null);
-        this.mouseTest=mouseTest;
-        this.color=mouseTest.getColor();
-        this.topPanel=topPanel;
 
         Icon img = new ImageIcon("demo\\src\\picture\\dog.png");
         myheadIcon = RoundImageIconObject.getRoundImageIcon(img);
@@ -159,14 +156,15 @@ public class DesignPage extends main_page{
     private class ButtonActionListener implements ActionListener{
         public void actionPerformed(ActionEvent e){
             topPanel.removeAll();
-            topPanel.repaint();
+            
             JLabel topJLabel = new JLabel("WatchDog");;
             JLabel topMyHeadIconJLabel;
-            topJLabel.setPreferredSize(new Dimension(100, h / 20));
+            topJLabel.setPreferredSize(new Dimension(100, 864 / 20));
             topJLabel.setFont(new Font(Font.SERIF, 0, 18));
             if(blackButton.isSelected()){
                 // 設定上方邊條背景顏色
                 topPanel.setBackground(new Color(0, 0, 0, 255));
+                topPanel.repaint();
                 topPanel.setOpaque(true);
 
                 topJLabel.setForeground(new Color(255, 255, 255));
@@ -183,56 +181,225 @@ public class DesignPage extends main_page{
                 setleftPanel();
             }
             else if(pinkButton.isSelected()){
+                // 設定上方邊條背景顏色
+                topPanel.setBackground(new Color(244,221, 216, 255));
+                topPanel.repaint();
+                topPanel.setOpaque(true);
+
+                topJLabel.setForeground(new Color(255, 255, 255));
+
+                topMyHeadIconJLabel = new JLabel(myheadIcon);
+                topMyHeadIconJLabel.setPreferredSize(new Dimension(50, 40));
+                // 加入上面的標題文字
+                topPanel.add(topJLabel, BorderLayout.WEST);
+                // 加入大頭貼
+                topPanel.add(topMyHeadIconJLabel, BorderLayout.EAST);
+
                 color="pink";
                 mouseTest.setColor(color);                    
                 setleftPanel();
             }
             else if(blueButton.isSelected()){
+                // 設定上方邊條背景顏色
+                topPanel.setBackground(new Color(163, 197, 254, 255));
+                topPanel.repaint();
+                topPanel.setOpaque(true);
+
+                topJLabel.setForeground(new Color(255, 255, 255));
+
+                topMyHeadIconJLabel = new JLabel(myheadIcon);
+                topMyHeadIconJLabel.setPreferredSize(new Dimension(50, 40));
+                // 加入上面的標題文字
+                topPanel.add(topJLabel, BorderLayout.WEST);
+                // 加入大頭貼
+                topPanel.add(topMyHeadIconJLabel, BorderLayout.EAST);
+
                 color="blue";
                 mouseTest.setColor(color);                    
                 setleftPanel();
             }
             else if(greenButton.isSelected()){
+                // 設定上方邊條背景顏色
+                topPanel.setBackground(new Color(203, 231, 216, 255));
+                topPanel.repaint();
+                topPanel.setOpaque(true);
+
+                topJLabel.setForeground(new Color(255, 255, 255));
+
+                topMyHeadIconJLabel = new JLabel(myheadIcon);
+                topMyHeadIconJLabel.setPreferredSize(new Dimension(50, 40));
+                // 加入上面的標題文字
+                topPanel.add(topJLabel, BorderLayout.WEST);
+                // 加入大頭貼
+                topPanel.add(topMyHeadIconJLabel, BorderLayout.EAST);
+
                 color="green";
                 mouseTest.setColor(color);                    
                 setleftPanel();
             }
             else if(yellowButton.isSelected()){
+                // 設定上方邊條背景顏色
+                topPanel.setBackground(new Color(230, 217, 148, 255));
+                topPanel.repaint();
+                topPanel.setOpaque(true);
+
+                topJLabel.setForeground(new Color(255, 255, 255));
+
+                topMyHeadIconJLabel = new JLabel(myheadIcon);
+                topMyHeadIconJLabel.setPreferredSize(new Dimension(50, 40));
+                // 加入上面的標題文字
+                topPanel.add(topJLabel, BorderLayout.WEST);
+                // 加入大頭貼
+                topPanel.add(topMyHeadIconJLabel, BorderLayout.EAST);
+
                 color="yellow";
                 mouseTest.setColor(color);                    
                 setleftPanel();
             }
             topPanel.revalidate();
+            userInterface.updateOneUserColor(color);
         }
-        public void setleftPanel(){
-            changeLeftJPanel.removeAll();
-            changeLeftJPanel.repaint();
+}
+public void setBackGround(String color){
+    topPanel.removeAll();
+    
+    JLabel topJLabel = new JLabel("WatchDog");;
+    JLabel topMyHeadIconJLabel;
+    
+    Icon img = new ImageIcon("demo\\src\\picture\\dog.png");
+    myheadIcon = RoundImageIconObject.getRoundImageIcon(img);
+    myheadIcon.setImage(myheadIcon.getImage().getScaledInstance(50, 40, Image.SCALE_DEFAULT));
 
-            homeIcon=new ImageIcon("demo\\src\\picture\\調好的圖片\\home_"+color+".png");
-            lockIcon=new ImageIcon("demo\\src\\picture\\調好的圖片\\lock_"+color+".png");
-            bellIcon=new ImageIcon("demo\\src\\picture\\調好的圖片\\bell_"+color+".png");
-            sparklesIcon=new ImageIcon("demo\\src\\picture\\調好的圖片\\sparkles_"+color+".png");
-            interrogationIcon=new ImageIcon("demo\\src\\picture\\調好的圖片\\interrogation_"+color+".png");
+    topJLabel.setPreferredSize(new Dimension(100, 864 / 20));
+    topJLabel.setFont(new Font(Font.SERIF, 0, 18));
+    if(color.equals("black")){
+        // 設定上方邊條背景顏色
+        topPanel.setBackground(new Color(0, 0, 0, 255));
+        topPanel.repaint();
+        topPanel.setOpaque(true);
 
-            JLabel homeLabel=new JLabel(homeIcon);
-            JLabel passwordLabel=new JLabel(lockIcon);
-            JLabel alertLabel=new JLabel(bellIcon);
-            JLabel themeLabel=new JLabel(sparklesIcon);
-            JLabel QALabel=new JLabel(interrogationIcon);
-            //更新五個按鈕
-            changeLeftJPanel.add(homeLabel);
-            changeLeftJPanel.add(passwordLabel);
-            changeLeftJPanel.add(alertLabel);
-            changeLeftJPanel.add(themeLabel);
-            changeLeftJPanel.add(QALabel);
+        topJLabel.setForeground(new Color(255, 255, 255));
 
-            changeLeftJPanel.revalidate();
+        topMyHeadIconJLabel = new JLabel(myheadIcon);
+        topMyHeadIconJLabel.setPreferredSize(new Dimension(50, 40));
+        // 加入上面的標題文字
+        topPanel.add(topJLabel, BorderLayout.WEST);
+        // 加入大頭貼
+        topPanel.add(topMyHeadIconJLabel, BorderLayout.EAST);
+
+        color="black";
+        mouseTest.setColor(color);                    
+        setleftPanel();
     }
-    // private static class ActionListener{
-    //     public void actionPerformed(ActionEvent e){
-            
-            
-    //     }
-    // }
+    else if(color.equals("pink")){
+        // 設定上方邊條背景顏色
+        topPanel.setBackground(new Color(244,221, 216, 255));
+        topPanel.repaint();
+        topPanel.setOpaque(true);
+
+        topJLabel.setForeground(new Color(255, 255, 255));
+
+        topMyHeadIconJLabel = new JLabel(myheadIcon);
+        topMyHeadIconJLabel.setPreferredSize(new Dimension(50, 40));
+        // 加入上面的標題文字
+        topPanel.add(topJLabel, BorderLayout.WEST);
+        // 加入大頭貼
+        topPanel.add(topMyHeadIconJLabel, BorderLayout.EAST);
+
+        color="pink";
+        mouseTest.setColor(color);                    
+        setleftPanel();
+    }
+    else if(color.equals("blue")){
+        // 設定上方邊條背景顏色
+        topPanel.setBackground(new Color(163, 197, 254, 255));
+        topPanel.repaint();
+        topPanel.setOpaque(true);
+
+        topJLabel.setForeground(new Color(255, 255, 255));
+
+        topMyHeadIconJLabel = new JLabel(myheadIcon);
+        topMyHeadIconJLabel.setPreferredSize(new Dimension(50, 40));
+        // 加入上面的標題文字
+        topPanel.add(topJLabel, BorderLayout.WEST);
+        // 加入大頭貼
+        topPanel.add(topMyHeadIconJLabel, BorderLayout.EAST);
+
+        color="blue";
+        mouseTest.setColor(color);                    
+        setleftPanel();
+    }
+    else if(color.equals("green")){
+        // 設定上方邊條背景顏色
+        topPanel.setBackground(new Color(203, 231, 216, 255));
+        topPanel.repaint();
+        topPanel.setOpaque(true);
+
+        topJLabel.setForeground(new Color(255, 255, 255));
+
+        topMyHeadIconJLabel = new JLabel(myheadIcon);
+        topMyHeadIconJLabel.setPreferredSize(new Dimension(50, 40));
+        // 加入上面的標題文字
+        topPanel.add(topJLabel, BorderLayout.WEST);
+        // 加入大頭貼
+        topPanel.add(topMyHeadIconJLabel, BorderLayout.EAST);
+
+        color="green";
+        mouseTest.setColor(color);                    
+        setleftPanel();
+    }
+    else if(color.equals("yellow")){
+        // 設定上方邊條背景顏色
+        topPanel.setBackground(new Color(230, 217, 148, 255));
+        topPanel.repaint();
+        topPanel.setOpaque(true);
+
+        topJLabel.setForeground(new Color(255, 255, 255));
+
+        topMyHeadIconJLabel = new JLabel(myheadIcon);
+        topMyHeadIconJLabel.setPreferredSize(new Dimension(50, 40));
+        // 加入上面的標題文字
+        topPanel.add(topJLabel, BorderLayout.WEST);
+        // 加入大頭貼
+        topPanel.add(topMyHeadIconJLabel, BorderLayout.EAST);
+
+        color="yellow";
+        mouseTest.setColor(color);                    
+        setleftPanel();
+    }
+    topPanel.revalidate();
+}
+public void setleftPanel(){
+    changeLeftJPanel.removeAll();
+    changeLeftJPanel.repaint();
+
+    homeIcon=new ImageIcon("demo\\src\\picture\\調好的圖片\\home_"+color+".png");
+    lockIcon=new ImageIcon("demo\\src\\picture\\調好的圖片\\lock_"+color+".png");
+    bellIcon=new ImageIcon("demo\\src\\picture\\調好的圖片\\bell_"+color+".png");
+    sparklesIcon=new ImageIcon("demo\\src\\picture\\調好的圖片\\sparkles_"+color+".png");
+    interrogationIcon=new ImageIcon("demo\\src\\picture\\調好的圖片\\interrogation_"+color+".png");
+
+    JLabel homeLabel=new JLabel(homeIcon);
+    JLabel passwordLabel=new JLabel(lockIcon);
+    JLabel alertLabel=new JLabel(bellIcon);
+    JLabel themeLabel=new JLabel(sparklesIcon);
+    JLabel QALabel=new JLabel(interrogationIcon);
+    //更新五個按鈕
+    changeLeftJPanel.add(homeLabel);
+    changeLeftJPanel.add(passwordLabel);
+    changeLeftJPanel.add(alertLabel);
+    changeLeftJPanel.add(themeLabel);
+    changeLeftJPanel.add(QALabel);
+
+    changeLeftJPanel.revalidate();
+}
+public void setColor(String color){
+    this.color=color;
+}
+public void setdata(UserInterface userInterface,MouseTest mouseTest,JPanel leftJPanel,JPanel topPanel){
+    changeLeftJPanel=leftJPanel;
+    this.topPanel=topPanel;
+    this.mouseTest=mouseTest;
+    this.userInterface=userInterface;
 }
 }

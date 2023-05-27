@@ -39,12 +39,15 @@ public class MouseTest extends JFrame{
 
     public MouseTest mouseTest=this;
     public JPanel topJPanel;
+    public JButton logout;
 
-    public MouseTest(JPanel leftPanel,JPanel topJPanel,JLabel mainLabel){
+    public MouseTest(JPanel leftPanel,JPanel topJPanel,JLabel mainLabel,JPanel addJPanel,JPanel passwardJPanel){
         super("看門狗系統");
 
         this.leftPanel=leftPanel;
         this.topJPanel=topJPanel;
+        this.addJPanel=addJPanel;
+        this.passwardJPanel=passwardJPanel;
         MouseHandler handler=new MouseHandler();
         leftPanel.addMouseListener(handler);
         leftPanel.addMouseMotionListener(handler);
@@ -83,26 +86,31 @@ public class MouseTest extends JFrame{
         public void mousePressed(MouseEvent e){
             int x = e.getX();
             int y = e.getY();
-            // System.out.printf("%d %d%n",x,y);
+            addJPanel.removeAll();
+            addJPanel.repaint();
+            addJPanel.setLayout(new BorderLayout());
             if(y>=27 && y<=73 && x<=150){//主頁面
                 home.creatPasswordPanel(passwardJPanel);
                 home.creatAddPasswardButton(addJPanel);
+                setAddJPanel();
             }
             else if (y>=122 && y<=168 && x<=150){//密碼產生器
-                addJPanel.setVisible(false);
                 generate.createGenerate(passwardJPanel);
+                setAddJPanel();
             }
             else if(y>=218 && y<=270 && x<=150){//提醒設定
-                addJPanel.setVisible(false);
+                setAddJPanel();
                 remider.createReminder(passwardJPanel);
             }
             else if(y>=315 && y<=365 && x<=150){//主題設定
-                addJPanel.setVisible(false);
+                setAddJPanel();
                 designPage.createBackground(mouseTest,passwardJPanel,leftPanel,topJPanel);
             }
             else if(y>=411 && y<=461 && x<=50){//使用教學
+                setAddJPanel();
 
             }
+            addJPanel.revalidate();
         }
         @Override
         public void mouseClicked(MouseEvent e){  //實做滑鼠的點擊事件
@@ -218,6 +226,20 @@ public class MouseTest extends JFrame{
             leftPanel.revalidate();
         }
    }
+    public void setAddJPanel(){
+        JButton logout=new JButton(new ImageIcon("demo\\src\\picture\\logout.png"));
+        JPanel logoutJPanel=new JPanel();
+        logoutJPanel.setBackground(Color.WHITE);
+        logoutJPanel.setOpaque(true);
+        logout.setPreferredSize(new Dimension(30, 30));
+        logoutJPanel.add(logout);
+        addJPanel.add(logoutJPanel,BorderLayout.NORTH);
+        logout.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent e) {
+                System.exit(0); // 终止程序
+            }
+        });
+    }
     public void setHome(Home home) {
         this.home = home;
     }
@@ -244,9 +266,9 @@ public class MouseTest extends JFrame{
         passwardJPanel.setBackground(Color.WHITE);
         passwardJPanel.setOpaque(true);
         // passwardJPanel.add(testJLabel,BorderLayout.CENTER);
-        addJPanel.setVisible(false);
+        // addJPanel.setVisible(false);
         this.mainLabel.add(passwardJPanel,BorderLayout.CENTER);
-        this.mainLabel.add(addJPanel,BorderLayout.EAST);
+        // this.mainLabel.add(addJPanel,BorderLayout.EAST);
     }
     
 }

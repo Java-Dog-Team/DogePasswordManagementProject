@@ -64,6 +64,19 @@ public class Home extends main_page {
         addJPanel.setBackground(Color.WHITE);
         addJPanel.add(addPasswardButton, BorderLayout.SOUTH);
         addJPanel.setVisible(true);
+
+        JButton logout=new JButton(new ImageIcon("demo\\src\\picture\\logout.png"));
+        JPanel logoutJPanel=new JPanel();
+        logoutJPanel.setBackground(Color.WHITE);
+        logoutJPanel.setOpaque(true);
+        logout.setPreferredSize(new Dimension(30, 30));
+        logoutJPanel.add(logout);
+        addJPanel.add(logoutJPanel,BorderLayout.NORTH);
+        logout.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent e) {
+                System.exit(0); // 终止程序
+            }
+        });
     }
 
     public class ButtonHandler implements ActionListener {

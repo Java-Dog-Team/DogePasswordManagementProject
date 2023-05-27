@@ -94,7 +94,7 @@ public class UserInterface {
     // 獲取使用者使用主題顏色
     public String fetchOneUserColor() {
         try {
-            Document query = new Document("Username", Username)
+            Document query = new Document("Username", Username);
             MongoCursor<Document> cursor = colorCollection.find(query).iterator();
             System.out.println("抓取使用者顏色成功");
             if (cursor.hasNext()) {
