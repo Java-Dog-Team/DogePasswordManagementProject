@@ -147,9 +147,16 @@ public class Reminder extends main_page {
                 return;
             }
 
+            String InputUsername = "null";
+            String InputPhone = "null";
+            if (email.isSelected())
+                InputUsername = username;
+            if (phone.isSelected())
+                InputPhone = phoneNum;
+
             long duration = Integer.valueOf(radioGroup.getSelection().getActionCommand()) * 604800;
 
-            if (Post(String.valueOf(duration), username, phoneNum)) {
+            if (Post(String.valueOf(duration), InputUsername, InputPhone)) {
                 JOptionPane.showMessageDialog(null, "Setting Success!",
                         "SUCCESS", JOptionPane.INFORMATION_MESSAGE);
             } else {
