@@ -133,25 +133,35 @@ public class Reminder extends main_page {
         public void actionPerformed(ActionEvent e) {
             if (!(oneMonth.isSelected()) && !(threeMonth.isSelected()) && !(sixMonth.isSelected())
                     && !(email.isSelected()) && !(phone.isSelected())) {
-                JOptionPane.showMessageDialog(null, "You have not selected any options.", "WARNING", JOptionPane.WARNING_MESSAGE);
+                JOptionPane.showMessageDialog(null, "You have not selected any options.", "WARNING",
+                        JOptionPane.WARNING_MESSAGE);
                 return;
             } else if (!(oneMonth.isSelected()) && !(threeMonth.isSelected()) && !(sixMonth.isSelected())) {
-                JOptionPane.showMessageDialog(null, "Please select how often you want to be reminded to change your password.", "WARNING", JOptionPane.WARNING_MESSAGE);
+                JOptionPane.showMessageDialog(null,
+                        "Please select how often you want to be reminded to change your password.", "WARNING",
+                        JOptionPane.WARNING_MESSAGE);
                 return;
             } else if (!(email.isSelected()) && !(phone.isSelected())) {
-                JOptionPane.showMessageDialog(null, "Please choose to send reminders by cellphone message or email.", "WARNING", JOptionPane.WARNING_MESSAGE);
+                JOptionPane.showMessageDialog(null, "Please choose to send reminders by cellphone message or email.",
+                        "WARNING", JOptionPane.WARNING_MESSAGE);
                 return;
             }
 
             long duration = Integer.valueOf(radioGroup.getSelection().getActionCommand()) * 604800;
 
-            Post(String.valueOf(duration), username, phoneNum);
+            if (Post(String.valueOf(duration), username, phoneNum)) {
+                JOptionPane.showMessageDialog(null, "Setting Success!",
+                        "SUCCESS", JOptionPane.INFORMATION_MESSAGE);
+            } else {
+                JOptionPane.showMessageDialog(null, "Setting Failed!",
+                        "WARNING", JOptionPane.WARNING_MESSAGE);
+            }
 
         }
     }
 
     // 將資訊上傳給雲端計時器開始計時
-    private static void Post(String duration, String username, String phone) {
+    private static boolean Post(String duration, String username, String phone) {
         String serverUrl = "https://dark-pink-cougar-sari.cyclic.app/schedule";
         try {
             String encodedUrl = serverUrl + "?duration=" + URLEncoder.encode(duration, "UTF-8")
@@ -173,10 +183,11 @@ public class Reminder extends main_page {
                 response.append(inputLine);
             }
             in.close();
-
+            return true;
             // System.out.println("Response: " + response.toString());
         } catch (Exception e) {
             e.printStackTrace();
+            return false;
         }
     }
 }
