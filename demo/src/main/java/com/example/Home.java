@@ -315,7 +315,12 @@ public class Home extends main_page {
             ImageIcon img = new ImageIcon(absolutePath);
             picturelabel.setIcon(img);
             JOptionPane.showMessageDialog(null, "upload success!", "Hint", JOptionPane.INFORMATION_MESSAGE);
+            return;
         }
+        if(returnVal==JFileChooser.CANCEL_OPTION){
+            return;
+        }
+        return;
     }
 
     public void passwardUpdate() throws Exception {
