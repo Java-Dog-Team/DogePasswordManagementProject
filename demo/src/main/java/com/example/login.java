@@ -21,16 +21,13 @@ import javax.swing.JTextField;
 
 public class login {
     public JFrame windowFrame = new JFrame("更改Swing視窗的預設圖示");
-    private Image dogImage = new ImageIcon("demo\\src\\picture\\dogdogdog.png").getImage();
+    private Image dogImage = new ImageIcon(SwingTester.class.getResource("dogdogdog.png")).getImage();
     private ImageIcon dogIcon = new ImageIcon();
     // 登入的背景圖片
-    private ImageIcon dogPicture = new ImageIcon("demo\\src\\picture\\white_dog2.png");
+    private ImageIcon dogPicture = new ImageIcon(SwingTester.class.getResource("white_dog2.png"));
     private JLabel dog = new JLabel(dogPicture);
     private JButton showPwd = new JButton(dogIcon);
-    // private static Container container = windowFrame.getContentPane();
 
-    // 取得螢幕大小
-    private Dimension dimension = Toolkit.getDefaultToolkit().getScreenSize();
     private JLabel frame_up = new JLabel(" ");
     private JLabel frame_left = new JLabel(" ");
     private JLabel frame_right = new JLabel(" ");
@@ -277,7 +274,12 @@ public class login {
                                     JOptionPane.INFORMATION_MESSAGE);
 
                             // 啟動主頁面
-                            main_page.run(ACCOUNT, accountController.getPhoneNumber(ACCOUNT));
+                            try {
+                                main_page.run(ACCOUNT, accountController.getPhoneNumber(ACCOUNT));
+                            } catch (Exception e1) {
+                                // TODO Auto-generated catch block
+                                e1.printStackTrace();
+                            }
 
                             windowFrame.dispose();
 

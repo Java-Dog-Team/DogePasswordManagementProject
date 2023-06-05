@@ -22,7 +22,7 @@ import javax.swing.JPanel;
 public class MouseTest extends JFrame {
     public JFrame jFrame;
     public JPanel addJPanel = new JPanel();
-    public JButton addPasswardButton = new JButton(new ImageIcon("demo\\src\\picture\\addPassward.png"));
+    public JButton addPasswardButton = new JButton(new ImageIcon(SwingTester.class.getResource("addPassward.png")));
 
     public JLabel mainLabel;
     private JPanel passwardJPanel = new JPanel();
@@ -30,11 +30,15 @@ public class MouseTest extends JFrame {
     public JLabel rightJLabel = new JLabel();
     public JPanel leftPanel = new JPanel();
 
-    public ImageIcon homeIcon = new ImageIcon("demo\\src\\picture\\home.png");
-    public ImageIcon lockIcon = new ImageIcon("demo\\src\\picture\\lock.png");
-    public ImageIcon bellIcon = new ImageIcon("demo\\src\\picture\\bell.png");
-    public ImageIcon sparklesIcon = new ImageIcon("demo\\src\\picture\\sparkles.png");
-    public ImageIcon interrogationIcon = new ImageIcon("demo\\src\\picture\\interrogation.png");
+    // 主題的顏色
+    public String color = "yellow";
+
+    public ImageIcon homeIcon = new ImageIcon(SwingTester.class.getResource("home_" + color + ".png"));
+    public ImageIcon lockIcon = new ImageIcon(SwingTester.class.getResource("lock_" + color + ".png"));
+    public ImageIcon bellIcon = new ImageIcon(SwingTester.class.getResource("bell_" + color + ".png"));
+    public ImageIcon sparklesIcon = new ImageIcon(SwingTester.class.getResource("sparkles_" + color + ".png"));
+    public ImageIcon interrogationIcon = new ImageIcon(
+            SwingTester.class.getResource("interrogation_" + color + ".png"));
 
     // 其他功能
     public Home home;
@@ -42,8 +46,6 @@ public class MouseTest extends JFrame {
     public generatePassword generate;
     public DesignPage designPage;
 
-    // 主題的顏色
-    public String color = "yellow";
     public String homePath;
     public String lockPath;
     public String bellPath;
@@ -81,16 +83,14 @@ public class MouseTest extends JFrame {
 
         @Override
         public void mouseExited(MouseEvent e) { // 當滑鼠游標進入物件範圍
-            int x = e.getX();
-            int y = e.getY();
             leftPanel.removeAll();
             leftPanel.repaint();
 
-            homeIcon = new ImageIcon("demo\\src\\picture\\調好的圖片\\home_" + color + ".png");
-            lockIcon = new ImageIcon("demo\\src\\picture\\調好的圖片\\lock_" + color + ".png");
-            bellIcon = new ImageIcon("demo\\src\\picture\\調好的圖片\\bell_" + color + ".png");
-            sparklesIcon = new ImageIcon("demo\\src\\picture\\調好的圖片\\sparkles_" + color + ".png");
-            interrogationIcon = new ImageIcon("demo\\src\\picture\\調好的圖片\\interrogation_" + color + ".png");
+            homeIcon = new ImageIcon(SwingTester.class.getResource("home_" + color + ".png"));
+            lockIcon = new ImageIcon(SwingTester.class.getResource("lock_" + color + ".png"));
+            bellIcon = new ImageIcon(SwingTester.class.getResource("bell_" + color + ".png"));
+            sparklesIcon = new ImageIcon(SwingTester.class.getResource("sparkles_" + color + ".png"));
+            interrogationIcon = new ImageIcon(SwingTester.class.getResource("interrogation_" + color + ".png"));
 
             setleftPanel();
 
@@ -105,7 +105,12 @@ public class MouseTest extends JFrame {
             if (y >= 27 && y <= 73 && x <= 150) {// 主頁面
                 addJPanel.removeAll();
                 addJPanel.repaint();
-                home.creatPasswordPanel(passwardJPanel);
+                try {
+                    home.creatPasswordPanel(passwardJPanel);
+                } catch (Exception e1) {
+                    // TODO Auto-generated catch block
+                    e1.printStackTrace();
+                }
                 home.creatAddPasswardButton(mouseTest, addJPanel);
                 setAddJPanel();
                 addJPanel.revalidate();
@@ -167,22 +172,22 @@ public class MouseTest extends JFrame {
             // 偵測滑鼠到左側選單按鈕，讓選單彈出
             if (y >= 27 && y <= 73 && x <= 50) {// 主畫面
                 try {
-                    homeIcon = new ImageIcon("demo\\src\\picture\\調好的圖片\\home_end_" + color + ".png");
-                    lockIcon = new ImageIcon("demo\\src\\picture\\調好的圖片\\lock_" + color + ".png");
-                    bellIcon = new ImageIcon("demo\\src\\picture\\調好的圖片\\bell_" + color + ".png");
-                    sparklesIcon = new ImageIcon("demo\\src\\picture\\調好的圖片\\sparkles_" + color + ".png");
-                    interrogationIcon = new ImageIcon("demo\\src\\picture\\調好的圖片\\interrogation_" + color + ".png");
+                    homeIcon = new ImageIcon(SwingTester.class.getResource("home_end_" + color + ".png"));
+                    lockIcon = new ImageIcon(SwingTester.class.getResource("lock_" + color + ".png"));
+                    bellIcon = new ImageIcon(SwingTester.class.getResource("bell_" + color + ".png"));
+                    sparklesIcon = new ImageIcon(SwingTester.class.getResource("sparkles_" + color + ".png"));
+                    interrogationIcon = new ImageIcon(SwingTester.class.getResource("interrogation_" + color + ".png"));
                     setleftPanel();
                 } catch (Exception ex) {
                     System.out.println(ex);
                 }
             } else if (y >= 122 && y <= 168 && x <= 50) {// 密碼產生器
                 try {
-                    homeIcon = new ImageIcon("demo\\src\\picture\\調好的圖片\\home_" + color + ".png");
-                    lockIcon = new ImageIcon("demo\\src\\picture\\調好的圖片\\lock_end_" + color + ".png");
-                    bellIcon = new ImageIcon("demo\\src\\picture\\調好的圖片\\bell_" + color + ".png");
-                    sparklesIcon = new ImageIcon("demo\\src\\picture\\調好的圖片\\sparkles_" + color + ".png");
-                    interrogationIcon = new ImageIcon("demo\\src\\picture\\調好的圖片\\interrogation_" + color + ".png");
+                    homeIcon = new ImageIcon(SwingTester.class.getResource("home_" + color + ".png"));
+                    lockIcon = new ImageIcon(SwingTester.class.getResource("lock_end_" + color + ".png"));
+                    bellIcon = new ImageIcon(SwingTester.class.getResource("bell_" + color + ".png"));
+                    sparklesIcon = new ImageIcon(SwingTester.class.getResource("sparkles_" + color + ".png"));
+                    interrogationIcon = new ImageIcon(SwingTester.class.getResource("interrogation_" + color + ".png"));
 
                     setleftPanel();
                 } catch (Exception ex) {
@@ -190,11 +195,11 @@ public class MouseTest extends JFrame {
                 }
             } else if (y >= 218 && y <= 270 && x <= 50) {// 提醒設定
                 try {
-                    homeIcon = new ImageIcon("demo\\src\\picture\\調好的圖片\\home_" + color + ".png");
-                    lockIcon = new ImageIcon("demo\\src\\picture\\調好的圖片\\lock_" + color + ".png");
-                    bellIcon = new ImageIcon("demo\\src\\picture\\調好的圖片\\bell_end_" + color + ".png");
-                    sparklesIcon = new ImageIcon("demo\\src\\picture\\調好的圖片\\sparkles_" + color + ".png");
-                    interrogationIcon = new ImageIcon("demo\\src\\picture\\調好的圖片\\interrogation_" + color + ".png");
+                    homeIcon = new ImageIcon(SwingTester.class.getResource("home_" + color + ".png"));
+                    lockIcon = new ImageIcon(SwingTester.class.getResource("lock_" + color + ".png"));
+                    bellIcon = new ImageIcon(SwingTester.class.getResource("bell_end_" + color + ".png"));
+                    sparklesIcon = new ImageIcon(SwingTester.class.getResource("sparkles_" + color + ".png"));
+                    interrogationIcon = new ImageIcon(SwingTester.class.getResource("interrogation_" + color + ".png"));
 
                     setleftPanel();
                 } catch (Exception ex) {
@@ -202,22 +207,23 @@ public class MouseTest extends JFrame {
                 }
             } else if (y >= 315 && y <= 365 && x <= 50) {// 主題設定
                 try {
-                    homeIcon = new ImageIcon("demo\\src\\picture\\調好的圖片\\home_" + color + ".png");
-                    lockIcon = new ImageIcon("demo\\src\\picture\\調好的圖片\\lock_" + color + ".png");
-                    bellIcon = new ImageIcon("demo\\src\\picture\\調好的圖片\\bell_" + color + ".png");
-                    sparklesIcon = new ImageIcon("demo\\src\\picture\\調好的圖片\\sparkles_end_" + color + ".png");
-                    interrogationIcon = new ImageIcon("demo\\src\\picture\\調好的圖片\\interrogation_" + color + ".png");
+                    homeIcon = new ImageIcon(SwingTester.class.getResource("home_" + color + ".png"));
+                    lockIcon = new ImageIcon(SwingTester.class.getResource("lock_" + color + ".png"));
+                    bellIcon = new ImageIcon(SwingTester.class.getResource("bell_" + color + ".png"));
+                    sparklesIcon = new ImageIcon(SwingTester.class.getResource("sparkles_end_" + color + ".png"));
+                    interrogationIcon = new ImageIcon(SwingTester.class.getResource("interrogation_" + color + ".png"));
                     setleftPanel();
                 } catch (Exception ex) {
                     System.out.println(ex);
                 }
             } else if (y >= 411 && y <= 461 && x <= 50) {// 使用教學
                 try {
-                    homeIcon = new ImageIcon("demo\\src\\picture\\調好的圖片\\home_" + color + ".png");
-                    lockIcon = new ImageIcon("demo\\src\\picture\\調好的圖片\\lock_" + color + ".png");
-                    bellIcon = new ImageIcon("demo\\src\\picture\\調好的圖片\\bell_" + color + ".png");
-                    sparklesIcon = new ImageIcon("demo\\src\\picture\\調好的圖片\\sparkles_" + color + ".png");
-                    interrogationIcon = new ImageIcon("demo\\src\\picture\\調好的圖片\\interrogation_end_" + color + ".png");
+                    homeIcon = new ImageIcon(SwingTester.class.getResource("home_" + color + ".png"));
+                    lockIcon = new ImageIcon(SwingTester.class.getResource("lock_" + color + ".png"));
+                    bellIcon = new ImageIcon(SwingTester.class.getResource("bell_" + color + ".png"));
+                    sparklesIcon = new ImageIcon(SwingTester.class.getResource("sparkles_" + color + ".png"));
+                    interrogationIcon = new ImageIcon(
+                            SwingTester.class.getResource("interrogation_end_" + color + ".png"));
 
                     setleftPanel();
                 } catch (Exception ex) {
@@ -227,11 +233,11 @@ public class MouseTest extends JFrame {
                     || (y <= 315 || y >= 365) || (y <= 411 || y >= 461)) && x >= 143) {
                 leftPanel.removeAll();
                 leftPanel.repaint();
-                homeIcon = new ImageIcon("demo\\src\\picture\\調好的圖片\\home_" + color + ".png");
-                lockIcon = new ImageIcon("demo\\src\\picture\\調好的圖片\\lock_" + color + ".png");
-                bellIcon = new ImageIcon("demo\\src\\picture\\調好的圖片\\bell_" + color + ".png");
-                sparklesIcon = new ImageIcon("demo\\src\\picture\\調好的圖片\\sparkles_" + color + ".png");
-                interrogationIcon = new ImageIcon("demo\\src\\picture\\調好的圖片\\interrogation_" + color + ".png");
+                homeIcon = new ImageIcon(SwingTester.class.getResource("home_" + color + ".png"));
+                lockIcon = new ImageIcon(SwingTester.class.getResource("lock_" + color + ".png"));
+                bellIcon = new ImageIcon(SwingTester.class.getResource("bell_" + color + ".png"));
+                sparklesIcon = new ImageIcon(SwingTester.class.getResource("sparkles_" + color + ".png"));
+                interrogationIcon = new ImageIcon(SwingTester.class.getResource("interrogation_" + color + ".png"));
                 setleftPanel();
                 leftPanel.revalidate();
             }
@@ -258,7 +264,7 @@ public class MouseTest extends JFrame {
     }
 
     public void setAddJPanel() {
-        JButton logout = new JButton(new ImageIcon("demo\\src\\picture\\logout.png"));
+        JButton logout = new JButton(new ImageIcon(SwingTester.class.getResource("logout.png")));
         JPanel logoutJPanel = new JPanel();
         logoutJPanel.setBackground(Color.WHITE);
         logoutJPanel.setOpaque(true);
@@ -274,7 +280,7 @@ public class MouseTest extends JFrame {
         });
     }
 
-    public void setup() {
+    public void setup() throws Exception {
         addJPanel.removeAll();
         addJPanel.repaint();
         home.creatPasswordPanel(passwardJPanel);
@@ -308,16 +314,10 @@ public class MouseTest extends JFrame {
     }
 
     public void setMainLabel(JLabel mainLabel) {
-        JLabel testJLabel = new JLabel("test!!!!");
         this.mainLabel = mainLabel;
-        // this.mainLabel.setLayout(BorderLayout());
-        // passwardJPanel.setOpaque(true);
         passwardJPanel.setBackground(Color.WHITE);
         passwardJPanel.setOpaque(true);
-        // passwardJPanel.add(testJLabel,BorderLayout.CENTER);
-        // addJPanel.setVisible(false);
         this.mainLabel.add(passwardJPanel, BorderLayout.CENTER);
-        // this.mainLabel.add(addJPanel,BorderLayout.EAST);
     }
 
 }

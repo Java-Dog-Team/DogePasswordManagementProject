@@ -9,7 +9,6 @@ import java.awt.datatransfer.Clipboard;
 import java.awt.datatransfer.StringSelection;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.security.SecureRandom;
 import java.util.Dictionary;
 import java.util.Hashtable;
 
@@ -27,13 +26,9 @@ import javax.swing.event.ChangeListener;
 public class generatePassword extends main_page {
 
     public JLabel mainLabel = new JLabel();
-    private static String english[] = { "A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L", "M", "N", "O", "P",
-            "Q", "R", "S", "T", "U", "V", "W", "X", "Y", "Z",
-            "a", "b", "c", "d", "e", "f", "g", "h", "i", "j", "k", "l", "m", "n", "o", "p", "q", "r", "s", "t", "u",
-            "v", "w", "x", "y", "z" };
-    private static String number[] = { "1", "2", "3", "4", "5", "6", "7", "8", "9", "0" };
-    private static String special[] = { "_", "-", "~", "#", "^", "*", "/", "%", ".", "+", ":", ";", "=" };
-    private static Image dogImage = new ImageIcon("demo\\src\\picture\\dogdogdog.png").getImage();
+
+    private static Image dogImage = new ImageIcon(
+            SwingTester.class.getResource("dogdogdog.png")).getImage();
     private static ImageIcon dogIcon = new ImageIcon();
     private static JLabel dog1;
     private static JLabel dog2;
@@ -51,9 +46,6 @@ public class generatePassword extends main_page {
     private static JButton copy = new JButton("Copy");
     private static String outputString = "";
     private static int totalDigits = 10;
-
-    private static SecureRandom random = new SecureRandom();
-    // private ChangeListener changeListener;// 監聽器
 
     public generatePassword(JLabel mainLabel) {
         this.mainLabel = mainLabel;

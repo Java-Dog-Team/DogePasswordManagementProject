@@ -9,6 +9,7 @@ import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.io.File;
 import java.util.ArrayList;
+import java.util.List;
 import java.awt.Dimension;
 import java.awt.FlowLayout;
 import java.awt.Label;
@@ -31,10 +32,10 @@ import javax.swing.JScrollBar;
 public class Home extends main_page {
     public UserInterface userInterface;
     public JPanel passwordPanel;
-    public ImageIcon passwardimg = new ImageIcon("demo\\src\\picture\\home_passward_panel_1.png");
+    public ImageIcon passwardimg = new ImageIcon(SwingTester.class.getResource("home_passward_panel_1.png"));
     public JScrollPane scrollPane = new JScrollPane(passwordPanel);
     public ArrayList<Information> passward = new ArrayList<Information>();
-    public JButton addPasswardButton = new JButton(new ImageIcon("demo\\src\\picture\\addPassward.png"));
+    public JButton addPasswardButton = new JButton(new ImageIcon(SwingTester.class.getResource("addPassward.png")));
     public JLabel picturelabel;
     public JButton addPictureButton = new JButton("+add picture");
     public JFrame addNewPasswardFrame;
@@ -49,7 +50,7 @@ public class Home extends main_page {
         this.userInterface = userInterface;
     }
 
-    public void creatPasswordPanel(JPanel passwardJPanel) {
+    public void creatPasswordPanel(JPanel passwardJPanel) throws Exception {
         // 移除當前 Panel 內的所有物件
         passwordPanel = passwardJPanel;
         passwardUpdate();
@@ -67,7 +68,7 @@ public class Home extends main_page {
         addJPanel.add(addPasswardButton, BorderLayout.SOUTH);
         addJPanel.setVisible(true);
 
-        JButton logout=new JButton(new ImageIcon("demo\\src\\picture\\logout.png"));
+        JButton logout=new JButton(new ImageIcon(SwingTester.class.getResource("logout.png")));
         JPanel logoutJPanel=new JPanel();
         logoutJPanel.setBackground(Color.WHITE);
         logoutJPanel.setOpaque(true);
@@ -242,8 +243,8 @@ public class Home extends main_page {
                         JButton settingButton = new JButton();
                         JButton deleteButton = new JButton();
                         boolean delete = false;
-                        ImageIcon settingImageIcon = new ImageIcon("demo\\src\\picture\\settings_color.png");
-                        ImageIcon deleteImageIcon = new ImageIcon("demo\\src\\picture\\trash_color.png");
+                        ImageIcon settingImageIcon = new ImageIcon(SwingTester.class.getResource("settings_color.png"));
+                        ImageIcon deleteImageIcon = new ImageIcon(SwingTester.class.getResource("trash_color.png"));
                         settingButton = new JButton(settingImageIcon);
                         deleteButton = new JButton(deleteImageIcon);
                         int index = passward.size();
@@ -317,9 +318,23 @@ public class Home extends main_page {
         }
     }
 
-    public void passwardUpdate() {
+    public void passwardUpdate() throws Exception {
         passwordPanel.removeAll();
         passwordPanel.repaint();
+        passward = new ArrayList<Information>();
+        List<RecordData> newData=userInterface.fetchAllUserData();
+        for(RecordData i:newData){
+            JButton settingButton = new JButton();
+            JButton deleteButton = new JButton();
+            boolean delete = false;
+            ImageIcon settingImageIcon = new ImageIcon(SwingTester.class.getResource("settings_color.png"));
+            ImageIcon deleteImageIcon = new ImageIcon(SwingTester.class.getResource("trash_color.png"));
+            settingButton = new JButton(settingImageIcon);
+            deleteButton = new JButton(deleteImageIcon);
+            passward.add(new Information(userInterface, home, i.getIndex(), 
+                    delete, i.getAppName(), i.getUsername(), i.getPassword(), settingButton,deleteButton, 
+                    i.getImage()));
+        }
         // 放一組帳密的Panel
         // 放所有帳密的Panel
         JPanel apPanel = new JPanel();

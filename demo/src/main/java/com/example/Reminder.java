@@ -20,7 +20,7 @@ import javax.swing.JRadioButton;
 
 public class Reminder extends main_page {
     public JLabel mainLabel = new JLabel();
-    private static Image dogImage = new ImageIcon("demo\\src\\picture\\dogdogdog.png").getImage();
+    private static Image dogImage = new ImageIcon(SwingTester.class.getResource("dogdogdog.png")).getImage();
     private static ImageIcon dogIcon = new ImageIcon();
     private static JLabel dog1;
     private static JLabel dog2;
@@ -35,7 +35,7 @@ public class Reminder extends main_page {
     private static JRadioButton email;
     private static JRadioButton phone;
     private static JButton confirm = new JButton("Confirm");
-    public JButton addPasswardButton = new JButton(new ImageIcon("demo\\src\\picture\\addPassward.png"));
+    public JButton addPasswardButton = new JButton(new ImageIcon(SwingTester.class.getResource("addPassward.png")));
 
     private String username;
     private String phoneNum;

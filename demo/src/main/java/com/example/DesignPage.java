@@ -20,19 +20,19 @@ public class DesignPage extends main_page {
     // 背景圖片
     public JLabel mainLabel = new JLabel();
     // 圖片設定
-    private static Image pinkImage = new ImageIcon("demo\\src\\picture\\pink.png").getImage();
+    private static Image pinkImage = new ImageIcon(SwingTester.class.getResource("pink.png")).getImage();
     private static ImageIcon pinkIcon = new ImageIcon();
     private static JLabel pink;
-    private static Image blackImage = new ImageIcon("demo\\src\\picture\\black.png").getImage();
+    private static Image blackImage = new ImageIcon(SwingTester.class.getResource("black.png")).getImage();
     private static ImageIcon blackIcon = new ImageIcon();
     private static JLabel black;
-    private static Image blueImage = new ImageIcon("demo\\src\\picture\\blue.png").getImage();
+    private static Image blueImage = new ImageIcon(SwingTester.class.getResource("blue.png")).getImage();
     private static ImageIcon blueIcon = new ImageIcon();
     private static JLabel blue;
-    private static Image greenImage = new ImageIcon("demo\\src\\picture\\green.png").getImage();
+    private static Image greenImage = new ImageIcon(SwingTester.class.getResource("green.png")).getImage();
     private static ImageIcon greenIcon = new ImageIcon();
     private static JLabel green;
-    private static Image yellowImage = new ImageIcon("demo\\src\\picture\\yellow.png").getImage();
+    private static Image yellowImage = new ImageIcon(SwingTester.class.getResource("yellow.png")).getImage();
     private static ImageIcon yellowIcon = new ImageIcon();
     private static JLabel yellow;
 
@@ -45,15 +45,16 @@ public class DesignPage extends main_page {
 
     private static JButton confirm = new JButton("Confirm");
     private static JPanel changeLeftJPanel;
+    
+    public String color;
 
-    public ImageIcon homeIcon = new ImageIcon("demo\\src\\picture\\home.png");
-    public ImageIcon lockIcon = new ImageIcon("demo\\src\\picture\\lock.png");
-    public ImageIcon bellIcon = new ImageIcon("demo\\src\\picture\\bell.png");
-    public ImageIcon sparklesIcon = new ImageIcon("demo\\src\\picture\\sparkles.png");
-    public ImageIcon interrogationIcon = new ImageIcon("demo\\src\\picture\\interrogation.png");
+    public ImageIcon homeIcon;
+    public ImageIcon lockIcon;
+    public ImageIcon bellIcon;
+    public ImageIcon sparklesIcon;
+    public ImageIcon interrogationIcon;
 
     public MouseTest mouseTest;
-    public String color;
     public JPanel topPanel;
     public ImageIcon myheadIcon;
     public UserInterface userInterface;
@@ -87,7 +88,7 @@ public class DesignPage extends main_page {
         passwardJPanel.repaint();
         passwardJPanel.setLayout(null);
 
-        Icon img = new ImageIcon("demo\\src\\picture\\dog.png");
+        Icon img = new ImageIcon(SwingTester.class.getResource("dog.png"));
         myheadIcon = RoundImageIconObject.getRoundImageIcon(img);
         myheadIcon.setImage(myheadIcon.getImage().getScaledInstance(50, 40, Image.SCALE_DEFAULT));
 
@@ -256,7 +257,7 @@ public class DesignPage extends main_page {
         ;
         JLabel topMyHeadIconJLabel;
 
-        Icon img = new ImageIcon("demo\\src\\picture\\dog.png");
+        Icon img = new ImageIcon(SwingTester.class.getResource("dog.png"));
         myheadIcon = RoundImageIconObject.getRoundImageIcon(img);
         myheadIcon.setImage(myheadIcon.getImage().getScaledInstance(50, 40, Image.SCALE_DEFAULT));
 
@@ -360,11 +361,11 @@ public class DesignPage extends main_page {
         changeLeftJPanel.removeAll();
         changeLeftJPanel.repaint();
 
-        homeIcon = new ImageIcon("demo\\src\\picture\\調好的圖片\\home_" + color + ".png");
-        lockIcon = new ImageIcon("demo\\src\\picture\\調好的圖片\\lock_" + color + ".png");
-        bellIcon = new ImageIcon("demo\\src\\picture\\調好的圖片\\bell_" + color + ".png");
-        sparklesIcon = new ImageIcon("demo\\src\\picture\\調好的圖片\\sparkles_" + color + ".png");
-        interrogationIcon = new ImageIcon("demo\\src\\picture\\調好的圖片\\interrogation_" + color + ".png");
+        homeIcon = new ImageIcon(SwingTester.class.getResource("home_" + color + ".png"));
+        lockIcon = new ImageIcon(SwingTester.class.getResource("lock_" + color + ".png"));
+        bellIcon = new ImageIcon(SwingTester.class.getResource("bell_" + color + ".png"));
+        sparklesIcon = new ImageIcon(SwingTester.class.getResource("sparkles_" + color + ".png"));
+        interrogationIcon = new ImageIcon(SwingTester.class.getResource("interrogation_" + color + ".png"));
 
         JLabel homeLabel = new JLabel(homeIcon);
         JLabel passwordLabel = new JLabel(lockIcon);

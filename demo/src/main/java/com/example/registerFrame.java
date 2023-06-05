@@ -27,7 +27,7 @@ public class registerFrame extends JFrame {
     private static JTextField validationCodeText = new JTextField(null, "", 0);// 驗證碼輸入欄位
     private static MailController mailController = new MailController();
 
-    private static Image dogImage=new ImageIcon("demo\\src\\picture\\dogdogdog.png").getImage();
+    private static Image dogImage=new ImageIcon(SwingTester.class.getResource("dogdogdog.png")).getImage();
     private static ImageIcon dogIcon=new ImageIcon();
     private static JButton showPwd1 = new JButton(dogIcon);
     private static JButton showPwd2 = new JButton(dogIcon);

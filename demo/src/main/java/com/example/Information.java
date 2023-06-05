@@ -30,7 +30,7 @@ public class Information {
     public JButton settingButton;
     public JButton deleteButton;
     public boolean delete;
-    public ImageIcon passwardimg = new ImageIcon("demo\\src\\picture\\home_passward_panel_1.png");
+    public ImageIcon passwardimg = new ImageIcon(SwingTester.class.getResource("home_passward_panel_1.png"));
     public JButton addPictureButton = new JButton("+add picture");
     public Home home;
     public JFrame settingFrame = new JFrame();
@@ -44,9 +44,7 @@ public class Information {
     public RecordData recordData1;
     public RecordData recordData2;
 
-    public Information(UserInterface userInterface, Home home, int index, boolean delete, String app, String account,
-            String passward,
-            JButton settingButton, JButton deleteButton, Icon img) {
+    public Information(UserInterface userInterface, Home home, int index, boolean delete, String app, String account,String passward,JButton settingButton, JButton deleteButton, Icon img) {
         this.userInterface = userInterface;
         this.home = home;
         this.settingButton = settingButton;
@@ -121,8 +119,12 @@ public class Information {
                 } catch (Exception ex) {
                     System.out.print(ex);
                 }
-                home.passward.remove(index);
-                home.passwardUpdate();
+                try {
+                    home.passwardUpdate();
+                } catch (Exception e1) {
+                    // TODO Auto-generated catch block
+                    e1.printStackTrace();
+                }
             }
         };
         deleteButton.addActionListener(listener);
@@ -291,8 +293,8 @@ public class Information {
                         String password = new String(passwordChars);
                         String account = accountJTextField.getText();
                         String app = appJTextField.getText();
-                        ImageIcon settingImageIcon = new ImageIcon("demo\\src\\picture\\settings_color.png");
-                        ImageIcon deleteImageIcon = new ImageIcon("demo\\src\\picture\\trash_color.png");
+                        ImageIcon settingImageIcon = new ImageIcon(SwingTester.class.getResource("settings_color.png"));
+                        ImageIcon deleteImageIcon = new ImageIcon(SwingTester.class.getResource("trash_color.png"));
                         Icon img = picturelabel.getIcon();
                         settingButton = new JButton(settingImageIcon);
                         deleteButton = new JButton(deleteImageIcon);
@@ -315,7 +317,6 @@ public class Information {
                         setDeleteButton(deleteButton);
                         setSettingButton(settingButton);
                         recordData2 = new RecordData(app, account, password, img, getIndex());
-                        System.out.println("跑進來了");
                         userInterface.updateOneUserData(recordData1, recordData2);
                         // 重新畫中間panel
                         home.passwardUpdate();
@@ -387,7 +388,7 @@ public class Information {
         JPanel passwordJPanel = new JPanel();
         JLabel passwardLabel = new JLabel();// 放密碼的label
         JLabel accountLabel = new JLabel();// 放帳號的label
-        ImageIcon eyeImageIcon = new ImageIcon("demo\\src\\picture\\eye-crossed_23.png");
+        ImageIcon eyeImageIcon = new ImageIcon(SwingTester.class.getResource("eye-crossed_23.png"));
         JButton settingButton = getSettingButton();
         JButton deleteButton = getDeleteButton();
         JButton eyeButton = new JButton();

@@ -11,7 +11,7 @@ import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 
 public class SwingTester {
-   public static void main(String[] args) {
+   public static void run(String[] args) {
       createWindow();   
    }
 

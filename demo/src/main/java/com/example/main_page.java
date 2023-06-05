@@ -6,7 +6,6 @@ import java.awt.Dimension;
 import java.awt.Font;
 import java.awt.GridLayout;
 import java.awt.Image;
-import java.awt.Toolkit;
 import java.util.List;
 
 import javax.swing.Icon;
@@ -25,8 +24,7 @@ public class main_page {
     public static JLabel mainLabel = new JLabel();
     private static MouseTest jFrame;
     private static JLabel topJLabel = new JLabel("WatchDog");
-    // 取得螢幕大小
-    private static Dimension dimension = Toolkit.getDefaultToolkit().getScreenSize();
+
     public static int w = 1536;
     public static int h = 864;
     // 大頭貼
@@ -60,7 +58,7 @@ public class main_page {
     public static JPanel addJPanel = new JPanel();
     public static JPanel passwardJPanel = new JPanel();
 
-    public static void run(String InputUsername, String inputPhone) {
+    public static void run(String InputUsername, String inputPhone) throws Exception {
         username = InputUsername;
         phone = inputPhone;
         userInterface = new UserInterface(username);
@@ -72,8 +70,8 @@ public class main_page {
     public static void load() throws Exception {
         List<RecordData> list = userInterface.fetchAllUserData();
         for (RecordData i : list) {
-            ImageIcon deleteImageIcon = new ImageIcon("demo\\src\\picture\\trash_color.png");
-            ImageIcon settingImageIcon = new ImageIcon("demo\\src\\picture\\settings_color.png");
+            ImageIcon deleteImageIcon = new ImageIcon(SwingTester.class.getResource("trash_color.png"));
+            ImageIcon settingImageIcon = new ImageIcon(SwingTester.class.getResource("settings_color.png"));
             JButton settingButton = new JButton(settingImageIcon);
             JButton deleteButton = new JButton(deleteImageIcon);
             home.passward.add(new Information(userInterface, home, i.getIndex(), false, i.getAppName(), i.getUsername(),
@@ -83,7 +81,7 @@ public class main_page {
         color = userInterface.fetchOneUserColor();
     }
 
-    public static void createWindow() {
+    public static void createWindow() throws Exception {
         jFrame.setContentPane(mainLabel);
         mainLabel.setOpaque(true);
 
@@ -115,7 +113,7 @@ public class main_page {
         // callMouse();
     }
 
-    private static void createUI(JFrame frame) {
+    private static void createUI(JFrame frame) throws Exception {
         leftPanel.setLayout(new GridLayout(5, 1));
         topPanel.setLayout(new BorderLayout());
         // 加入上面的標題文字
@@ -170,7 +168,7 @@ public class main_page {
 
     public static void setTopJLabelPicture(ImageIcon myheadIcon) {
         // 將圖片切成圓形
-        Icon img = new ImageIcon("demo\\src\\picture\\dog.png");
+        Icon img = new ImageIcon(SwingTester.class.getResource("dog.png"));
         myheadIcon = RoundImageIconObject.getRoundImageIcon(img);
         myheadIcon.setImage(myheadIcon.getImage().getScaledInstance(50, 40, Image.SCALE_DEFAULT));
         main_page.topMyHeadIconJLabel = new JLabel(myheadIcon);
@@ -180,11 +178,11 @@ public class main_page {
     public static void setFiveButton(ImageIcon homeIcon, ImageIcon lockIcon, ImageIcon bellIcon, ImageIcon sparklesIcon,
             ImageIcon interrogationIcon) {
         String color = "yellow";
-        homeIcon = new ImageIcon("demo\\src\\picture\\調好的圖片\\home_" + color + ".png");
-        lockIcon = new ImageIcon("demo\\src\\picture\\調好的圖片\\lock_" + color + ".png");
-        bellIcon = new ImageIcon("demo\\src\\picture\\調好的圖片\\bell_" + color + ".png");
-        sparklesIcon = new ImageIcon("demo\\src\\picture\\調好的圖片\\sparkles_" + color + ".png");
-        interrogationIcon = new ImageIcon("demo\\src\\picture\\調好的圖片\\interrogation_" + color + ".png");
+        homeIcon = new ImageIcon(SwingTester.class.getResource("home_" + color + ".png"));
+        lockIcon = new ImageIcon(SwingTester.class.getResource("lock_" + color + ".png"));
+        bellIcon = new ImageIcon(SwingTester.class.getResource("bell_" + color + ".png"));
+        sparklesIcon = new ImageIcon(SwingTester.class.getResource("sparkles_" + color + ".png"));
+        interrogationIcon = new ImageIcon(SwingTester.class.getResource("interrogation_" + color + ".png"));
 
         main_page.homeLabel = new JLabel(homeIcon);
         main_page.passwordLabel = new JLabel(lockIcon);

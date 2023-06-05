@@ -15,7 +15,7 @@ import javax.swing.JOptionPane;
 import javax.swing.JRadioButton;
 
 public class alarmFrame {
-    private static Image dogImage = new ImageIcon("demo\\src\\picture\\dogdogdog.png").getImage();
+    private static Image dogImage = new ImageIcon(SwingTester.class.getResource("dogdogdog.png")).getImage();
     private static ImageIcon dogIcon = new ImageIcon();
     private static JLabel dog1;
     private static JLabel dog2;
@@ -30,7 +30,7 @@ public class alarmFrame {
     private static JRadioButton phone = new JRadioButton("By phone message");
     private static JButton confirm = new JButton("confirm", dogIcon);
 
-    public static void main(String[] args) {
+    public static void run(String[] args) {
         createWindow();
     }
 
