@@ -374,7 +374,12 @@ public class Information {
             ImageIcon img = new ImageIcon(absolutePath);
             picturelabel.setIcon(img);
             JOptionPane.showMessageDialog(null, "upload success!", "Hint", JOptionPane.INFORMATION_MESSAGE);
+            return;
         }
+        if (returnVal == JFileChooser.CANCEL_OPTION) {
+            return;
+        }
+        return;
     }
 
     public BackgroundPanel setAPPanel() {
